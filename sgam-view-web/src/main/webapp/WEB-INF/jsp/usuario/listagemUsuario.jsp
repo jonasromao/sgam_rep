@@ -19,7 +19,7 @@
              </li>
 
 			<div class="pull-right">
-            	<a class="label label-primary" href="${linkTo[UsuarioController].formularioUsuario}">Novo</a>
+            	<a class="label label-primary labelButton" href="${linkTo[UsuarioController].formularioUsuario}">Novo</a>
             </div>
 
          </ol>

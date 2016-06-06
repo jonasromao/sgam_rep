@@ -18,7 +18,7 @@
              </li>
 
 			<div class="pull-right">
-            	<a class="label label-primary" href="${linkTo[RecursoController].formularioRecurso}">Novo</a>
+            	<a class="label label-primary labelButton" href="${linkTo[RecursoController].formularioRecurso}">Novo</a>
             </div>
 
          </ol>

@@ -8091,3 +8091,12 @@ body.md-skin {
     display: none;
   }
 }
+
+
+.labelButton{
+	font-size: 12px !important;
+}
+
+.iconeDataTable{
+	font-size: 18px;
+}
