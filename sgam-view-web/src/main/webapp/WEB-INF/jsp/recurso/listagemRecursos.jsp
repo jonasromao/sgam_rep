@@ -47,8 +47,8 @@
 									<td>${recurso.valor}</td>
 									<td>${recurso.unidadeMedida}</td>
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
-										<a title="Editar" class="editar" href="${linkTo[RecursoController].editar(recurso.id)}"> <i class="fa fa-edit"></i> </a> &nbsp; 
-										<a title="Excluir" class="remover" href="${linkTo[RecursoController].remover(recurso.id)}"> <i class="fa fa-trash-o"></i> </a> &nbsp;
+										<a title="Editar" class="editar" href="${linkTo[RecursoController].editar(recurso.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
+										<a title="Excluir" class="remover" href="${linkTo[RecursoController].remover(recurso.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> &nbsp;
 									</td>
 								</tr>
 							</c:forEach>

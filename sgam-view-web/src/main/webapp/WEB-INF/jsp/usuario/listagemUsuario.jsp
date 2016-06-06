@@ -50,8 +50,8 @@
 									<td>${usuario.email}</td>
 									<td>${usuario.telefone}</td>
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
-										<a title="Editar" class="editar" href="${linkTo[UsuarioController].editarUsuario(usuario.id)}"> <i class="fa fa-edit"></i> </a> &nbsp; 
-										<a title="Excluir" class="remover" href="${linkTo[UsuarioController].removerUsuario(usuario.id)}"> <i class="fa fa-trash-o"></i> </a> 
+										<a title="Editar" class="editar" href="${linkTo[UsuarioController].editarUsuario(usuario.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
+										<a title="Excluir" class="remover" href="${linkTo[UsuarioController].removerUsuario(usuario.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> 
 									</td>
 								</tr>
 							</c:forEach>
