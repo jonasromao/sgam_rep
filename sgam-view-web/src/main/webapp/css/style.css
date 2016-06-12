@@ -8230,6 +8230,14 @@ body.md-skin {
 }
 =======
 
+@media print {
+  nav.navbar-static-side {
+    display: none;
+  }
+  #page-wrapper {
+    margin: 0;
+  }
+}
 
 .labelButton{
 	font-size: 12px !important;
@@ -8238,4 +8246,7 @@ body.md-skin {
 .iconeDataTable{
 	font-size: 18px;
 }
+<<<<<<< HEAD
 >>>>>>> 6d7cb36627e4fbc69e8037acf9518bbd47849727
+=======
+>>>>>>> e298ea974cfa0289668ffe75cc8cb23d72190331
