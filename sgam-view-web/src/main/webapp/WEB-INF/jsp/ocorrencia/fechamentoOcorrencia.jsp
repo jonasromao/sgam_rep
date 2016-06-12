@@ -3,12 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/headerMenu.jsp" %> 
 
-    <link href="${pageContext.request.contextPath}/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
-    
+    <link href="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/plugins/summernote/summernote.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/js/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -35,7 +32,7 @@
  
  <div class="wrapper wrapper-content  animated fadeInRight">
 	 <div class="row">
-	     <div class="col-sm-8">
+	     <div class="col-sm-7">
 	         <div class="ibox float-e-margins">
 	             <div class="ibox-content no-padding ">
 	             	<div id="descricaoFechamentoOcorrencia" class="click2edit wrapper p-md" >
@@ -46,7 +43,7 @@
 	             </div>
 	       	</div>
 	  	</div>
-	  	<div class="col-sm-4">
+	  	<div class="col-sm-5">
 			<div class="ibox">
             	<div class="ibox-content">
             		<h2>${ocorrencia.morador.nome}</h2>
@@ -164,10 +161,11 @@
 	</div>
 </div>
 
-   	<script src="${pageContext.request.contextPath}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
-    <script src="${pageContext.request.contextPath}/js/plugins/summernote/summernote.min.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/moment/moment-with-locales.min.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/summernote/summernote.min.js"></script>
 
-	<script src="${pageContext.request.contextPath}/js/paginas/fechamentoOcorrencia.js"></script>
+<script src="${pageContext.request.contextPath}/js/paginas/ocorrencia/fechamentoOcorrencia.js"></script>
 	
 	﻿<%@ include file="/footer.jsp" %>
                        	

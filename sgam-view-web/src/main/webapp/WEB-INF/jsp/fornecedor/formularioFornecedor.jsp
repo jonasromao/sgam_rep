@@ -3,8 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/headerMenu.jsp" %> 
 
-    <link href="${pageContext.request.contextPath}/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/plugins/iCheck/custom.css" rel="stylesheet">
 
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -170,10 +169,9 @@
     </div>
 </div>
 
-   <script src="${pageContext.request.contextPath}/js/plugins/jasny/jasny-bootstrap.min.js"></script>
-   <script src="${pageContext.request.contextPath}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+   <script src="${pageContext.request.contextPath}/js/plugins/iCheck/icheck.min.js"></script>
     
-   <script src="${pageContext.request.contextPath}/js/paginas/formularioFornecedor.js"></script>
+   <script src="${pageContext.request.contextPath}/js/paginas/fornecedor/formularioFornecedor.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
 

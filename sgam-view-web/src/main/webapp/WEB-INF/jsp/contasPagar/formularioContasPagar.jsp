@@ -3,8 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/headerMenu.jsp" %> 
 
-    <link href="${pageContext.request.contextPath}/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -39,7 +38,7 @@
 	             	<div class="form-group">
 	             		<label class="col-sm-4 control-label">Número</label>
 	                    <div class="col-sm-8">
-	                    	<input type="text" class="form-control" name="contasPagar.numero" value="${contasPagar.numero}">
+	                    	<input type="text" id="txtNumeroCP" class="form-control" name="contasPagar.numero" value="${contasPagar.numero}">
 	                    </div>
 	                </div>
 	                
@@ -129,10 +128,11 @@
     </div>
 </div>
 
-   <script src="${pageContext.request.contextPath}/js/plugins/jasny/jasny-bootstrap.min.js"></script>
-   <script src="${pageContext.request.contextPath}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/moment/moment-with-locales.min.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     
-   <script src="${pageContext.request.contextPath}/js/paginas/formularioMorador.js"></script>
+<script src="${pageContext.request.contextPath}/js/paginas/contasPagar/formularioContasPagar.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
 

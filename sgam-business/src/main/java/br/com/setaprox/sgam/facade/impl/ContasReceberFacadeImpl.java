@@ -18,6 +18,16 @@ public class ContasReceberFacadeImpl implements ContasReceberFacade {
 	private ContasReceberService contasReceberService;
 	
 	@Override
+	public void persist(ContasReceber contaReceber) {
+		contasReceberService.persist(contaReceber);
+	}
+	
+	@Override
+	public void merge(ContasReceber contaReceber) {
+		contasReceberService.merge(contaReceber);
+	}
+	
+	@Override
 	public List<ContasReceber> findAll() {
 		
 		return contasReceberService.findAll();

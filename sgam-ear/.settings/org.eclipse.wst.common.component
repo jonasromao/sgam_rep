@@ -53,5 +53,8 @@
         <dependent-module archiveName="commons-lang3.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="joda-time.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/joda-time/joda-time/2.9.1/joda-time-2.9.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>

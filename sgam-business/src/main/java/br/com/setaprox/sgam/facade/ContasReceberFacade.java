@@ -6,6 +6,10 @@ import br.com.setaprox.sgam.model.ContasReceber;
 
 public interface ContasReceberFacade {
 
+	void persist(ContasReceber contaReceber);
+	
+	void merge(ContasReceber contaReceber);
+	
 	ContasReceber find( Long id ) ;
 	
 	List<ContasReceber> findAll() ;

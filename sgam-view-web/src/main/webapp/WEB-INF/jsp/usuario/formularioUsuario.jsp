@@ -3,9 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/headerMenu.jsp" %> 
 
-    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-    <link href="css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
-
 
 <div class="row wrapper border-bottom white-bg page-heading">
      <div class="col-lg-12">
@@ -106,7 +103,7 @@
     </div>
 </div>
 
-   <script src="${pageContext.request.contextPath}/js/paginas/formularioUsuario.js"></script>
+   <script src="${pageContext.request.contextPath}/js/paginas/usuario/formularioUsuario.js"></script>
 
 ﻿<%@include file="/footer.jsp" %>
 

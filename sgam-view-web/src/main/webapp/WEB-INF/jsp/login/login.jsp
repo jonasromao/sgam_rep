@@ -14,13 +14,6 @@
     
 	<link rel="stylesheet" type="text/css" media="screen"  href="${pageContext.request.contextPath}/css/animate.css" />
 	<link rel="stylesheet" type="text/css" media="screen"  href="${pageContext.request.contextPath}/css/style.css" />
-
-	<script type="text/javascript">
-	window.onload = function(){
-		$('#login').focus();
-	}
-
-	</script>
 </head>
 
 <body class="gray-bg">
@@ -55,6 +48,7 @@
     <!-- Mainly scripts -->
     <script src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/paginas/login/login.js"></script>
 
 </body>
 

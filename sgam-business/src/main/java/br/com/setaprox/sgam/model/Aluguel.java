@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -59,8 +60,8 @@ public class Aluguel extends AbstractEntity<Aluguel> implements Serializable {
 	@JoinColumn(name = "id_aluguel_comercio", referencedColumnName = "id_aluguel_comercio")
 	private AluguelComercio aluguelComercio;
 	
-	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE}/*, orphanRemoval = true*/ )
-	@JoinColumn(name = "id_contas_receber", referencedColumnName = "id_contas_receber")
+	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE}/*, orphanRemoval = true*/ )
+    @JoinColumn(name = "id_contas_receber")
 	private ContasReceber contaReceber;
 	
 	public Long getId() {

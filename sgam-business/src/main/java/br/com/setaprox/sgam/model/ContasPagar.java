@@ -49,6 +49,9 @@ public class ContasPagar extends AbstractEntity<ContasPagar> implements Serializ
 	@Column( name = "data_vencimento" )
 	private Date dataVencimento;
 	
+	@Column( name = "data_pagamento" )
+	private Date dataPagamento;
+	
 	@Column( name = "especie_pagamento" )
 	private String especiePagamento;
 	
@@ -148,6 +151,14 @@ public class ContasPagar extends AbstractEntity<ContasPagar> implements Serializ
 
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
+	}
+
+	public Date getDataPagamento() {
+		return dataPagamento;
+	}
+
+	public void setDataPagamento(Date dataPagamento) {
+		this.dataPagamento = dataPagamento;
 	}
 
 	@Override

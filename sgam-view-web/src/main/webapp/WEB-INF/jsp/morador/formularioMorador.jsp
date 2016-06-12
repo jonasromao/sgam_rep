@@ -3,17 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/headerMenu.jsp" %> 
 
-    <link href="${pageContext.request.contextPath}/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
-<head>
-	<script type="text/javascript">
-	window.onload = function(){
-		$('#nome').focus();
-	}
 
-	</script>
-</head>
 <div class="row wrapper border-bottom white-bg page-heading">
      <div class="col-lg-12">
          <h2>Moradores</h2>
@@ -60,7 +53,7 @@
 	                <div class="form-group" id="dataNascimento">
 	             		<label class="col-sm-4 control-label">Data Nascimento</label>
 	                    <div class="col-sm-8">
-	                    	<div class="input-group date">
+	                    	<div class="input-group" id="divDataNascimento">
 	                    		<input type="text" class="form-control" name="morador.dataNascimento" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${morador.dataNascimento}" />"  data-mask="99/99/9999" >
 	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 	                    	</div>
@@ -201,10 +194,13 @@
     </div>
 </div>
 
-   <script src="${pageContext.request.contextPath}/js/plugins/jasny/jasny-bootstrap.min.js"></script>
-   <script src="${pageContext.request.contextPath}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
     
-   <script src="${pageContext.request.contextPath}/js/paginas/formularioMorador.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/iCheck/icheck.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/moment/moment-with-locales.min.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+ 
+<script src="${pageContext.request.contextPath}/js/paginas/morador/formularioMorador.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
 

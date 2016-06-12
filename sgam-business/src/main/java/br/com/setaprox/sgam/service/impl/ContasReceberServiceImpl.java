@@ -1,5 +1,6 @@
 package br.com.setaprox.sgam.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -17,6 +18,18 @@ public class ContasReceberServiceImpl implements ContasReceberService {
 
 	@EJB
 	private ContasReceberDAO contasReceberDAO; 
+	
+	@Override
+	public void persist(ContasReceber contaReceber) {
+		analistaStatus(contaReceber);
+		contasReceberDAO.persist(contaReceber);
+	}
+	
+	@Override
+	public void merge(ContasReceber contaReceber) {
+		analistaStatus(contaReceber);
+		contasReceberDAO.editar(contaReceber);
+	}
 	
 	@Override
 	public List<ContasReceber> findAll() {
@@ -39,6 +52,18 @@ public class ContasReceberServiceImpl implements ContasReceberService {
 		
 	}
 	
-	
+	private void analistaStatus(ContasReceber contaReceber){
+		Date atual = new Date();
+		
+		if(contaReceber.getDataPagamento() != null){
+			contaReceber.setStatus("Recebido");
+		}	
+		else if(contaReceber.getDataVencimento() != null && contaReceber.getDataVencimento().compareTo(atual) < 0){
+			contaReceber.setStatus("Atrasado");
+		}
+		else{
+			contaReceber.setStatus("Pendente");
+		}
+	}
 
 }

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -43,6 +44,9 @@ public class ContasReceber extends AbstractEntity<ContasReceber> implements Seri
 	@Column( name = "data_vencimento" )
 	private Date dataVencimento;
 	
+	@Column( name = "data_pagamento" )
+	private Date dataPagamento;
+	
 	@Column( name = "especie_pagamento" )
 	private String especiePagamento;
 	
@@ -52,7 +56,11 @@ public class ContasReceber extends AbstractEntity<ContasReceber> implements Seri
 	@Column( name = "status" )
 	private String status;
 	
+	@OneToOne(mappedBy = "contaReceber")
+	private Aluguel aluguel;
+	
 	public ContasReceber() {
+		
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -154,7 +162,23 @@ public class ContasReceber extends AbstractEntity<ContasReceber> implements Seri
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public Date getDataPagamento() {
+		return dataPagamento;
+	}
+
+	public void setDataPagamento(Date dataPagamento) {
+		this.dataPagamento = dataPagamento;
+	}
 	
+	public Aluguel getAluguel() {
+		return aluguel;
+	}
+
+	public void setAluguel(Aluguel aluguel) {
+		this.aluguel = aluguel;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);

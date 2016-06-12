@@ -5,12 +5,11 @@
 <%@ include file="/headerMenu.jsp" %> 
 <%@ include file="/moradorModal.jsp" %> 
 
-    <link href="${pageContext.request.contextPath}/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     
     <link href="${pageContext.request.contextPath}/css/plugins/summernote/summernote.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/js/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -40,9 +39,8 @@
  		
  		<input type="hidden" name="ocorrencia.id" value="${ocorrencia.id }"/>
 		<input type="hidden" name="ocorrencia.status" value="${ocorrencia.status }"/>
+		<input type="hidden" id="idMoradorOcorrencia" name="ocorrencia.morador.id" value="${ocorrencia.morador.id }"/>
 		
-		<input type="hidden" id="idMorador" name="ocorrencia.morador.id" value="${ocorrencia.morador.id }"/>
- 		
  		<div class="row">
 	 		
 	    	<div class="col-lg-7">
@@ -69,8 +67,8 @@
 		            	<label class="col-sm-2 control-label">Morador</label>
 		                <div class="col-sm-10">
 		                	<div class="input-group">
-		                		<input id="nomeMorador" type="text" class="form-control" name="ocorrencia.morador.nome" value="${ocorrencia.morador.nome}">
-		                		<a class="input-group-addon" data-target="#modalSelecaoMorador" data-toggle="modal"><i class="fa fa-user"></i></a>
+		                		<input id="nomeMoradorOcorrencia" type="text" class="form-control" name="ocorrencia.morador.nome" value="${ocorrencia.morador.nome}">
+		                		<a class="input-group-addon" id="btnModalMoradorOcorrencia" style="cursor: pointer;"><i class="fa fa-user"></i></a>
 		                	</div>
 		            	</div>
 		            </div>
@@ -92,7 +90,7 @@
 	               	<div class="form-group" id="dataInicio">
 	               		<label class="col-sm-2 control-label">Data</label>
 	                   	<div class="col-sm-10">
-		                   	<div class="input-group date">
+		                   	<div class="input-group" id="divDataOcorrencia">
 		                   		<input id="dataInicial" type="text" class="form-control" name="ocorrencia.dataInicio" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${ocorrencia.dataInicio}" />"  data-mask="99/99/9999" >
 		                   		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 		                   	</div>
@@ -147,8 +145,9 @@
     </form>	
 </div>
 
-   	<script src="${pageContext.request.contextPath}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
-    <script src="${pageContext.request.contextPath}/js/plugins/summernote/summernote.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/paginas/formularioOcorrencia.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/moment/moment-with-locales.min.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/summernote/summernote.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/paginas/ocorrencia/formularioOcorrencia.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>

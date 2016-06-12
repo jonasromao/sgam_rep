@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
+<link href="${pageContext.request.contextPath}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
 
 	<div class="modal inmodal fade" id="modalSelecaoMorador" tabindex="-1" role="dialog"  aria-hidden="true" >
-        <div class="modal-dialog modal-lg" style="width:70%;">
+        <div class="modal-dialog modal-lg" style="width:50%;">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -60,5 +61,7 @@
     
     <input type="hidden" id="idMoradorModal" />
     <input type="hidden" id="nomeMoradorModal" />
+    <input type="hidden" id="origemTelaModal" />
     
-    <script src="${pageContext.request.contextPath}/js/paginas/moradorModal.js"></script>
+    <script src="${pageContext.request.contextPath}/js/plugins/dataTables/datatables.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/paginas/modal/moradorModal.js"></script>

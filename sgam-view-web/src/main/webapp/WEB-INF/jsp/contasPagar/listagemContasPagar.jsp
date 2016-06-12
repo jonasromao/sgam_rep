@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/headerMenu.jsp" %> 
 
-<link href="${pageContext.request.contextPath}/js/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
 
 <div class="row wrapper border-bottom white-bg page-heading">
      <div class="col-lg-12">
@@ -46,7 +46,7 @@
 						
 						<tbody>
 							<c:forEach var="conta" items="${contas}">
-								<tr class="linhaMorador">
+								<tr class="linhaContaPagar">
 									<td>${conta.numero}</td>
 									<td>${conta.nome}</td>
 									<td>${conta.dataEmissao}</td>
@@ -67,6 +67,7 @@
     </div>
 </div>
 
-	<script src="${pageContext.request.contextPath}/js/paginas/listagemContasPagar.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/dataTables/datatables.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/paginas/contasPagar/listagemContasPagar.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>

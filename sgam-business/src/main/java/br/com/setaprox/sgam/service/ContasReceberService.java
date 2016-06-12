@@ -10,6 +10,10 @@ import br.com.setaprox.sgam.model.ContasReceber;
 @Local
 public interface ContasReceberService {
 	
+	void persist(ContasReceber contaReceber);
+	
+	void merge(ContasReceber contaReceber);
+	
 	List<ContasReceber> findAll();
 	
 	ContasReceber find(Long id);

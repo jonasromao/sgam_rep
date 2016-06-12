@@ -3,6 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/headerMenu.jsp" %> 
 
+<link href="${pageContext.request.contextPath}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+
 <div class="row wrapper border-bottom white-bg page-heading">
      <div class="col-lg-12">
          <h2>Ocorrências</h2>
@@ -114,6 +116,7 @@
      
 </div>
 
-<script src="${pageContext.request.contextPath}/js/paginas/listagemOcorrencias.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/dataTables/datatables.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/paginas/ocorrencia/listagemOcorrencias.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>

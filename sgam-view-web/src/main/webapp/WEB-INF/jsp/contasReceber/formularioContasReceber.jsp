@@ -3,9 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/headerMenu.jsp" %> 
 
-    <link href="${pageContext.request.contextPath}/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
-
+<link href="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 <div class="row wrapper border-bottom white-bg page-heading">
      <div class="col-lg-12">
@@ -32,28 +30,29 @@
  <div class="wrapper wrapper-content animated fadeInRight">
  	<div class="row">
  		<form method="post" class="form-horizontal" action="${linkTo[ContasReceberController].cadastraContasReceber}">
-			<div class="col-lg-12">
+			<div class="col-lg-7">
 		        <div class="ibox-content">
-	         		<input type="hidden" name="contasReceber.id" value="${contasReceber.id }"/>
-	         	
+	         		<input type="hidden" name="contaReceber.id" value="${contaReceber.id}"/>
+	         		<input type="hidden" name="contaReceber.status" value="${contaReceber.status}"/>
+	         		
 	             	<div class="form-group">
 	             		<label class="col-sm-4 control-label">Número</label>
 	                    <div class="col-sm-8">
-	                    	<input type="text" class="form-control" name="contasReceber.numero" value="${contasReceber.numero}">
+	                    	<input type="text" id="txtNumeroCR" class="form-control" name="contaReceber.numero" value="${contaReceber.numero}">
 	                    </div>
 	                </div>
 	                
 	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Nome</label>
 	                    <div class="col-sm-8">
-	                    	<input type="text" class="form-control" name="contasReceber.nome" value="${contasReceber.nome}" >
+	                    	<input type="text" class="form-control" name="contaReceber.nome" value="${contaReceber.nome}" >
 	                    </div>
 	                </div>
 	                
 	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Histórico</label>
 	                    <div class="col-sm-8">
-	                    	<input type="text" class="form-control" name="contasReceber.historico" value="${contasReceber.historico}" >
+	                    	<input type="text" class="form-control" name="contaReceber.historico" value="${contaReceber.historico}" >
 	                    </div>
 	                </div>
 	                
@@ -61,7 +60,7 @@
 	             		<label class="col-sm-4 control-label">Data de Emissão</label>
 	                    <div class="col-sm-8">
 	                    	<div class="input-group date">
-	                    		<input type="text" class="form-control" name="contasReceber.dataEmissao" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${contasReceber.dataEmissao}" />"  data-mask="99/99/9999" >
+	                    		<input type="text" class="form-control" name="contaReceber.dataEmissao" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${contaReceber.dataEmissao}" />"  data-mask="99/99/9999" >
 	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 	                    	</div>
 	                    </div>
@@ -71,7 +70,17 @@
 	             		<label class="col-sm-4 control-label">Data de Vencimento</label>
 	                    <div class="col-sm-8">
 	                    	<div class="input-group date">
-	                    		<input type="text" class="form-control" name="contasReceber.dataVencimento" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${contasReceber.dataVencimento}" />"  data-mask="99/99/9999" >
+	                    		<input type="text" class="form-control" name="contaReceber.dataVencimento" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${contaReceber.dataVencimento}" />"  data-mask="99/99/9999" >
+	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	                    	</div>
+	                    </div>
+	                </div>
+	                
+	                <div class="form-group" id="dataNascimento">
+	             		<label class="col-sm-4 control-label">Data de Recebimento</label>
+	                    <div class="col-sm-8">
+	                    	<div class="input-group date">
+	                    		<input type="text" class="form-control" name="contaReceber.dataPagamento" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${contaReceber.dataPagamento}" />"  data-mask="99/99/9999" >
 	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 	                    	</div>
 	                    </div>
@@ -80,12 +89,12 @@
 	                <div class="form-group">
 	                	<label class="col-sm-4 control-label">Espécie</label>
 	                    <div class="col-sm-8">
-	                    	<select class="form-control m-b" name="contasReceber.especiePagamento">
-	                         <option value="0">Selecione</option>
-	                         <option value="5">Dinheiro</option>
-	                         <option value="5">Débito</option>
-	                         <option value="5">Crédito</option>
-	                         <option value="5">Cheque</option>
+	                    	<select class="form-control m-b" name="contaReceber.especiePagamento">
+	                        	<option value="0">Selecione</option>
+	                         	<option value="1" <c:if test="${(not empty contaReceber.especiePagamento) and (contaReceber.especiePagamento eq '1')}">selected="selected"</c:if> >Dinheiro</option>
+	                         	<option value="2" <c:if test="${(not empty contaReceber.especiePagamento) and (contaReceber.especiePagamento eq '2')}">selected="selected"</c:if> >Débito</option>
+	                         	<option value="3" <c:if test="${(not empty contaReceber.especiePagamento) and (contaReceber.especiePagamento eq '3')}">selected="selected"</c:if> >Crédito</option>
+	                         	<option value="4" <c:if test="${(not empty contaReceber.especiePagamento) and (contaReceber.especiePagamento eq '4')}">selected="selected"</c:if> >Cheque</option>
 	                    	</select>
 	                    </div>
 	                </div>
@@ -93,7 +102,7 @@
 	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Valor</label>
 	                    <div class="col-sm-8">
-	                    	<input type="text" class="form-control" name="morador.inicioMoradia" value="${contasReceber.valor}" >
+	                    	<input type="text" id="txtValorCR" class="form-control" name="contaReceber.valor" value="<fmt:formatNumber value="${contaReceber.valor}" type="number"  pattern="#,##0.00"/>" >
 	                    </div>
 	                </div>
 	                
@@ -107,7 +116,7 @@
 						<div class="ibox-content">
 							<div class="form-group">
 			                    <div class="col-sm-12">
-			                        <a class="btn btn-outline btn-default" href="${linkTo[MoradorController].listagemMoradores}"> Cancelar</a>
+			                        <a class="btn btn-outline btn-default" href="${linkTo[ContasReceberController].listagemContasReceber}"> Cancelar</a>
 			                        <button class="btn btn-primary" type="submit"> <i class="fa fa-check"></i> Salvar</button>
 			                    </div>
 			                </div>			
@@ -123,16 +132,48 @@
 					</c:forEach>
 				</ul>
 				
-		    </div> 
+		    </div>
+		    
+		    <div class="col-sm-5">
+				<div class="ibox">
+	            	<div class="ibox-content">
+	            		<%-- <input id="idMoradorContasReceber" type="hidden" class="form-control" value="${contaReceber.aluguel.morador.nome}"> --%>
+	            		<h2>${contaReceber.aluguel.morador.nome}</h2>
+						<div class="table-responsive">
+		           	     	<table class="table table-striped table-hover">
+		           	     		<tbody>
+		           	     			<tr>
+		           	     				<td> <i class="fa fa-envelope"> </i> </td>
+		           	     				<td> ${contaReceber.aluguel.morador.email}  </td>
+		           	     			</tr>
+		           	     			
+		           	     			<tr>
+		           	     				<td> <i class="fa fa-mobile-phone"> </i> </td>
+		           	     				<td> ${contaReceber.aluguel.morador.telefoneCelular}  </td>
+		           	     			</tr>
+		           	     			
+		           	     			<tr>
+		           	     				<td> <i class="fa fa-phone"> </i> </td>
+		           	     				<td> ${contaReceber.aluguel.morador.telefoneResidencial} </td>
+		           	     			</tr>
+		           	     		</tbody>
+		           	     	</table>
+	           	     	</div>
+	                </div>
+	          	</div>
+	     	</div>
 
 	   	</form>         
     </div>
 </div>
 
-   <script src="${pageContext.request.contextPath}/js/plugins/jasny/jasny-bootstrap.min.js"></script>
-   <script src="${pageContext.request.contextPath}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/moment/moment-with-locales.min.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/jquery-maskmoney/jquery.maskMoney.min.js"></script>
     
-   <script src="${pageContext.request.contextPath}/js/paginas/formularioMorador.js"></script>
+<script src="${pageContext.request.contextPath}/js/paginas/contasReceber/formularioContasReceber.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
 

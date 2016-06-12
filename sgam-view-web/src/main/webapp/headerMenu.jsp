@@ -13,30 +13,30 @@
 
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 
     <!-- Toastr style -->
     <link href="${pageContext.request.contextPath}/css/plugins/toastr/toastr.min.css" rel="stylesheet">
 
-    <!-- Gritter -->
-    <link href="${pageContext.request.contextPath}/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
+	<!-- SweetAlert -->
 	<link href="${pageContext.request.contextPath}/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
-
-    <link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
+	
+	<!-- Mainly scripts -->
+    <script src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="${pageContext.request.contextPath}/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
     
-    <link href="${pageContext.request.contextPath}/css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
-    
-    <!-- Data Tables -->
-    <link href="${pageContext.request.contextPath}/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/plugins/dataTables/dataTables.responsive.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/plugins/dataTables/dataTables.tableTools.min.css" rel="stylesheet">
+    <!-- Custom and plugin javascript -->
+    <script src="${pageContext.request.contextPath}/js/inspinia.js"></script>
+    <script src="${pageContext.request.contextPath}/js/plugins/pace/pace.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/menu.js"></script>
 
-	<script src="${pageContext.request.contextPath}/js/jquery-2.1.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/plugins/jquery-ui/jquery-ui.min.js" ></script>
-	<script src="${pageContext.request.contextPath}/js/menu.js"></script>
+    <!-- Toastr -->
+   <script src="${pageContext.request.contextPath}/js/plugins/toastr/toastr.min.js"></script>
+   <script src="${pageContext.request.contextPath}/js/plugins/sweetalert/sweetalert.min.js"></script>
+	
 </head>
 
 <body onload="loadMarcacaoMenu()">
@@ -135,57 +135,7 @@
                 <li>
                     <span class="m-r-sm text-muted welcome-message">Bem vindo <shiro:principal /> </span>
                 </li>
-                <li class="dropdown">
-                   
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a7.jpg">
-                                </a>
-                                <div class="media-body">
-                                    <small class="pull-right">46h ago</small>
-                                    <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a4.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right text-navy">5h ago</small>
-                                    <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/profile.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right">23h ago</small>
-                                    <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
-                                    <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="text-center link-block">
-                                <a href="mailbox.html">
-                                    <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
+                
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell"></i>  <span class="label label-primary"></span>
@@ -212,3 +162,4 @@
 
         </nav>
         </div>
+        

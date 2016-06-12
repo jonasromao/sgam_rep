@@ -5,8 +5,7 @@
 <%@ include file="/headerMenu.jsp" %> 
 <%@ include file="/moradorModal.jsp" %>
 
-<link href="../css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-<link href="../css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -209,10 +208,10 @@
     </div>
 </div>
 
-   <script src="../js/plugins/jasny/jasny-bootstrap.min.js"></script>
-   <script src="../js/plugins/datapicker/bootstrap-datepicker.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/moment/moment-with-locales.min.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     
-   <script src="../js/paginas/formularioAluguel.js"></script>
+<script src="../js/paginas/aluguel/formularioAluguel.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
 

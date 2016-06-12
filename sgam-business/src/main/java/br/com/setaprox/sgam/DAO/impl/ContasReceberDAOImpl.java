@@ -10,8 +10,7 @@ import br.com.setaprox.sgam.model.ContasReceber;
 
 @Stateless
 @LocalBean
-public class ContasReceberDAOImpl extends AbstractDAO<ContasReceber> implements
-		ContasReceberDAO {
+public class ContasReceberDAOImpl extends AbstractDAO<ContasReceber> implements ContasReceberDAO {
 
 	@PostConstruct
 	private void postConstruct() {
