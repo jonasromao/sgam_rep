@@ -19,22 +19,6 @@
                  <strong>Contas a Receber</strong>
              </li>
 
-			<%-- <div class="pull-right">
-            	<a class="label label-primary" href="${linkTo[ContasReceberController].formularioContasReceber}">Novo</a>
-            </div> --%>
-
-			<div class="pull-right">
-            	<a class="label label-primary labelButton" href="${linkTo[ContasReceberController].formularioContasReceber}">Novo</a>
-            </div>
-
-	    <%-- <div class="pull-right">
-            	<a class="label label-primary" href="${linkTo[ContasReceberController].formularioContasReceber}">Novo</a>
-            </div> --%>
-
-			<div class="pull-right">
-            	<a class="label label-primary labelButton" href="${linkTo[ContasReceberController].formularioContasReceber}">Novo</a>
-            </div>
-
          </ol>
      </div>
  </div>

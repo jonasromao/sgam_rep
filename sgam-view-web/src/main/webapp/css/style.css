@@ -8219,7 +8219,6 @@ body.md-skin {
     display: none;
   }
 }
-
 @media print {
   nav.navbar-static-side {
     display: none;
@@ -8228,22 +8227,3 @@ body.md-skin {
     margin: 0;
   }
 }
-
-
-@media print {
-  nav.navbar-static-side {
-    display: none;
-  }
-  #page-wrapper {
-    margin: 0;
-  }
-}
-
-.labelButton{
-	font-size: 12px !important;
-}
-
-.iconeDataTable{
-	font-size: 18px;
-}
-
