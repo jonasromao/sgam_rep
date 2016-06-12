@@ -8219,6 +8219,7 @@ body.md-skin {
     display: none;
   }
 }
+<<<<<<< HEAD
 @media print {
   nav.navbar-static-side {
     display: none;
@@ -8227,3 +8228,14 @@ body.md-skin {
     margin: 0;
   }
 }
+=======
+
+
+.labelButton{
+	font-size: 12px !important;
+}
+
+.iconeDataTable{
+	font-size: 18px;
+}
+>>>>>>> 6d7cb36627e4fbc69e8037acf9518bbd47849727

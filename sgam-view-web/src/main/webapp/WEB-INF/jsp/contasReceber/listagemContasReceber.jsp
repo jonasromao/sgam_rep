@@ -19,9 +19,15 @@
                  <strong>Contas a Receber</strong>
              </li>
 
+<<<<<<< HEAD
 			<%-- <div class="pull-right">
             	<a class="label label-primary" href="${linkTo[ContasReceberController].formularioContasReceber}">Novo</a>
             </div> --%>
+=======
+			<div class="pull-right">
+            	<a class="label label-primary labelButton" href="${linkTo[ContasReceberController].formularioContasReceber}">Novo</a>
+            </div>
+>>>>>>> 6d7cb36627e4fbc69e8037acf9518bbd47849727
 
          </ol>
      </div>
@@ -69,8 +75,8 @@
 									</c:choose>
 									
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
-										<a title="Editar" class="editar" href="${linkTo[ContasReceberController].editarConta(conta.id)}"> <i class="fa fa-edit"></i> </a> &nbsp; 
-										<a title="Excluir" class="remover" href="${linkTo[ContasReceberController].removeConta(conta.id)}"> <i class="fa fa-trash-o"></i> </a> 
+										<a title="Editar" class="editar" href="${linkTo[ContasReceberController].editarConta(conta.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
+										<a title="Excluir" class="remover" href="${linkTo[ContasReceberController].removeConta(conta.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> 
 									</td>
 								</tr>
 							</c:forEach>

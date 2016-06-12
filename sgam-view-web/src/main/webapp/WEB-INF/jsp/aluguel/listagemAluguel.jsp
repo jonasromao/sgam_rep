@@ -20,7 +20,7 @@
              </li>
 
 			<div class="pull-right">
-            	<a class="label label-primary" href="${linkTo[AluguelController].formularioAluguel}">Novo</a>
+            	<a class="label label-primary labelButton" href="${linkTo[AluguelController].formularioAluguel}">Novo</a>
             </div>
 
          </ol>
@@ -55,8 +55,8 @@
 									<td>${aluguel.aluguelComercio.numeroAlvara}</td>
 									<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.aluguelComercio.dataVencimento}" /> </td>
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
-										<a title="Editar" class="editar" href="${linkTo[AluguelController].editarAluguel(aluguel.id)}"> <i class="fa fa-edit"></i> </a> &nbsp; 
-										<a title="Excluir" class="remover" href="${linkTo[AluguelController].removerAluguel(aluguel.id)}"> <i class="fa fa-trash-o"></i> </a> 
+										<a title="Editar" class="editar" href="${linkTo[AluguelController].editarAluguel(aluguel.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
+										<a title="Excluir" class="remover" href="${linkTo[AluguelController].removerAluguel(aluguel.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> 
 									</td>
 								</tr>
 							</c:forEach>
