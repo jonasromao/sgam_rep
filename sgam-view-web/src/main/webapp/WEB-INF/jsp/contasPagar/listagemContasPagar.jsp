@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/headerMenu.jsp" %> 
 
 <link href="${pageContext.request.contextPath}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
@@ -49,10 +50,24 @@
 								<tr class="linhaContaPagar">
 									<td>${conta.numero}</td>
 									<td>${conta.nome}</td>
-									<td>${conta.dataEmissao}</td>
-									<td>${conta.dataVencimento}</td>
-									<td>${conta.valor}</td>
-									<td>${conta.status}</td>
+									<td><fmt:formatDate pattern="dd/MM/yyyy" value="${conta.dataEmissao}" /></td>
+									<td><fmt:formatDate pattern="dd/MM/yyyy" value="${conta.dataVencimento}" /></td>
+									<td><fmt:formatNumber value="${conta.valor}" type="currency"/></td>
+									
+									<c:choose>
+										<c:when test="${conta.status eq 'Pago'}">
+											<td><span class="label label-primary">${conta.status}</span></td>
+										</c:when>
+										
+										<c:when test="${conta.status eq 'Pendente'}">
+											<td><span class="label label-warning">${conta.status}</span></td>
+										</c:when>
+										
+										<c:otherwise>
+											<td><span class="label label-danger">${conta.status}</span></td>
+										</c:otherwise>
+									</c:choose>
+									
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
 										<a title="Editar" class="editar" href="${linkTo[ContasPagarController].editarConta(conta.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
 										<a title="Excluir" class="remover" href="${linkTo[ContasPagarController].removeConta(conta.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> 

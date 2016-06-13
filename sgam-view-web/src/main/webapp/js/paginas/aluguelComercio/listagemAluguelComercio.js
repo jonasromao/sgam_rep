@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('#tableListagemAluguel').dataTable({
+	$('#tableListagemAluguelComercio').dataTable({
 		"language": {
 			"search": "Pesquisar: ",
 			"lengthMenu": "_MENU_",

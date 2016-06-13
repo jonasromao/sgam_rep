@@ -1,6 +1,7 @@
 package br.com.setaprox.sgam.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -47,9 +49,15 @@ public class Fornecedor extends AbstractEntity<Fornecedor> implements Serializab
 	@Column( name = "email" )
 	private String email;
 	
+	@Column( name = "fisica_juridica" )
+	private String fisicaJuridica;
+	
 	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE}/*, orphanRemoval = true*/ )
 	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
 	private Endereco endereco;
+	
+	@OneToMany(mappedBy="fornecedor", fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE})
+	private List<ContasPagar> contasPagar;
 
 	public Long getId() {
 		return id;
@@ -114,7 +122,23 @@ public class Fornecedor extends AbstractEntity<Fornecedor> implements Serializab
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	
+
+	public String getFisicaJuridica() {
+		return fisicaJuridica;
+	}
+
+	public void setFisicaJuridica(String fisicaJuridica) {
+		this.fisicaJuridica = fisicaJuridica;
+	}
+
+	public List<ContasPagar> getContasPagar() {
+		return contasPagar;
+	}
+
+	public void setContasPagar(List<ContasPagar> contasPagar) {
+		this.contasPagar = contasPagar;
+	}
+
 	@Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

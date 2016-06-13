@@ -16,10 +16,10 @@
                  <a href="${linkTo[LoginController].paginaInicial}">Inicio</a>
              </li>
              <li>
-                 <span>Cadastros</span>
+                 <span>Faturamento</span>
              </li>
              <li class="active">
-                 <a href="${linkTo[AluguelController].listagemAluguel}"><strong>Faturamento</strong></a>
+                 <a href="${linkTo[AluguelController].listagemAluguel}"><strong>Reserva de espaços</strong></a>
              </li>
 
 			<div class="pull-right">
@@ -33,23 +33,10 @@
  <div class="wrapper wrapper-content animated fadeInRight">
  	<div class="row">
  		<form method="post" class="form-horizontal" action="${linkTo[AluguelController].cadastraAluguel}">
-			<div class="col-lg-6">
-			<fieldset>
-			    <legend>Geral</legend>
+			<div class="col-lg-7">
 		        <div class="ibox-content">
 		        
 	         		<input type="hidden" name="aluguel.id" value="${aluguel.id }"/>
-	         		<input id="idMorador" type="hidden" name="aluguel.morador.id" value="${aluguel.morador.id }"/>      		
-	         	
-	             	<div class="form-group">
-		            	<label class="col-sm-4 control-label">Morador</label>
-		                <div class="col-sm-8">
-		                	<div class="input-group">
-		                		<input id="nomeMorador" type="text" class="form-control" value="${aluguel.morador.nome}">
-		                		<a class="input-group-addon" data-target="#modalSelecaoMorador" data-toggle="modal"><i class="fa fa-user"></i></a>
-		                	</div>
-		            	</div>
-		            </div>
 	                
 	                <div class="form-group">
 	                	<label class="col-sm-4 control-label">Recurso</label>
@@ -101,7 +88,7 @@
 	                </div>
 	                
 				</div>
-				</fieldset>
+
 				<br/>
 					
 				<div class="row">
@@ -126,84 +113,55 @@
 				</ul>
 				
 		    </div> 
+		    
+		    <div class="col-sm-5">
 
-		    <div class="col-lg-6">
-		    <fieldset>
-			    <legend>Comércio</legend>
-			    <div class="ibox-content">
-			    	
-			    	<div class="form-group">
-		            	<label class="col-sm-4 control-label">Nome</label>
-		              	<div class="col-sm-8">
-		            		<input type="text" class="form-control" name="aluguel.aluguelComercio.nome" value="${aluguel.aluguelComercio.nome}">
-		                </div>
-		        	</div>
-			    	
-		   			<div class="form-group">
-		            	<label class="col-sm-4 control-label">Alvará</label>
-		              	<div class="col-sm-8">
-		            		<input type="text" class="form-control" name="aluguel.aluguelComercio.numeroAlvara" value="${aluguel.aluguelComercio.numeroAlvara}">
-		                </div>
-		        	</div>
-		        	
-		        	<div class="form-group" id="dataPagamento">
-	             		<label class="col-sm-4 control-label">Data Emissão</label>
-	                    <div class="col-sm-8">
-	                    	<div class="input-group date">
-	                    		<input type="text" class="form-control" name="aluguel.aluguelComercio.dataEmissao" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.aluguelComercio.dataEmissao}" />"  data-mask="99/99/9999" >
-	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-	                    	</div>
-	                    </div>
+				<div class="ibox">
+	            	<div class="ibox-content">
+	            		<div class="form-group">
+			                <div class="col-sm-12">
+			                	<div class="input-group">
+			                		<input id="idMoradorFaturamento" type="hidden" name="aluguel.morador.id" value="${aluguel.morador.id }"/> 
+			                		<input id="nomeMoradorFaturamento" placeholder="Morador" disabled="disabled" type="text" class="form-control" value="${aluguel.morador.nome}">
+			                		<a class="input-group-addon" id="btnAbreModalMoradorFaturamento" style="cursor: pointer;"><i class="fa fa-user"></i></a>
+			                	</div>
+			            	</div>
+			            </div>
+	            		
+						<div class="table-responsive">
+		           	     	<table class="table table-striped table-hover">
+		           	     		<tbody>
+		           	     			<tr>
+		           	     				<td> <i class="fa fa-envelope"> </i> </td>
+		           	     				<td> <div id="txtEmailMoradorAluguel">${aluguel.morador.email}</div>  </td>
+		           	     			</tr>
+		           	     			
+		           	     			<tr>
+		           	     				<td> <i class="fa fa-mobile-phone"> </i> </td>
+		           	     				<td> <div id="txtCelularMoradorAluguel">${aluguel.morador.telefoneCelular}</div>  </td>
+		           	     			</tr>
+		           	     			
+		           	     			<tr>
+		           	     				<td> <i class="fa fa-phone"> </i> </td>
+		           	     				<td> <div id="txtTelefoneMoradorAluguel">${aluguel.morador.telefoneResidencial}</div> </td>
+		           	     			</tr>
+		           	     			
+		           	     			<c:choose>
+										<c:when test="${not empty aluguel.morador.endereco}">
+											<tr>
+				           	     				<td> <i class="fa fa-home"> </i> </td>
+				           	     				<td> <div id="txtEnderecoFornecedorCP">${aluguel.morador.endereco}</div> </td>
+				           	     			</tr> 
+										</c:when>
+									</c:choose>
+		           	     		</tbody>
+		           	     	</table>
+	           	     	</div>
+	           	     	
 	                </div>
-	                
-	                <div class="form-group" id="dataPagamento">
-	             		<label class="col-sm-4 control-label">Data Vencimento</label>
-	                    <div class="col-sm-8">
-	                    	<div class="input-group date">
-	                    		<input type="text" class="form-control" name="aluguel.aluguelComercio.dataVencimento" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.aluguelComercio.dataVencimento}" />"  data-mask="99/99/9999" >
-	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-	                    	</div>
-	                    </div>
-	                </div>
-		               
-		            <div class="form-group">
-		            	<label class="col-sm-4 control-label">Largura</label>
-		                <div class="col-sm-8">
-		                	<input type="text" class="form-control" name="aluguel.aluguelComercio.larguraBarraca" value="${aluguel.aluguelComercio.larguraBarraca}">
-		                </div>
-		          	</div>
-		          	
-		          	<div class="form-group">
-		            	<label class="col-sm-4 control-label">Comprimento</label>
-		                <div class="col-sm-8">
-		                	<input type="text" class="form-control" name="aluguel.aluguelComercio.comprimentoBarraca" value="${aluguel.aluguelComercio.comprimentoBarraca}">
-		                </div>
-		          	</div>
-		               
-		            <div class="form-group">
-		            	<label class="col-sm-4 control-label">Quantidade Pessoas</label>
-		                <div class="col-sm-8">
-		                	<input type="text" class="form-control" name="aluguel.aluguelComercio.qtdePessoas" value="${aluguel.aluguelComercio.qtdePessoas}">
-		                </div>
-		          	</div>
-		               
-		            <div class="form-group">
-		            	<label class="col-sm-4 control-label">Equipamentos</label>
-		                <div class="col-sm-8">
-		                	<input type="text" class="form-control" name="aluguel.aluguelComercio.equipamentos" value="${aluguel.aluguelComercio.equipamentos}">
-		                </div>
-		          	</div>
-		          	
-		          	<div class="form-group">
-		            	<label class="col-sm-4 control-label">Produtos</label>
-		                <div class="col-sm-8">
-		                	<input type="text" class="form-control" name="aluguel.aluguelComercio.produtos" value="${aluguel.aluguelComercio.produtos}">
-		                </div>
-		          	</div>
-		          	
-			    </div> 
-			    </fieldset>
-		   	</div> 
+	          	</div>
+
+	     	</div>
 	   	</form>         
     </div>
 </div>
@@ -211,7 +169,7 @@
 <script src="${pageContext.request.contextPath}/manual_install_components/moment/moment-with-locales.min.js"></script>
 <script src="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     
-<script src="../js/paginas/aluguel/formularioAluguel.js"></script>
+<script src="${pageContext.request.contextPath}/js/paginas/aluguel/formularioAluguel.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
 

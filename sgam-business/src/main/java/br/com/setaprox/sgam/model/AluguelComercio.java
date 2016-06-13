@@ -3,11 +3,15 @@ package br.com.setaprox.sgam.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -54,6 +58,10 @@ public class AluguelComercio extends AbstractEntity<AluguelComercio> implements 
 	
 	@Column( name = "descricao_produtos" )
 	private String produtos;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE}/*, orphanRemoval = true*/ )
+    @JoinColumn(name = "id_aluguel")
+	private Aluguel aluguel;
 	
 	public Long getId() {
 		return id;
@@ -142,7 +150,15 @@ public class AluguelComercio extends AbstractEntity<AluguelComercio> implements 
 	public void setProdutos(String produtos) {
 		this.produtos = produtos;
 	}
-	
+
+	public Aluguel getAluguel() {
+		return aluguel;
+	}
+
+	public void setAluguel(Aluguel aluguel) {
+		this.aluguel = aluguel;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);

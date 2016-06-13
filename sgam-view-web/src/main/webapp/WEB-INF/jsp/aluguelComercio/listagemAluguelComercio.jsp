@@ -13,14 +13,14 @@
                  <a href="${linkTo[LoginController].paginaInicial}">Inicio</a>
              </li>
              <li>
-                 <span>Faturamento</span>
+                 Faturamento
              </li>
              <li class="active">
-                 <strong>Reserva de espaços</strong>
+                 <a href="${linkTo[AluguelComercioController].listagemAluguelComercio}"><strong>Comércio</strong></a>
              </li>
-
+             
 			<div class="pull-right">
-            	<a class="label label-primary labelButton" href="${linkTo[AluguelController].formularioAluguel}">Novo</a>
+            	<a class="label label-primary labelButton" href="${linkTo[AluguelComercioController].formularioAluguelComercio}">Novo</a>
             </div>
 
          </ol>
@@ -32,14 +32,15 @@
 		<div class="col-lg-12">
         	<div class="ibox-content">
         		<div class="table-responsive">
-					<table id="tableListagemAluguel" class="table table-striped table-bordered table-hover"> 
+					<table id="tableListagemAluguelComercio" class="table table-striped table-bordered table-hover"> 
 						<thead>
 							<tr>
 								<th>Morador</th>
-								<th>Recurso</th>
-								<th>Início</th>
-								<th>Fim</th>
-								<th>Observação</th>
+								<th>Atividade</th>
+								<th>Início Atividades</th>
+								<th>Fim Atividades</th>
+								<th>Alvará</th>
+								<th>Vencimento Alvará</th>
 								<th>Opções</th>
 							</tr>
 						</thead>
@@ -48,10 +49,11 @@
 							<c:forEach var="aluguel" items="${aluguelList}">
 								<tr class="linhaAluguel">
 									<td>${aluguel.morador.nome}</td>
-									<td>${aluguel.recurso.nome}</td>
-									<td> <fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${aluguel.dataInicial}" /> </td>
-									<td> <fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${aluguel.dataFinal}" /> </td>
-									<td>${aluguel.observacao}</td>
+									<td>${aluguel.aluguelComercio.nome}</td>
+									<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.dataInicial}" /> </td>
+									<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.dataFinal}" /> </td>
+									<td>${aluguel.aluguelComercio.numeroAlvara}</td>
+									<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.aluguelComercio.dataVencimento}" /> </td>
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
 										<a title="Editar" class="editar" href="${linkTo[AluguelController].editarAluguel(aluguel.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
 										<a title="Excluir" class="remover" href="${linkTo[AluguelController].removerAluguel(aluguel.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> 
@@ -67,6 +69,6 @@
 </div>
 
 <script src="${pageContext.request.contextPath}/js/plugins/dataTables/datatables.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/paginas/aluguel/listagemAluguel.js"></script>
+<script src="${pageContext.request.contextPath}/js/paginas/aluguelComercio/listagemAluguelComercio.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>

@@ -19,9 +19,7 @@ public class AluguelServiceImpl implements AluguelService  {
 
 	@Override
 	public void persist(Aluguel aluguel) {
-		
 		aluguelDAO.persist(aluguel);
-		
 	}
 
 	@Override

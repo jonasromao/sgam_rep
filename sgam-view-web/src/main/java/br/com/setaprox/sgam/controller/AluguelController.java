@@ -59,11 +59,6 @@ public class AluguelController {
 			result.redirectTo(this).formularioAluguel();	
 		}
 		else {
-			
-			ContasReceber conta = new ContasReceber( aluguel );
-			
-			aluguel.setContaReceber(conta);
-			
 			aluguelFacade.persist(aluguel);
 			result.redirectTo(this).formularioAluguel();
 		}

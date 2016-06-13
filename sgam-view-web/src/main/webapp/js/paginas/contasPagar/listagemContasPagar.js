@@ -35,10 +35,14 @@ $(document).ready(function(){
 				type: 'POST',
 				data: { _method: "DELETE"}
 			}).done(function(data, textStatus, jqXHR) {
-				swal("Excluído!", "O cadastro foi excluído com sucesso.", "success");
+				swal("Excluído!", data.mensagem, "success");
 				morador.fadeOut();
 			}).fail(function(jqXHR, textStatus, errorThrown){
-				swal("Erro!", "Erro ao excluir o cadastro.", "error");
+				var mensagem = jqXHR.responseText;
+				var start = mensagem.search('<body>');
+				var end = mensagem.search('</body>');
+				
+				swal("Atenção!", mensagem.slice(start+6, end), "warning");
 			});
         });
 	});

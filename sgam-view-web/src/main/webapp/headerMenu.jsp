@@ -66,6 +66,7 @@
 		                <a onclick="marcarMenuAtivo('menuInicio', '', '')" href="${linkTo[LoginController].paginaInicial}">
 		                <i class="fa fa-th-large"></i> <span class="nav-label">Inicio</span></a>
 		            </li>
+		            
                     <li id="menuCadastros">
                         <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Cadastros</span> <span class="fa arrow"></span></a>
                         <ul id="collapseCadastros" class="nav nav-second-level collapse">
@@ -85,15 +86,26 @@
                             <li id="submenuOcorrencias"> 
                             	<a onclick="marcarMenuAtivo('menuCadastros', 'submenuOcorrencias', 'collapseCadastros')" href="${linkTo[OcorrenciaController].listagemOcorrencias}">Ocorrências</a> 
                             </li>
+                        </ul>
+                    </li>
+                    
+                    <li id="menuFaturamento">
+                        <a href=""><i class="fa fa-dollar"></i> <span class="nav-label">Faturamento</span> <span class="fa arrow"></span></a>
+                        <ul id="collapseFaturamento" class="nav nav-second-level collapse">
                             
-                            <li id="submenuFaturamento"> 
-                            	<a onclick="marcarMenuAtivo('menuCadastros', 'submenuFaturamento', 'collapseCadastros')" href="${linkTo[AluguelController].listagemAluguel}">Faturamento</a>
+                            <li id="submenuReservaEspaco"> 
+                            	<a onclick="marcarMenuAtivo('menuFaturamento', 'submenuReservaEspaco', 'collapseFaturamento')" href="${linkTo[AluguelController].listagemAluguel}">Reserva de espaços</a>
                             </li>
+                            
+                            <li id="submenuComercios"> 
+                            	<a onclick="marcarMenuAtivo('menuFaturamento', 'submenuComercios', 'collapseFaturamento')" href="${linkTo[AluguelComercioController].listagemAluguelComercio}">Comércios</a>
+                            </li>
+                            
                         </ul>
                     </li>
  
                     <li id="menuFinanceiro">
-                        <a href="#"><i class="fa fa-dollar"></i> <span class="nav-label">Financeiro</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-bank"></i> <span class="nav-label">Financeiro</span><span class="fa arrow"></span></a>
                         <ul id="collapseFinanceiro" class="nav nav-second-level collapse">
                             <li id="submenuContasPagar">
                             	<a onclick="marcarMenuAtivo('menuFinanceiro', 'submenuContasPagar', 'collapseFinanceiro')" href="${linkTo[ContasPagarController].listagemContasPagar}">Contas a Pagar</a>

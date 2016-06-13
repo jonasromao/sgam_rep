@@ -59,27 +59,29 @@ public class ContasReceber extends AbstractEntity<ContasReceber> implements Seri
 	@OneToOne(mappedBy = "contaReceber")
 	private Aluguel aluguel;
 	
+	
 	public ContasReceber() {
 		
 	}
 	
 	@SuppressWarnings("deprecation")
 	public ContasReceber(Aluguel aluguel) {
-		
 		this.nome = aluguel.getMorador().getNome();
 		this.historico = aluguel.getAluguelComercio().getNome();
 		this.dataEmissao = new Date();
 		this.dataVencimento = aluguel.getDataEmissaoFaturamento();
 		this.setValor(aluguel.getRecurso().getValor());
 		this.setNumero(String.format("%d%d%d%d%d%d", dataEmissao.getDate(),dataEmissao.getMonth(),dataEmissao.getYear(), dataEmissao.getHours(), dataEmissao.getMinutes(), dataEmissao.getSeconds()));
-
-		if(this.dataVencimento.compareTo(dataEmissao) <= 0){
-			this.setStatus("Recebido");
-		}
-		else {
-			this.setStatus("Aberto");
-		}
-		
+	}
+	
+	@SuppressWarnings("deprecation")
+	public ContasReceber(AluguelComercio aluguelComercio) {
+		this.nome = aluguelComercio.getAluguel().getMorador().getNome();
+		this.historico = aluguelComercio.getAluguel().getRecurso().getNome();
+		this.dataEmissao = new Date();
+		this.dataVencimento = aluguelComercio.getAluguel().getDataFinal();
+		this.setValor(aluguelComercio.getAluguel().getRecurso().getValor());
+		this.setNumero(String.format("%d%d%d%d%d%d", dataEmissao.getDate(),dataEmissao.getMonth(),dataEmissao.getYear(), dataEmissao.getHours(), dataEmissao.getMinutes(), dataEmissao.getSeconds()));
 	}
 	
 	

@@ -140,20 +140,20 @@
 			    	<div class="col-lg-12">
 			    		<div class="ibox-content">
 					    	<div class="form-group">
-			                	<label class="col-sm-4 control-label">Fornecedor<br/>
+			                	<label class="col-sm-4 control-label">Pessoa<br/>
 			                		<small class="text-navy">Física / Jurídica</small>
 			                	</label>
 			                    <div class="col-sm-8">
 			                        <div class="i-checks">
 			                        	<label>
-			                        		<input type="radio" name="" value="Física" <%-- <c:if test="${fornecedor.associado eq 'Sim' }">checked="checked"</c:if> --%> > <i></i> 
+			                        		<input type="radio" name="fornecedor.fisicaJuridica" value="F" <c:if test="${fornecedor.fisicaJuridica eq 'F' }">checked="checked"</c:if> > <i></i> 
 			                        		Física. 
 			                        	</label>
 			                        </div>
 			                        
 			                        <div class="i-checks">
 			                        	<label> 
-			                        		<input type="radio" name="" value="Jurídica" <%-- <c:if test="${fornecedor.associado == null || fornecedor.associado eq 'Não' }">checked="checked"</c:if> --%> > <i></i> 
+			                        		<input type="radio" name="fornecedor.fisicaJuridica" value="J" <c:if test="${fornecedor.fisicaJuridica eq 'J' }">checked="checked"</c:if> > <i></i> 
 			                        		Jurídica. 
 			                        	</label>
 			                        </div>
@@ -169,6 +169,7 @@
     </div>
 </div>
 
+   <script src="${pageContext.request.contextPath}/js/plugins/jasny/jasny-bootstrap.min.js"></script>
    <script src="${pageContext.request.contextPath}/js/plugins/iCheck/icheck.min.js"></script>
     
    <script src="${pageContext.request.contextPath}/js/paginas/fornecedor/formularioFornecedor.js"></script>

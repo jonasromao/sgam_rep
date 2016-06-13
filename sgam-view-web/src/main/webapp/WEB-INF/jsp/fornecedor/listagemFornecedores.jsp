@@ -54,7 +54,17 @@
 									<td>${fornecedor.endereco.cidade}</td>
 									<td>${fornecedor.endereco.bairro}</td>
 									<td>${fornecedor.endereco.rua}</td>
-									<td>Definir</td>
+									
+									<c:choose>
+										<c:when test="${fornecedor.fisicaJuridica eq 'F'}">
+											<td><span class="label label-info">Física</span></td>
+										</c:when>
+										
+										<c:when test="${fornecedor.fisicaJuridica eq 'J'}">
+											<td><span class="label label-warning">Jurídica</span></td>
+										</c:when>
+									</c:choose>
+									
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
 										<a title="Editar" class="editar" href="${linkTo[FornecedorController].editarFornecedor(fornecedor.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
 										<a title="Excluir" class="remover" href="${linkTo[FornecedorController].removeFornecedor(fornecedor.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> 

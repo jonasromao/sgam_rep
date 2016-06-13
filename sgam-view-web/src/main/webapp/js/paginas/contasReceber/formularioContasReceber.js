@@ -11,8 +11,3 @@ $(document).ready(function(){
 	});
 
 });
-
-var insereDadosMoradorContasReceber = function(morador){
-	$('#nomeMoradorOcorrencia').val(morador.nome);
-	$('#idMoradorOcorrencia').val(morador.id);
-}

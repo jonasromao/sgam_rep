@@ -58,16 +58,26 @@ public class RecursoController {
 			Recurso recurso = recursoService.find(id);
 			result.include(recurso);
 			result.redirectTo(this).formularioRecurso();
-			//result.use(Results.json()).from(true, "alteraAba").serialize();
 		}
 		else {
-			//result.use(Results.json()).from(false, "alteraAba").serialize();
+			result.notFound();
 		}
 	}
 	
 	@Delete("/recurso/remover/{id}")
 	public void remover(Long id){
-		recursoService.remove(id);
-		result.use(Results.json()).from("Excluído com sucesso!", "mensagem").serialize();
+		try{
+			recursoService.remove(id);
+			result.use(Results.json()).from("Excluído com sucesso!", "mensagem").serialize();
+		}catch(Exception e){
+			if(e.getCause().getCause().getMessage().contains("ConstraintViolationException")){
+				result.use(Results.http()).sendError(500, "Não foi possível remover o recurso pois existem faturamentos vinculado a esse local.");
+			}
+			else {
+				result.use(Results.http()).sendError(500, "Erro ao remover conta. Favor entrar em contato com o suporte.");
+			}
+		}
+		
+		
 	}
 }

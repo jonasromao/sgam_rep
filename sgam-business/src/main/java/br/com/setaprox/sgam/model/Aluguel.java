@@ -39,7 +39,7 @@ public class Aluguel extends AbstractEntity<Aluguel> implements Serializable {
 	@Column( name = "data_final" )
 	private Date dataFinal;
 	
-	@NotNull
+	//@NotNull
 	@Column( name = "data_emissao_faturamento" )
 	private Date dataEmissaoFaturamento;
 	
@@ -56,8 +56,7 @@ public class Aluguel extends AbstractEntity<Aluguel> implements Serializable {
 	@JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")
 	private Recurso recurso;
 	
-	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE}/*, orphanRemoval = true*/ )
-	@JoinColumn(name = "id_aluguel_comercio", referencedColumnName = "id_aluguel_comercio")
+	@OneToOne(mappedBy = "aluguel" )
 	private AluguelComercio aluguelComercio;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE}/*, orphanRemoval = true*/ )
@@ -135,7 +134,7 @@ public class Aluguel extends AbstractEntity<Aluguel> implements Serializable {
 	public void setContaReceber(ContasReceber contaReceber) {
 		this.contaReceber = contaReceber;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);

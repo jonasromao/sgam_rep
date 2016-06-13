@@ -96,11 +96,10 @@ var insereInformacoesTelaOrigem = function(){
 
 	switch(origemTela) {
 	    case 'ocorrencia':
-	    	
 	    	insereDadosMoradorOcorrencia(dadosMorador);
 	        break;
-	    case 'contasReceber':
-	    	insereDadosMoradorContasReceber(dadosMorador);
+	    case 'faturamento':
+	    	insereDadosMoradorFaturamento(dadosMorador);
 	        break;
 	}
 	

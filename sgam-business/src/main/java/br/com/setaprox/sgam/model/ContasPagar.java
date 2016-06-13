@@ -61,7 +61,7 @@ public class ContasPagar extends AbstractEntity<ContasPagar> implements Serializ
 	@Column( name = "status" )
 	private String status;
 	
-	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE}/*, orphanRemoval = true*/ )
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_fornecedor", referencedColumnName = "id_fornecedor")
 	private Fornecedor fornecedor;
 

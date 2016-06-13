@@ -4,13 +4,13 @@
 <link href="${pageContext.request.contextPath}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
-	<div class="modal inmodal fade" id="modalSelecaoMorador" tabindex="-1" role="dialog"  aria-hidden="true" >
+	<div class="modal inmodal fade" id="modalSelecaoFornecedor" tabindex="-1" role="dialog"  aria-hidden="true" >
         <div class="modal-dialog modal-lg" style="width:50%;">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Morador</h4>
-                    <small class="font-bold">Selecione um morador</small>
+                    <h4 class="modal-title">Fornecedor</h4>
+                    <small class="font-bold">Selecione um fornecedor</small>
                 </div>
                 <div class="modal-body">
    
@@ -19,9 +19,9 @@
                     	<div class="row">
 							<div class="col-sm-12">
 								<div class="input-group">
-	                                <input type="text" placeholder="Digite o nome do morador " class="input form-control">
+	                                <input type="text" placeholder="Digite o nome do fornecedor " class="input form-control">
 	                                <span class="input-group-btn">
-	                                	<a id="btnFiltrar" class="btn btn btn-primary" href="${linkTo[MoradorController].moradorModal}"> <i class="fa fa-search"></i> Filtrar</a>
+	                                	<a id="btnFiltrarFornecedor" class="btn btn btn-primary" href="${linkTo[FornecedorController].fornecedorModal}"> <i class="fa fa-search"></i> Filtrar</a>
 	                                </span>
 	                            </div>			
 							</div>
@@ -32,7 +32,7 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="ibox-content">
-									<table id="tableListagemMoradoresModal" class="table table-striped table-bordered table-hover"> 
+									<table id="tableListagemFornecedoresModal" class="table table-striped table-bordered table-hover"> 
 										<thead>
 											<tr>
 												<th></th>
@@ -54,15 +54,14 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline btn-default" data-dismiss="modal"> Cancelar</button>
-                    <button type="button" id="btnSelecionarModal" class="btn btn-primary"> <i class="fa fa-check"></i> Selecionar</button>
+                    <button type="button" id="btnSelecionarModalFornecedor" class="btn btn-primary"> <i class="fa fa-check"></i> Selecionar</button>
                 </div>
             </div>
         </div>
     </div>
     
-    <input type="hidden" id="idMoradorModal" />
-    <input type="hidden" id="nomeMoradorModal" />
-    <input type="hidden" id="origemTelaModal" />
+    <input type="hidden" id="idFornecedorModal" />
+    <input type="hidden" id="origemTelaModalFornecedor" />
     
     <script src="${pageContext.request.contextPath}/js/plugins/dataTables/datatables.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/paginas/modal/moradorModal.js"></script>
+    <script src="${pageContext.request.contextPath}/js/paginas/modal/fornecedorModal.js"></script>

@@ -46,7 +46,7 @@ public class ContasReceberController {
 				contasReceberFacade.merge(contaReceber);
 			}
 			
-			result.redirectTo(this).formularioContasReceber();
+			result.redirectTo(this).listagemContasReceber();
 		}catch(Exception e){
 			e.printStackTrace();
 		}

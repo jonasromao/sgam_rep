@@ -36,7 +36,7 @@
 	             	<div class="form-group">
 	             		<label class="col-sm-4 control-label">Nome</label>
 	                    <div class="col-sm-8">
-	                    	<input type="text" class="form-control" name="recurso.nome" value="${recurso.nome}">
+	                    	<input type="text" id="txtNomeRecurso" class="form-control" name="recurso.nome" value="${recurso.nome}">
 	                    </div>
 	                </div>
 	                
@@ -50,7 +50,7 @@
 	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Valor</label>
 	                    <div class="col-sm-8">
-	                    	<input type="text" class="form-control" name="recurso.valor" value="${recurso.valor}" >
+	                    	<input type="text" id="txtValorRecurso" class="form-control" name="recurso.valor" value="<fmt:formatNumber value="${recurso.valor}" type="number"  pattern="#,##0.00"/>"  >
 	                    </div>
 	                </div>
 	                
@@ -94,7 +94,7 @@
     </div>
 </div>
 
-    
+   <script src="${pageContext.request.contextPath}/manual_install_components/jquery-maskmoney/jquery.maskMoney.min.js"></script>
    <script src="${pageContext.request.contextPath}/js/paginas/recurso/formularioRecurso.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>

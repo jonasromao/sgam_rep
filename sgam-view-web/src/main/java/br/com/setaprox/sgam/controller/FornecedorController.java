@@ -70,10 +70,9 @@ public class FornecedorController {
 			Fornecedor fornecedor = fornecedorFacade.find(id);
 			result.include(fornecedor);
 			result.redirectTo(this).formularioFornecedor();
-			//result.use(Results.json()).from(true, "alteraAba").serialize();
 		}
 		else {
-			//result.use(Results.json()).from(false, "alteraAba").serialize();
+			result.notFound();	
 		}
 	}
 	

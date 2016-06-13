@@ -46,7 +46,7 @@
 							<c:forEach var="recurso" items="${recursos}">
 								<tr class="linhaRecurso">
 									<td>${recurso.nome}</td>
-									<td>${recurso.valor}</td>
+									<td><fmt:formatNumber value="${recurso.valor}" type="currency"/></td>
 									<td>${recurso.unidadeMedida}</td>
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
 										<a title="Editar" class="editar" href="${linkTo[RecursoController].editar(recurso.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 

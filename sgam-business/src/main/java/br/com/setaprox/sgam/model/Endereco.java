@@ -13,7 +13,6 @@ import javax.validation.constraints.Size;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
 @Table( name = "endereco" )
@@ -110,7 +109,7 @@ public class Endereco extends AbstractEntity<Endereco> implements Serializable {
 	
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+    	return String.format("%s, %d - %s - %s", rua, numero, bairro, cidade);
     }
 
     @Override

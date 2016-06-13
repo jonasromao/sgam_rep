@@ -52,11 +52,12 @@
 	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Histórico</label>
 	                    <div class="col-sm-8">
-	                    	<input type="text" class="form-control" name="contaReceber.historico" value="${contaReceber.historico}" >
+	                    	<textarea class="form-control" rows="2" cols="" name="contaReceber.historico">${contaReceber.historico}</textarea>
+	                    	
 	                    </div>
 	                </div>
 	                
-	                <div class="form-group" id="dataNascimento">
+	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Data de Emissão</label>
 	                    <div class="col-sm-8">
 	                    	<div class="input-group date">
@@ -66,7 +67,7 @@
 	                    </div>
 	                </div>
 	                
-	                <div class="form-group" id="dataNascimento">
+	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Data de Vencimento</label>
 	                    <div class="col-sm-8">
 	                    	<div class="input-group date">
@@ -76,7 +77,7 @@
 	                    </div>
 	                </div>
 	                
-	                <div class="form-group" id="dataNascimento">
+	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Data de Recebimento</label>
 	                    <div class="col-sm-8">
 	                    	<div class="input-group date">
@@ -137,8 +138,8 @@
 		    <div class="col-sm-5">
 				<div class="ibox">
 	            	<div class="ibox-content">
-	            		<%-- <input id="idMoradorContasReceber" type="hidden" class="form-control" value="${contaReceber.aluguel.morador.nome}"> --%>
-	            		<h2>${contaReceber.aluguel.morador.nome}</h2>
+	            		<a title="Visualizar cadastro do morador" href="${linkTo[MoradorController].editarMorador(contaReceber.aluguel.morador.id)}"> <h2>${contaReceber.aluguel.morador.nome}</h2>  </a>
+	            		
 						<div class="table-responsive">
 		           	     	<table class="table table-striped table-hover">
 		           	     		<tbody>
@@ -156,9 +157,49 @@
 		           	     				<td> <i class="fa fa-phone"> </i> </td>
 		           	     				<td> ${contaReceber.aluguel.morador.telefoneResidencial} </td>
 		           	     			</tr>
+		           	     			
+		           	     			<tr>
+		           	     				<td> <i class="fa fa-home"> </i> </td>
+		           	     				<td> ${contaReceber.aluguel.morador.endereco.bairro} - ${contaReceber.aluguel.morador.endereco.rua}, ${contaReceber.aluguel.morador.endereco.numero} </td>
+		           	     			</tr>
 		           	     		</tbody>
 		           	     	</table>
 	           	     	</div>
+	           	     	
+	           	     	<strong><a title="Detalhes" href="${linkTo[AluguelController].editarAluguel(contaReceber.aluguel.id)}"> Detalhes </a></strong>
+
+	                    <ul class="list-group clear-list">
+	                     
+	                     	 <li class="list-group-item fist-item">
+	                             <span class="pull-right"> ${contaReceber.aluguel.recurso.nome} </span>
+	                             Referente
+	                         </li>
+	                         <c:choose>
+								<c:when test="${not empty contaReceber.aluguel.aluguelComercio}">
+								<li class="list-group-item">
+									<span class="pull-right">${contaReceber.aluguel.aluguelComercio.nome}</span> 
+									Comércio
+								</li>
+								</c:when>
+							</c:choose>
+	                         <li class="list-group-item">
+	                         	<c:choose>
+									<c:when test="${contaReceber.status eq 'Recebido'}">
+										<span class="pull-right label label-primary">${contaReceber.status}</span>
+									</c:when>
+									
+									<c:when test="${contaReceber.status eq 'Pendente'}">
+										<span class="pull-right label label-warning">${contaReceber.status}</span>
+									</c:when>
+									
+									<c:otherwise>
+										<span class="pull-right label label-danger">${contaReceber.status}</span>
+									</c:otherwise>
+								</c:choose>
+								
+	                             Status do recebimento
+	                         </li>
+	                     </ul>
 	                </div>
 	          	</div>
 	     	</div>

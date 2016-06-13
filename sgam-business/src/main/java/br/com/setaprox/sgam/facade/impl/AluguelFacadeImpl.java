@@ -1,5 +1,6 @@
 package br.com.setaprox.sgam.facade.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -9,6 +10,7 @@ import javax.inject.Named;
 import br.com.setaprox.sgam.facade.AluguelFacade;
 import br.com.setaprox.sgam.model.Aluguel;
 import br.com.setaprox.sgam.service.AluguelService;
+import br.com.setaprox.sgam.service.ContasReceberService;
 
 @Named
 @RequestScoped
@@ -16,6 +18,9 @@ public class AluguelFacadeImpl implements AluguelFacade {
 
 	@EJB
 	private AluguelService aluguelService;
+	
+	@EJB
+	private ContasReceberService contasReceberService;
 	
 	
 	@Override
@@ -52,9 +57,12 @@ public class AluguelFacadeImpl implements AluguelFacade {
 
 	@Override
 	public void persist(Aluguel aluguel) {
+		//ContasReceber conta = new ContasReceber(aluguel);
+		//contasReceberService.persist(conta);
+		//aluguel.setContaReceber(conta);
 		
-		aluguelService.persist(aluguel);
-		
+		aluguel.setDataEmissaoFaturamento(new Date());
+		aluguelService.persist(aluguel);	
 	}
 
 }
