@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -62,6 +63,12 @@ public class AluguelComercio extends AbstractEntity<AluguelComercio> implements 
 	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE}/*, orphanRemoval = true*/ )
     @JoinColumn(name = "id_aluguel")
 	private Aluguel aluguel;
+	
+	@Transient
+	private String dataHoraInicio;
+	
+	@Transient
+	private String dataHoraFinal;
 	
 	public Long getId() {
 		return id;
@@ -157,6 +164,22 @@ public class AluguelComercio extends AbstractEntity<AluguelComercio> implements 
 
 	public void setAluguel(Aluguel aluguel) {
 		this.aluguel = aluguel;
+	}
+
+	public String getDataHoraInicio() {
+		return dataHoraInicio;
+	}
+
+	public void setDataHoraInicio(String dataHoraInicio) {
+		this.dataHoraInicio = dataHoraInicio;
+	}
+
+	public String getDataHoraFinal() {
+		return dataHoraFinal;
+	}
+
+	public void setDataHoraFinal(String dataHoraFinal) {
+		this.dataHoraFinal = dataHoraFinal;
 	}
 
 	@Override

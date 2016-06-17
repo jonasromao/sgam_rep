@@ -37,6 +37,7 @@
 		        <div class="ibox-content">
 		        
 	         		<input type="hidden" name="aluguel.id" value="${aluguel.id }"/>
+	         		<input type="hidden" name="aluguel.dataEmissaoFaturamento" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.dataEmissaoFaturamento}" />" />
 	                
 	                <div class="form-group">
 	                	<label class="col-sm-4 control-label">Recurso</label>
@@ -50,31 +51,33 @@
 	                    </div>
 	                </div>
 	                
-	                <div class="form-group" id="dataInicial">
+	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Período</label>
 	                    <div class="col-sm-8">
 	                    	<div class="input-group date">
-	                    		<input type="text" class="form-control" name="aluguel.dataInicial" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.dataInicial}" />"  data-mask="99/99/9999" >
+	                    		<input type="hidden" id="dataHoraInicioAluguel" name="aluguel.dataHoraInicio" />
+	                    		<input type="text" id="dataInicioAluguel" class="form-control" name="aluguel.dataInicial" value="<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${aluguel.dataInicial}" />"  data-mask="99/99/9999 99:99" >
 	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 	                    	</div>
 	                    </div>
 	                </div>
 	                
-	                <div class="form-group" id="dataFinal">
+	                <div class="form-group">
 	             		<label class="col-sm-4 control-label"></label>
 	                    <div class="col-sm-8">
 	                    	<div class="input-group date">
-	                    		<input type="text" class="form-control" name="aluguel.dataFinal" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.dataFinal}" />"  data-mask="99/99/9999" >
+	                    		<input type="hidden" id="dataHoraFinalAluguel" name="aluguel.dataHoraFinal" />
+	                    		<input type="text" id="dataFinalAluguel" class="form-control" name="aluguel.dataFinal" value="<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${aluguel.dataFinal}" />"  data-mask="99/99/9999 99:99" >
 	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 	                    	</div>
 	                    </div>
 	                </div>
 	                
-	                <div class="form-group" id="dataPagamento">
+	                <div class="form-group" >
 	             		<label class="col-sm-4 control-label">Pagamento</label>
 	                    <div class="col-sm-8">
-	                    	<div class="input-group date">
-	                    		<input type="text" class="form-control" name="aluguel.dataEmissaoFaturamento" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.dataEmissaoFaturamento}" />"  data-mask="99/99/9999" >
+	                    	<div class="input-group" id="dataPagamentoAluguel">
+	                    		<input type="text" class="form-control" name="aluguel.dataPagamento" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.dataPagamento}" />"  data-mask="99/99/9999" >
 	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 	                    	</div>
 	                    </div>
@@ -97,7 +100,7 @@
 							<div class="form-group">
 			                    <div class="col-sm-12">
 			                        <a class="btn btn-outline btn-default" href="${linkTo[AluguelController].listagemAluguel}" > Cancelar</a>
-			                        <button class="btn btn-primary" type="submit"> <i class="fa fa-check"></i> Salvar</button>
+			                        <button id="btnSalvarAluguel" class="btn btn-primary" type="submit"> <i class="fa fa-check"></i> Salvar</button>
 			                    </div>
 			                </div>			
 						</div>

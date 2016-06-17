@@ -33,23 +33,17 @@ public class ContasReceberServiceImpl implements ContasReceberService {
 	
 	@Override
 	public List<ContasReceber> findAll() {
-		
 		return contasReceberDAO.findAll();
-		
 	}
 
 	@Override
 	public ContasReceber find(Long id) {
-		
 		return contasReceberDAO.find(id);
-		
 	}
 
 	@Override
 	public void remove(Long id) throws PersistenceException {
-		
 		contasReceberDAO.remove(id);
-		
 	}
 	
 	private void analistaStatus(ContasReceber contaReceber){

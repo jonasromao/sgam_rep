@@ -55,7 +55,7 @@ public class AluguelComercioController {
 
 		if(aluguelComercio.getId() != null && aluguelComercio.getId() > 0){
 			aluguelComercioFacade.editar(aluguelComercio);
-			result.redirectTo(this).formularioAluguelComercio();	
+			result.redirectTo(this).listagemAluguelComercio();	
 		}
 		else {
 			aluguelComercioFacade.persist(aluguelComercio);

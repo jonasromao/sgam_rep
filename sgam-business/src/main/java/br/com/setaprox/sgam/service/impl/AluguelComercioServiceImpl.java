@@ -1,5 +1,8 @@
 package br.com.setaprox.sgam.service.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -7,6 +10,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import br.com.setaprox.sgam.DAO.AluguelComercioDAO;
+import br.com.setaprox.sgam.model.Aluguel;
 import br.com.setaprox.sgam.model.AluguelComercio;
 import br.com.setaprox.sgam.service.AluguelComercioService;
 
@@ -19,6 +23,8 @@ public class AluguelComercioServiceImpl implements AluguelComercioService  {
 
 	@Override
 	public void persist(AluguelComercio aluguelComercio) {
+		parseDataHora(aluguelComercio.getAluguel());
+		aluguelComercio.getAluguel().setDataEmissaoFaturamento(new Date());
 		aluguelComercioDAO.persist(aluguelComercio);
 	}
 
@@ -26,7 +32,6 @@ public class AluguelComercioServiceImpl implements AluguelComercioService  {
 	public void remove(AluguelComercio aluguelComercio) {
 		
 		aluguelComercioDAO.remove(aluguelComercio);
-		
 	}
 
 	@Override
@@ -38,7 +43,7 @@ public class AluguelComercioServiceImpl implements AluguelComercioService  {
 
 	@Override
 	public void editar(AluguelComercio aluguelComercio) {
-		
+		parseDataHora(aluguelComercio.getAluguel());
 		aluguelComercioDAO.editar(aluguelComercio);
 		
 	}
@@ -55,6 +60,23 @@ public class AluguelComercioServiceImpl implements AluguelComercioService  {
 		
 		return aluguelComercioDAO.findAll();
 		
+	}
+	
+	private void parseDataHora(Aluguel aluguel){
+		try {
+			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			
+			if (aluguel.getDataHoraInicio() != null) {
+				aluguel.setDataInicial(format.parse(aluguel.getDataHoraInicio()));
+			}
+			
+			if(aluguel.getDataHoraFinal() != null) {
+				aluguel.setDataFinal(format.parse(aluguel.getDataHoraFinal()));
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 

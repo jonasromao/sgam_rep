@@ -2,6 +2,13 @@
 $(document).ready(function(){
 	$('.date').datetimepicker({
 		locale:"pt-br",
+		format: 'DD/MM/YYYY HH:mm',
+		allowInputToggle: true,
+		showClear: true
+	});
+	
+	$('#dataPagamentoAluguel').datetimepicker({
+		locale:"pt-br",
 		format: 'DD/MM/YYYY',
 		allowInputToggle: true,
 		showClear: true
@@ -9,6 +16,14 @@ $(document).ready(function(){
 	
 	$('#btnAbreModalMoradorFaturamento').click(function(){
 		abrirModalMorador('faturamento');
+	});
+	
+	$('#btnSalvarAluguel').click(function(){
+		var dataHoraInicio = $('#dataInicioAluguel').val();
+		var dataHoraFinal = $('#dataFinalAluguel').val();
+		
+		$('#dataHoraInicioAluguel').val(dataHoraInicio);
+		$('#dataHoraFinalAluguel').val(dataHoraFinal);
 	});
 });
 

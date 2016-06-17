@@ -3,7 +3,6 @@ package br.com.setaprox.sgam.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -43,25 +43,33 @@ public class Aluguel extends AbstractEntity<Aluguel> implements Serializable {
 	@Column( name = "data_emissao_faturamento" )
 	private Date dataEmissaoFaturamento;
 	
+	@Column( name = "data_pagamento" )
+	private Date dataPagamento;
+	
 	@Column( name = "observacao" )
 	private String observacao;
 	
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE}/*, orphanRemoval = true*/ )
-	@JoinColumn(name = "id_morador", referencedColumnName = "id_morador")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_morador")
 	private Morador morador;
 	
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE}/*, orphanRemoval = true*/ )
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")
 	private Recurso recurso;
 	
 	@OneToOne(mappedBy = "aluguel" )
 	private AluguelComercio aluguelComercio;
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE}/*, orphanRemoval = true*/ )
-    @JoinColumn(name = "id_contas_receber")
+	@OneToOne(mappedBy = "aluguel")
 	private ContasReceber contaReceber;
+	
+	@Transient
+	private String dataHoraInicio;
+	
+	@Transient
+	private String dataHoraFinal;
 	
 	public Long getId() {
 		return id;
@@ -133,6 +141,30 @@ public class Aluguel extends AbstractEntity<Aluguel> implements Serializable {
 	
 	public void setContaReceber(ContasReceber contaReceber) {
 		this.contaReceber = contaReceber;
+	}
+
+	public Date getDataPagamento() {
+		return dataPagamento;
+	}
+
+	public void setDataPagamento(Date dataPagamento) {
+		this.dataPagamento = dataPagamento;
+	}
+
+	public String getDataHoraInicio() {
+		return dataHoraInicio;
+	}
+
+	public void setDataHoraInicio(String dataHoraInicio) {
+		this.dataHoraInicio = dataHoraInicio;
+	}
+
+	public String getDataHoraFinal() {
+		return dataHoraFinal;
+	}
+
+	public void setDataHoraFinal(String dataHoraFinal) {
+		this.dataHoraFinal = dataHoraFinal;
 	}
 
 	@Override

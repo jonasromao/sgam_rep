@@ -3,11 +3,14 @@ package br.com.setaprox.sgam.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -56,34 +59,15 @@ public class ContasReceber extends AbstractEntity<ContasReceber> implements Seri
 	@Column( name = "status" )
 	private String status;
 	
-	@OneToOne(mappedBy = "contaReceber")
+	
+	@OneToOne(fetch = FetchType.LAZY/*, orphanRemoval = true*/ )
+	@JoinColumn(name = "id_aluguel")
 	private Aluguel aluguel;
 	
 	
 	public ContasReceber() {
 		
 	}
-	
-	@SuppressWarnings("deprecation")
-	public ContasReceber(Aluguel aluguel) {
-		this.nome = aluguel.getMorador().getNome();
-		this.historico = aluguel.getAluguelComercio().getNome();
-		this.dataEmissao = new Date();
-		this.dataVencimento = aluguel.getDataEmissaoFaturamento();
-		this.setValor(aluguel.getRecurso().getValor());
-		this.setNumero(String.format("%d%d%d%d%d%d", dataEmissao.getDate(),dataEmissao.getMonth(),dataEmissao.getYear(), dataEmissao.getHours(), dataEmissao.getMinutes(), dataEmissao.getSeconds()));
-	}
-	
-	@SuppressWarnings("deprecation")
-	public ContasReceber(AluguelComercio aluguelComercio) {
-		this.nome = aluguelComercio.getAluguel().getMorador().getNome();
-		this.historico = aluguelComercio.getAluguel().getRecurso().getNome();
-		this.dataEmissao = new Date();
-		this.dataVencimento = aluguelComercio.getAluguel().getDataFinal();
-		this.setValor(aluguelComercio.getAluguel().getRecurso().getValor());
-		this.setNumero(String.format("%d%d%d%d%d%d", dataEmissao.getDate(),dataEmissao.getMonth(),dataEmissao.getYear(), dataEmissao.getHours(), dataEmissao.getMinutes(), dataEmissao.getSeconds()));
-	}
-	
 	
 	public Long getId() {
 		return id;

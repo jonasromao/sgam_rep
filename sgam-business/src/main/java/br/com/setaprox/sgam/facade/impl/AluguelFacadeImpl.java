@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import br.com.setaprox.sgam.facade.AluguelFacade;
 import br.com.setaprox.sgam.model.Aluguel;
+import br.com.setaprox.sgam.model.ContasReceber;
 import br.com.setaprox.sgam.service.AluguelService;
 import br.com.setaprox.sgam.service.ContasReceberService;
 
@@ -56,13 +57,21 @@ public class AluguelFacadeImpl implements AluguelFacade {
 
 
 	@Override
-	public void persist(Aluguel aluguel) {
-		//ContasReceber conta = new ContasReceber(aluguel);
-		//contasReceberService.persist(conta);
-		//aluguel.setContaReceber(conta);
+	public void persist(Aluguel aluguel) {		
+		aluguelService.persist(aluguel);
+
+		Date dataEmissao = new Date(); 
+		ContasReceber conta = new ContasReceber();
+		conta.setNome(aluguel.getMorador().getNome());
+		conta.setHistorico(String.format("Aluguel da %s", aluguel.getRecurso().getNome()));
+		conta.setDataEmissao(dataEmissao);
+		conta.setDataVencimento(aluguel.getDataFinal());
+		conta.setNumero(String.format("%d%d%d%d%d%d", dataEmissao.getDate(),dataEmissao.getMonth(),dataEmissao.getYear(), dataEmissao.getHours(), dataEmissao.getMinutes(), dataEmissao.getSeconds()));
+		conta.setAluguel(aluguel);
+		conta.setDataPagamento(aluguel.getDataPagamento());
+		conta.setValor(aluguel.getRecurso().getValor());
 		
-		aluguel.setDataEmissaoFaturamento(new Date());
-		aluguelService.persist(aluguel);	
+		contasReceberService.persist(conta);
 	}
 
 }

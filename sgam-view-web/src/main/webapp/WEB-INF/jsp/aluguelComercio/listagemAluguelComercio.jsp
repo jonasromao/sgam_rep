@@ -46,17 +46,17 @@
 						</thead>
 						
 						<tbody>
-							<c:forEach var="aluguel" items="${aluguelList}">
+							<c:forEach var="aluguelComercio" items="${aluguelList}">
 								<tr class="linhaAluguel">
-									<td>${aluguel.morador.nome}</td>
-									<td>${aluguel.aluguelComercio.nome}</td>
-									<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.dataInicial}" /> </td>
-									<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.dataFinal}" /> </td>
-									<td>${aluguel.aluguelComercio.numeroAlvara}</td>
-									<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.aluguelComercio.dataVencimento}" /> </td>
+									<td>${aluguelComercio.aluguel.morador.nome}</td>
+									<td>${aluguelComercio.nome}</td>
+									<td> <fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${aluguelComercio.aluguel.dataInicial}" /> </td>
+									<td> <fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${aluguelComercio.aluguel.dataFinal}" /> </td>
+									<td>${aluguelComercio.numeroAlvara}</td>
+									<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${aluguelComercio.dataVencimento}" /> </td>
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
-										<a title="Editar" class="editar" href="${linkTo[AluguelController].editarAluguel(aluguel.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
-										<a title="Excluir" class="remover" href="${linkTo[AluguelController].removerAluguel(aluguel.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> 
+										<a title="Editar" class="editar" href="${linkTo[AluguelComercioController].editarAluguelComercio(aluguelComercio.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
+										<a title="Excluir" class="remover" href="${linkTo[AluguelComercioController].removerAluguelComercio(aluguelComercio.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> 
 									</td>
 								</tr>
 							</c:forEach>

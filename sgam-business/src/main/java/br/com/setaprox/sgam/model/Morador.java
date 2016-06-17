@@ -2,6 +2,7 @@ package br.com.setaprox.sgam.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -85,6 +87,9 @@ public class Morador extends AbstractEntity<Morador> implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE}/*, orphanRemoval = true*/ )
 	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
 	private Endereco endereco;
+	
+	@OneToMany(mappedBy="morador")
+	private List<Aluguel> alugueis;
 	
 	public Morador() {
 		
@@ -196,6 +201,14 @@ public class Morador extends AbstractEntity<Morador> implements Serializable {
 
 	public void setNomeFonetizado(String nomeFonetizado) {
 		this.nomeFonetizado = nomeFonetizado;
+	}
+
+	public List<Aluguel> getAlugueis() {
+		return alugueis;
+	}
+
+	public void setAlugueis(List<Aluguel> alugueis) {
+		this.alugueis = alugueis;
 	}
 
 	@Override

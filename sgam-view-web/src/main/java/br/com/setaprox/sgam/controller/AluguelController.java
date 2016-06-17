@@ -56,7 +56,7 @@ public class AluguelController {
 
 		if(aluguel.getId() != null && aluguel.getId() > 0){
 			aluguelFacade.editar(aluguel);
-			result.redirectTo(this).formularioAluguel();	
+			result.redirectTo(this).listagemAluguel();	
 		}
 		else {
 			aluguelFacade.persist(aluguel);
