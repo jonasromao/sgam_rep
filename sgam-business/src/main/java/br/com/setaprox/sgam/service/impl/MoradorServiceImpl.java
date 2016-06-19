@@ -21,6 +21,11 @@ public class MoradorServiceImpl implements MoradorService {
 
 	@Override
 	public void persist(Morador morador) {
+		morador.setDataCadastro(new Date());
+		
+		if(morador.getAssociado().equalsIgnoreCase("Sim")){
+			morador.setDataAssociado(new Date());
+		}
 		
 		moradorDAO.persist(morador);
 		
@@ -28,9 +33,7 @@ public class MoradorServiceImpl implements MoradorService {
 
 	@Override
 	public void remove(Morador morador) {
-		
 		moradorDAO.remove(morador);
-		
 	}
 
 	@Override
@@ -42,29 +45,26 @@ public class MoradorServiceImpl implements MoradorService {
 
 	@Override
 	public void editar(Morador morador) {
+		if(morador.getAssociado().equalsIgnoreCase("Sim")){
+			morador.setDataAssociado(new Date());
+		}
 		
 		moradorDAO.editar(morador);
-		
 	}
 
 	@Override
 	public Morador find(Long id) {
-		
 		return moradorDAO.find(id);
 	}
 
 	@Override
 	public List<Morador> findMoradores(MoradorDTO moradorDTO) {
-
 		return moradorDAO.findMoradores(moradorDTO);
-		
 	}
 
 	@Override
 	public List<Morador> findAll() {
-		
 		return moradorDAO.findAll();
-		
 	}
 
 	@Override
