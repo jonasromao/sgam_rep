@@ -52,4 +52,20 @@ public class FornecedorFacadeImpl implements FornecedorFacade {
 
 	}
 
+	@Override
+	public List<Fornecedor> findByNome(String nome) {
+		List<Fornecedor> fornecedores = null;
+		
+		if(nome != null && !nome.isEmpty()){
+			nome = nome.trim();
+			
+			fornecedores = fornecedorService.findByNome(nome);
+		}
+		else {
+			fornecedores = this.findAll();
+		}
+		
+		return fornecedores;
+	}
+
 }

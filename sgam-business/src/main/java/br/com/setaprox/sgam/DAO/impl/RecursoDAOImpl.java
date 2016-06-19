@@ -24,5 +24,10 @@ public class RecursoDAOImpl extends AbstractDAO<Recurso> implements RecursoDAO {
 		em.merge(recurso);
 		em.flush();
 	}
+	
+	@Override
+	public void remove(Long id) {
+		em.remove( em.getReference( Recurso.class, id ));
+	}
 
 }

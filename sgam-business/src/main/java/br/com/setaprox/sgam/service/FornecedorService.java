@@ -20,5 +20,7 @@ void persist( Fornecedor fornecedor ) ;
 	Fornecedor find( Long id ) ;	
 	
 	List<Fornecedor> findAll();
+	
+	List<Fornecedor> findByNome(String nome);
 
 }

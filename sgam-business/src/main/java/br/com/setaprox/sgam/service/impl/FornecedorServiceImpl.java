@@ -56,5 +56,10 @@ public class FornecedorServiceImpl implements FornecedorService {
 		return fornecedorDAO.findAll();
 		
 	}
+
+	@Override
+	public List<Fornecedor> findByNome(String nome) {
+		return fornecedorDAO.findByNome(nome);
+	}
 	
 }

@@ -22,7 +22,7 @@ public class MoradorController {
 	private Validator validator;
 	@Inject
 	private MoradorFacade moradorFacade;
-	//private MoradorValidator validator;
+
 	/**
 	 * @deprecated CDI eyes only
 	 */
@@ -36,31 +36,37 @@ public class MoradorController {
 		this.validator = validator;
 	}
 
+	@Get("/morador/listagem")
 	public void listagemMoradores(){
 		List<Morador> moradorList = moradorFacade.findAll();
 		
 		result.include("moradores", moradorList);
 	}
 
+	@Get("/morador/formulario")
 	public void formularioMorador(){
-		
+		System.out.println("teste");
 	}
 	
 	@Post("/morador/cadastro")
 	public void cadastraMorador(Morador morador){
-		morador.setNomeFonetizado(morador.getNome());
-		
-		validator.validate(morador);
-		
-		validator.onErrorRedirectTo(this).formularioMorador();
-		
-		if(morador.getId() != null && morador.getId() > 0){
-			moradorFacade.editar(morador);
-			result.redirectTo(this).listagemMoradores();	
-		}
-		else {
-			moradorFacade.persist(morador);
-			result.redirectTo(this).formularioMorador();
+		try{
+			morador.setNomeFonetizado(morador.getNome());
+			validator.validate(morador);
+			
+			validator.onErrorRedirectTo(this).formularioMorador();
+			
+			if(morador.getId() != null && morador.getId() > 0){
+				moradorFacade.editar(morador);
+				result.redirectTo(this).listagemMoradores();
+			}
+			else {
+				moradorFacade.persist(morador);
+				result.redirectTo(this).formularioMorador();
+			}
+		}catch(Exception e){
+			result.include(e.getMessage());
+			result.use(Results.page()).redirectTo("/jsp/500.jsp");
 		}
 		
 	}
@@ -71,23 +77,36 @@ public class MoradorController {
 			Morador morador = moradorFacade.find(id);
 			result.include(morador);
 			result.redirectTo(this).formularioMorador();
-			//result.use(Results.json()).from(true, "alteraAba").serialize();
 		}
 		else {
-			//result.use(Results.json()).from(false, "alteraAba").serialize();
+			result.notFound();
 		}
 	}
 	
 	@Delete("/morador/{id}")
 	public void removeMorador(Long id){
-		moradorFacade.remove(id);
-		result.use(Results.json()).from("Excluído com sucesso!", "mensagem").serialize();
+		try{
+			moradorFacade.remove(id);
+			result.use(Results.json()).from("Excluído com sucesso!", "mensagem").serialize();
+		}catch(Exception e){
+			if(e.getCause().getCause().getMessage().contains("ConstraintViolationException")){
+				result.use(Results.http()).sendError(500, "Não foi possível remover o cadastro desse morador pois existem faturamentos vinculado a esse registro.");
+			}
+			else {
+				result.use(Results.http()).sendError(500, "Erro ao remover conta. Favor entrar em contato com o suporte.");
+			}
+		}
+	}
+	
+	@Get("/morador/moradoresModal/{nome}")
+	public void moradorModal(String nome){
+		List<Morador> moradorList = moradorFacade.findByNome(nome);
+		result.use(Results.json()).from(moradorList, "moradores").serialize();
 	}
 	
 	@Get("/morador/moradoresModal")
 	public void moradorModal(){
 		List<Morador> moradorList = moradorFacade.findAll();
-
 		result.use(Results.json()).from(moradorList, "moradores").serialize();
 	}
 }

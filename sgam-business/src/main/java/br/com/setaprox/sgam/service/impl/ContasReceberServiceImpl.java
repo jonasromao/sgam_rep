@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.persistence.PersistenceException;
 
 import br.com.setaprox.sgam.DAO.ContasReceberDAO;
+import br.com.setaprox.sgam.constante.Status;
 import br.com.setaprox.sgam.model.ContasReceber;
 import br.com.setaprox.sgam.service.ContasReceberService;
 
@@ -50,13 +51,13 @@ public class ContasReceberServiceImpl implements ContasReceberService {
 		Date atual = new Date();
 		
 		if(contaReceber.getDataPagamento() != null){
-			contaReceber.setStatus("Recebido");
+			contaReceber.setStatus(Status.RECEBIDA.getCodigo());
 		}	
 		else if(contaReceber.getDataVencimento() != null && contaReceber.getDataVencimento().compareTo(atual) < 0){
-			contaReceber.setStatus("Atrasado");
+			contaReceber.setStatus(Status.ATRASADA.getCodigo());
 		}
 		else{
-			contaReceber.setStatus("Pendente");
+			contaReceber.setStatus(Status.PENDENTE.getCodigo());
 		}
 	}
 

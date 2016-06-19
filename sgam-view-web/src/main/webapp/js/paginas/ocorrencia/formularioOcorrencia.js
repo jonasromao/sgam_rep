@@ -24,13 +24,34 @@ $(document).ready(function(){
 		 abrirModalMorador('ocorrencia');
 	 });
 
-	 $('#btnSalvar').click(function() {
-	 	var textoDescricao = $('#descricaoOcorrencia').code();
-	 	$('#descricaoOcorrencia').destroy();
-	 	$('#descricaoOcorrenciaHidden').val(textoDescricao);
 
-	 });
-
+	 $('#ocorrenciaForm').validate({
+	        rules: {
+	            'ocorrencia.titulo': {
+	                required: true,
+	                maxlength: 100
+	            },
+	            'ocorrencia.morador.nome': {
+	                required: true
+	            },
+	            'ocorrencia.local': {
+	            	required: true
+	            },
+	            'ocorrencia.dataInicio': {
+	            	required: true
+	            },
+	            'ocorrencia.descricao': {
+	            	required: true
+	            }
+	        },
+			submitHandler: function (form) {
+				var textoDescricao = $('#descricaoOcorrencia').code();
+			 	$('#descricaoOcorrencia').destroy();
+			 	$('#descricaoOcorrenciaHidden').val(textoDescricao);
+				
+				$(form).submit();		
+		    }
+	    });
 
 });
 

@@ -17,5 +17,7 @@ public interface OcorrenciaFacade {
 	void remove(Ocorrencia ocorrencia);
 	
 	void remove(Long id);
+	
+	List<Ocorrencia> ocorrenciasPorStatus(String status);
 
 }

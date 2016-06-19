@@ -16,4 +16,6 @@ public interface FornecedorFacade {
 	
 	void remove(Long id);
 	
+	List<Fornecedor> findByNome(String nome);
+	
 }

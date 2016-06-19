@@ -33,6 +33,7 @@
 							<tr>
 								<th>Número</th>
 								<th>Nome</th>
+								<th>Recurso</th>
 								<th>Emissão</th>
 								<th>Vencimento</th>
 								<th>Valor</th>
@@ -45,13 +46,14 @@
 							<c:forEach var="conta" items="${contas}">
 								<tr class="linhaContaReceber">
 									<td>${conta.numero}</td>
+									<td>${conta.aluguel.recurso.nome}</td>
 									<td>${conta.nome}</td>
 									<td><fmt:formatDate pattern="dd/MM/yyyy" value="${conta.dataEmissao}" /></td>
 									<td><fmt:formatDate pattern="dd/MM/yyyy" value="${conta.dataVencimento}" /></td>
 									<td><fmt:formatNumber value="${conta.valor}" type="currency"/></td>
 									
 									<c:choose>
-										<c:when test="${conta.status eq 'Recebido'}">
+										<c:when test="${conta.status eq 'Recebida'}">
 											<td><span class="label label-primary">${conta.status}</span></td>
 										</c:when>
 										

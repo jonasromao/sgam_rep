@@ -13,43 +13,36 @@
                     <small class="font-bold">Selecione um fornecedor</small>
                 </div>
                 <div class="modal-body">
-   
-                    <div class="form-horizontal">
-                    	
-                    	<div class="row">
-							<div class="col-sm-12">
-								<div class="input-group">
-	                                <input type="text" placeholder="Digite o nome do fornecedor " class="input form-control">
-	                                <span class="input-group-btn">
-	                                	<a id="btnFiltrarFornecedor" class="btn btn btn-primary" href="${linkTo[FornecedorController].fornecedorModal}"> <i class="fa fa-search"></i> Filtrar</a>
-	                                </span>
-	                            </div>			
+   					<div class="ibox-content">
+	                    <div class="form-horizontal">
+	                    	<div class="row">
+								<div class="col-sm-12">
+									<div class="input-group">
+		                                <input type="text" id="nomeFornecedorModal" placeholder="Digite o nome do fornecedor " class="input form-control">
+		                                <span class="input-group-btn">
+		                                	<a id="btnFiltrarFornecedor" class="btn btn btn-primary" href="${linkTo[FornecedorController].fornecedorModal}"> <i class="fa fa-search"></i> Filtrar</a>
+		                                </span>
+		                            </div>			
+								</div>
 							</div>
-						</div>
-						
-						<br/>
-						
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="ibox-content">
+							
+							<br/>
+							
+							<div class="row">
+								<div class="col-sm-12">
 									<table id="tableListagemFornecedoresModal" class="table table-striped table-bordered table-hover"> 
 										<thead>
 											<tr>
-												<th></th>
 												<th>Nome</th>
 											</tr>
 										</thead>
-										
 										<tbody>
-
 										</tbody>
-										
 									</table>
 								</div>
 							</div>
-						</div>
-                    </div>
-
+	                    </div>
+					</div>
                 </div>
 
                 <div class="modal-footer">

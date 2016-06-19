@@ -14,6 +14,28 @@ $(document).ready(function(){
 	$('#btnModalFornecedorCP').click(function(){
 		abrirModalFornecedor('contasPagar');
 	});
+	
+	$('#contasPagarForm').validate({
+        rules: {
+            'contaPagar.numero': {
+                required: true,
+                maxlength: 45
+            },
+            'contaPagar.nome': {
+            	required: true,
+            	maxlength: 45
+            },
+            'contaPagar.dataVencimento': {
+                required: true
+            },
+            'contaPagar.fornecedor.nome': {
+            	required: true
+            }
+        },
+		submitHandler: function (form) {
+			$(form).submit();		
+	    }
+    });
 
 });
 

@@ -1,4 +1,8 @@
-﻿<%@ include file="/headerMenu.jsp" %> 
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%@ include file="/headerMenu.jsp" %> 
 
 <div class="wrapper wrapper-content">
         <div class="row">
@@ -6,11 +10,11 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <span class="label label-success pull-right">Geral</span>
-                                <h5>Moradores</h5>
+                                <h5><a id="linkMoradorListagem" onclick="marcarMenuAtivo('menuCadastros', 'submenuMoradores', 'collapseCadastros')" href="${linkTo[MoradorController].listagemMoradores}">Moradores</a></h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">2.000</h1>
-                                <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
+                                <h1 class="no-margins">${totalMoradores}</h1>
+                                <div class="stat-percent font-bold text-success"><i class="fa fa-group"></i></div>
                                 <small>Total de Moradores</small>
                             </div>
                         </div>
@@ -19,11 +23,11 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <span class="label label-info pull-right">Geral</span>
-                                <h5>Associados</h5>
+                                <h5><a id="linkMoradorListagem" onclick="marcarMenuAtivo('menuCadastros', 'submenuMoradores', 'collapseCadastros')" href="${linkTo[MoradorController].listagemMoradores}">Associados</a></h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">500</h1>
-                                <div class="stat-percent font-bold text-info">25% <i class="fa fa-level-up"></i></div>
+                                <h1 class="no-margins">${totalAssociados}</h1>
+                                <div class="stat-percent font-bold text-info"><fmt:formatNumber value="${porcentSocios}" type="number" pattern="#,##0.00"/>% <i class="fa fa-group"></i></div>
                                 <small>Total de Associados</small>
                             </div>
                         </div>
@@ -35,8 +39,8 @@
                                 <h5>Associados</h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">15</h1>
-                                <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
+                                <h1 class="no-margins">${totalAssociadosMes}</h1>
+                                <div class="stat-percent font-bold text-navy"><fmt:formatNumber value="${porcentSociosMes}" type="number" pattern="#,##0.00"/>% <i class="fa fa-group"></i></div>
                                 <small>Novos Associados</small>
                             </div>
                         </div>
@@ -45,11 +49,11 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <span class="label label-danger pull-right">Abertas</span>
-                                <h5>Ocorrências</h5>
+                                <h5><a onclick="marcarMenuAtivo('menuOcorrencias', '', '')" href="${linkTo[OcorrenciaController].listagemOcorrencias}">Ocorrências</a></h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">5</h1>
-                                <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
+                                <h1 class="no-margins">${qtdOcorrencias}</h1>
+                                <div class="stat-percent font-bold text-danger"> <i class="fa fa-warning"></i></div>
                                 <small>Ocorrências Abertas</small>
                             </div>
                         </div>
@@ -119,80 +123,39 @@
                                     <a class="collapse-link">
                                         <i class="fa fa-chevron-up"></i>
                                     </a>
-                                    <a class="close-link">
-                                        <i class="fa fa-times"></i>
-                                    </a>
                                 </div>
                             </div>
                             <div class="ibox-content ibox-heading">
                                 <h3><i class="fa fa-envelope-o"></i> Novas ocorrências</h3>
-                                <small><i class="fa fa-tim"></i> Existem 5 ocorrências abertas.</small>
+                                <small><i class="fa fa-tim"></i> Existem ${qtdOcorrencias} ocorrências abertas.</small>
                             </div>
                             <div class="ibox-content">
                                 <div class="feed-activity-list">
-
-                                    <div class="feed-element">
-                                        <div>
-                                            <small class="pull-right text-navy">1m ago</small>
-                                            <strong>Monica Smith</strong>
-                                            <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum</div>
-                                            <small class="text-muted">Today 5:60 pm - 12.06.2014</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="feed-element">
-                                        <div>
-                                            <small class="pull-right">2m ago</small>
-                                            <strong>Jogn Angel</strong>
-                                            <div>There are many variations of passages of Lorem Ipsum available</div>
-                                            <small class="text-muted">Today 2:23 pm - 11.06.2014</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="feed-element">
-                                        <div>
-                                            <small class="pull-right">5m ago</small>
-                                            <strong>Jesica Ocean</strong>
-                                            <div>Contrary to popular belief, Lorem Ipsum</div>
-                                            <small class="text-muted">Today 1:00 pm - 08.06.2014</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="feed-element">
-                                        <div>
-                                            <small class="pull-right">5m ago</small>
-                                            <strong>Monica Jackson</strong>
-                                            <div>The generated Lorem Ipsum is therefore </div>
-                                            <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="feed-element">
-                                        <div>
-                                            <small class="pull-right">5m ago</small>
-                                            <strong>Anna Legend</strong>
-                                            <div>All the Lorem Ipsum generators on the Internet tend to repeat </div>
-                                            <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <div>
-                                            <small class="pull-right">5m ago</small>
-                                            <strong>Damian Nowak</strong>
-                                            <div>The standard chunk of Lorem Ipsum used </div>
-                                            <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <div>
-                                            <small class="pull-right">5m ago</small>
-                                            <strong>Gary Smith</strong>
-                                            <div>200 Latin words, combined with a handful</div>
-                                            <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
-                                        </div>
-                                    </div>
-
+									<c:forEach var="ocorrencia" items="${ocorrencias}">
+										<div class="feed-element">
+	                                        <div>
+	                                        
+		                                        <c:choose>
+													<c:when test="${ocorrencia.prioridade eq 'Baixa'}">
+														<small class="pull-right text-navy"><span class="label label-primary">${ocorrencia.prioridade}</span></small>
+													</c:when>
+													
+													<c:when test="${ocorrencia.prioridade eq 'Média'}">
+														<small class="pull-right text-navy"><span class="label label-warning">${ocorrencia.prioridade}</span></small>
+													</c:when>
+													
+													<c:otherwise>
+														<small class="pull-right text-navy"><span class="label label-danger">${ocorrencia.prioridade}</span></small>
+													</c:otherwise>
+												</c:choose>
+	                                        
+	                                            
+	                                            <strong><a onclick="marcarMenuAtivo('menuCadastros', 'submenuMoradores', 'collapseCadastros')" href="${linkTo[MoradorController].editarMorador(ocorrencia.morador.id)}">${ocorrencia.morador.nome}</a></strong>
+	                                            <div><a onclick="marcarMenuAtivo('menuOcorrencias', '', '')" href="${linkTo[OcorrenciaController].editarOcorrencia(ocorrencia.id)}">${ocorrencia.titulo}</a></div>
+	                                            <small class="text-muted">Aberta desde <fmt:formatDate pattern="dd/MM/yyyy" value="${ocorrencia.dataInicio}" /></small>
+	                                        </div>
+	                                    </div>
+									</c:forEach>
                                 </div>
                             </div>
                         </div>
@@ -204,13 +167,10 @@
                             <div class="col-lg-12">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
-                                        <h5>Agendamento dos espaços</h5>
+                                        <h5>Agendamentos de hoje - <fmt:formatDate pattern="dd/MM/yyyy" value="${dataAtual}" /></h5>
                                         <div class="ibox-tools">
                                             <a class="collapse-link">
                                                 <i class="fa fa-chevron-up"></i>
-                                            </a>
-                                            <a class="close-link">
-                                                <i class="fa fa-times"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -219,25 +179,36 @@
                                             <thead>
                                             <tr>
                                                 <th>Recurso</th>
-                                                <th>Data</th>
                                                 <th>Morador</th>
-                                                <th>Observação</th>
+                                                <th>Inicio</th>
+                                                <th>Fim</th>
+                                                <th>Valor</th>
+                                                <th>Pagamento</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td><span class="label label-warning">Quadra</span> </td>
-                                                <td><i class="fa fa-clock-o"></i> 10/06/2016 06:30h</td>
-                                                <td>Samantha</td>
-                                                <td class="text-navy"> Observação </td>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="label label-warning">Quadra</span> </td>
-                                                <td><i class="fa fa-clock-o"></i> 10/06/2016 08:30h</td>
-                                                <td>Monica</td>
-                                                <td class="text-navy"> Observação </td>
-                                            </tr>
- 
+	                                            <c:forEach var="aluguel" items="${alugueis}">
+													<tr>
+														<td>${aluguel.recurso.nome}</td>
+														<td><a onclick="marcarMenuAtivo('menuCadastros', 'submenuMoradores', 'collapseCadastros')" title="Link para acessar cadastro do morador" href="${linkTo[MoradorController].editarMorador(aluguel.morador.id)}">${aluguel.morador.nome}</a></td>
+														<td><i class="fa fa-clock-o"></i> <fmt:formatDate pattern="HH:mm" value="${aluguel.dataInicial}" /></td>
+														<td><i class="fa fa-clock-o"></i> <fmt:formatDate pattern="HH:mm" value="${aluguel.dataFinal}" /></td>
+														<td><fmt:formatNumber value="${aluguel.contaReceber.valor}" type="currency"/></td>
+														<c:choose>
+															<c:when test="${aluguel.contaReceber.status eq 'Recebida'}">
+																<td><span class="label label-primary">${aluguel.contaReceber.status}</span></td>
+															</c:when>
+															
+															<c:when test="${aluguel.contaReceber.status eq 'Pendente'}">
+																<td><span class="label label-warning">${aluguel.contaReceber.status}</span></td>
+															</c:when>
+															
+															<c:otherwise>
+																<td><span class="label label-danger">${aluguel.contaReceber.status}</span></td>
+															</c:otherwise>
+														</c:choose>
+													</tr>
+												</c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
@@ -250,13 +221,10 @@
                             <div class="col-lg-12">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
-                                        <h5>Contas a pagar</h5>
+                                        <h5>Contas a pagar do mês atual</h5>
                                         <div class="ibox-tools">
                                             <a class="collapse-link">
                                                 <i class="fa fa-chevron-up"></i>
-                                            </a>
-                                            <a class="close-link">
-                                                <i class="fa fa-times"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -272,21 +240,27 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>Energia </td>
-                                                <td>Escelsa</td>
-                                                <td>10/06/2016</td>
-                                                <td class="text-navy"> R$ 85,00 </td>
-                                                <td><span class="label label-warning">Pendente</span> </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Água</td>
-                                                <td>Cesan</td>
-                                                <td>10/06/2016</td>
-                                                <td class="text-navy"> R$ 20,00 </td>
-                                                <td><span class="label label-warning">Pendente</span> </td>
-                                            </tr>
- 
+                                            	<c:forEach var="conta" items="${contas}">
+													<tr>
+														<td>${conta.nome}</td>
+														<td><a onclick="marcarMenuAtivo('menuCadastros', 'submenuFornecedores', 'collapseCadastros')" title="Link para acessar cadastro do fornecedor" href="${linkTo[FornecedorController].editarFornecedor(conta.fornecedor.id)}">${conta.fornecedor.nome}</a></td>
+														<td><fmt:formatDate pattern="dd/MM/yyyy" value="${conta.dataVencimento}" /></td>
+														<td><fmt:formatNumber value="${conta.valor}" type="currency"/></td>
+														<c:choose>
+															<c:when test="${conta.status eq 'Paga'}">
+																<td><span class="label label-primary">${conta.status}</span></td>
+															</c:when>
+															
+															<c:when test="${conta.status eq 'Pendente'}">
+																<td><span class="label label-warning">${conta.status}</span></td>
+															</c:when>
+															
+															<c:otherwise>
+																<td><span class="label label-danger">${conta.status}</span></td>
+															</c:otherwise>
+														</c:choose>
+													</tr>
+												</c:forEach>
                                             </tbody>
                                         </table>
                                     </div>

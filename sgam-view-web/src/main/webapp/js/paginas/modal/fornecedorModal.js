@@ -3,8 +3,8 @@ $(document).ready(function(){
 	$('#tableListagemFornecedoresModal').dataTable({
 		"pageLength": 5,
 		"lengthMenu": [ 5 ],
-		"lengthChange": true,
-		"autoWidth": false,
+		"searching": false,
+		"lengthChange": false,
 		"language": {
 			"search": "Pesquisar: ",
 			"lengthMenu": "_MENU_",
@@ -15,25 +15,29 @@ $(document).ready(function(){
 				"previous": "Anterior",
 				"next": "Próxima"
 			    }
-		},
-		"columns": [
-		    {"width": "5%"},
-		    null
-		]
+		}
 	});
 
 	$('#btnFiltrarFornecedor').on('click', function(event){
 		event.preventDefault();
 		
-		var link = $(this);
+		var url = '';
+		var nome = $('#nomeFornecedorModal').val();
+		
+		if(nome == null || nome == ''){
+			url = '/sgam/fornecedor/fornecedoresModal';
+		}
+		else {
+			url = '/sgam/fornecedor/fornecedoresModal/'+ nome;
+		}
 		
 		$.ajax({
-			url: link.attr("href"),
+			url: url,
 			type: 'GET'
 		}).done(function(data, textStatus, jqXHR) {
 			adicionarLinhasTabelaModalFornecedor(data);
 		}).fail(function(jqXHR, textStatus, errorThrown){
-			alert('Deu erro!');
+			swal('Erro', 'Erro ao buscar os fornecedores', 'error');
 		});
 	});
 	
@@ -67,13 +71,12 @@ var adicionarLinhasTabelaModalFornecedor = function(data){
 
 		var btnRadio = '';
 		btnRadio += '<div class="radio radio-success" > ';
-		btnRadio += '<input type="radio" name="radio" onclick="selecionarRadioModalFornecedor()" value=\"' + fornecedor.id + ':' + fornecedor.nome + "\">";
-		btnRadio += '<label for="btnRadio"></label>';
+		btnRadio += '<input type="radio" id='+fornecedor.id+' name="radio" onclick="selecionarRadioModalFornecedor()" value=\"' + fornecedor.id + ':' + fornecedor.nome + "\">";
+		btnRadio += '<label for='+fornecedor.id+'>'+fornecedor.nome+'</label>';
 		btnRadio += '</div>';
 
 		tabela.row.add([
-		    btnRadio,
-		    fornecedor.nome
+		    btnRadio
 		]).draw(false);
 		
 		mapaFornecedoresPesquisa[fornecedor.id] = {fornecedor: fornecedor};

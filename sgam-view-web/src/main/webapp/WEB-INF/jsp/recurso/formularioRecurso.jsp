@@ -28,7 +28,7 @@
  
  <div class="wrapper wrapper-content animated fadeInRight">
  	<div class="row">
- 		<form method="post" class="form-horizontal" action="${linkTo[RecursoController].cadastraRecurso}">
+ 		<form id="recursoForm" method="post" class="form-horizontal" action="${linkTo[RecursoController].cadastraRecurso}">
 			<div class="col-lg-6">
 		        <div class="ibox-content">
 	         		<input type="hidden" name="recurso.id" value="${recurso.id }"/>
@@ -94,8 +94,12 @@
     </div>
 </div>
 
-   <script src="${pageContext.request.contextPath}/manual_install_components/jquery-maskmoney/jquery.maskMoney.min.js"></script>
-   <script src="${pageContext.request.contextPath}/js/paginas/recurso/formularioRecurso.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/jquery-maskmoney/jquery.maskMoney.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/paginas/recurso/formularioRecurso.js"></script>
+   
+<script src="${pageContext.request.contextPath}/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-validation-messages.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
 

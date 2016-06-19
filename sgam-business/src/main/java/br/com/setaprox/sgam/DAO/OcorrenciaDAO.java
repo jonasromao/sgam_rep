@@ -23,4 +23,6 @@ public interface OcorrenciaDAO {
 	
 	Ocorrencia merge( Ocorrencia ocorrencia );
 	
+	List<Ocorrencia> ocorrenciasPorStatus(String status);
+	
 }

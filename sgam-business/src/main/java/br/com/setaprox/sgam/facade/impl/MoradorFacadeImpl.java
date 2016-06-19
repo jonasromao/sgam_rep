@@ -1,5 +1,6 @@
 package br.com.setaprox.sgam.facade.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -52,6 +53,30 @@ public class MoradorFacadeImpl implements MoradorFacade {
 		
 	}
 
+	@Override
+	public List<Morador> findByNome(String nome) {
+		List<Morador> moradores = null;
+		
+		if(nome != null && !nome.isEmpty()){
+			nome = nome.trim();
+			
+			moradores = moradorService.findByNome(nome);
+		}
+		else {
+			moradores = this.findAll();
+		}
+		
+		return moradores;
+	}
 
+	@Override
+	public long totalMoradores() {
+		return moradorService.totalMoradores();
+	}
+
+	@Override
+	public long totalAssociados(Date inicio, Date fim) {
+		return moradorService.totalAssociados(inicio, fim);
+	}
 	
 }

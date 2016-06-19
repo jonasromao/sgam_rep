@@ -72,7 +72,7 @@ public class ContasReceberController {
 			
 		}catch(Exception e){
 			if(e.getCause().getCause().getMessage().contains("ConstraintViolationException")){
-				result.use(Results.http()).sendError(500, "Não foi possível remover a conta pois existe um faturamento vinculado à esse recebimento.");
+				result.use(Results.http()).sendError(500, "Não foi possível remover a conta pois existe um faturamento vinculado a esse recebimento.");
 			}
 			else {
 				result.use(Results.http()).sendError(500, "Erro ao remover conta. Favor entrar em contato com o suporte.");

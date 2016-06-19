@@ -58,6 +58,11 @@ public class OcorrenciaServiceImpl implements OcorrenciaService {
 		ocorrenciaDAO.remove(id);
 		
 	}
+
+	@Override
+	public List<Ocorrencia> ocorrenciasPorStatus(String status) {
+		return ocorrenciaDAO.ocorrenciasPorStatus(status);
+	}
 	
 	
 	

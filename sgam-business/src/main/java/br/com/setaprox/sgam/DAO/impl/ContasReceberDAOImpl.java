@@ -19,9 +19,15 @@ public class ContasReceberDAOImpl extends AbstractDAO<ContasReceber> implements 
 
 	}
 
+	@Override
 	public void editar(ContasReceber contasReceber) {
 		em.merge(contasReceber);
 		em.flush();
+	}
+	
+	@Override
+	public void remove(Long id) {
+		em.remove( em.getReference( ContasReceber.class, id ));
 	}
 
 }

@@ -75,7 +75,16 @@ public class AluguelComercioController {
 	
 	@Delete("aluguelComercio/remover/{id}")
 	public void removerAluguelComercio(Long id){
-		aluguelComercioFacade.remove(id);
-		result.use(Results.json()).from("Excluído com sucesso!", "mensagem").serialize();
+		try{
+			aluguelComercioFacade.remove(id);
+			result.use(Results.json()).from("Excluído com sucesso!", "mensagem").serialize();
+		}catch(Exception e){
+			if(e.getCause().getCause().getMessage().contains("ConstraintViolationException")){
+				result.use(Results.http()).sendError(500, "Não foi possível remover esse aluguel pois existe uma conta vinculado a esse faturamento.");
+			}
+			else {
+				result.use(Results.http()).sendError(500, "Erro ao remover aluguel. Favor entrar em contato com o suporte.");
+			}
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package br.com.setaprox.sgam.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -22,4 +23,10 @@ public interface MoradorService {
 	List<Morador> findMoradores( MoradorDTO moradorDTO ) ;
 	
 	List<Morador> findAll();
+	
+	List<Morador> findByNome(String nome);
+	
+	long totalMoradores();
+	
+	long totalAssociados(Date inicio, Date fim);
 }

@@ -30,7 +30,7 @@
  
  <div class="wrapper wrapper-content animated fadeInRight">
  	<div class="row">
- 		<form method="post" class="form-horizontal" action="${linkTo[FornecedorController].cadastraFornecedor}">
+ 		<form id="fornecedorForm" method="post" class="form-horizontal" action="${linkTo[FornecedorController].cadastraFornecedor}">
 			<div class="col-lg-6">
 		        <div class="ibox-content">
 	         		<input type="hidden" name="fornecedor.id" value="${fornecedor.id }"/>
@@ -38,7 +38,7 @@
 	             	<div class="form-group">
 	             		<label class="col-sm-4 control-label">Nome</label>
 	                    <div class="col-sm-8">
-	                    	<input type="text" class="form-control" name="fornecedor.nome" value="${fornecedor.nome}">
+	                    	<input type="text" id="nomeFornecedor" class="form-control" name="fornecedor.nome" value="${fornecedor.nome}">
 	                    </div>
 	                </div>
 	                
@@ -118,6 +118,13 @@
 		                	<input type="text" class="form-control" name="fornecedor.endereco.numero" value="${fornecedor.endereco.numero}">
 		                </div>
 		          	</div>
+		          	
+		          	<div class="form-group">
+		            	<label class="col-sm-4 control-label">CEP</label>
+		                <div class="col-sm-8">
+		                	<input type="text" class="form-control" name="fornecedor.endereco.cep" value="${morador.endereco.numero}" data-mask="99999-999">
+		                </div>
+		          	</div>
 		               
 		            <div class="form-group">
 		            	<label class="col-sm-4 control-label">Bairro</label>
@@ -153,7 +160,7 @@
 			                        
 			                        <div class="i-checks">
 			                        	<label> 
-			                        		<input type="radio" name="fornecedor.fisicaJuridica" value="J" <c:if test="${fornecedor.fisicaJuridica eq 'J' }">checked="checked"</c:if> > <i></i> 
+			                        		<input type="radio" name="fornecedor.fisicaJuridica" value="J" <c:if test="${fornecedor.fisicaJuridica == null || fornecedor.fisicaJuridica eq 'J' }">checked="checked"</c:if> > <i></i> 
 			                        		Jurídica. 
 			                        	</label>
 			                        </div>
@@ -169,10 +176,14 @@
     </div>
 </div>
 
-   <script src="${pageContext.request.contextPath}/js/plugins/jasny/jasny-bootstrap.min.js"></script>
-   <script src="${pageContext.request.contextPath}/js/plugins/iCheck/icheck.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/iCheck/icheck.min.js"></script>
+   
+<script src="${pageContext.request.contextPath}/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-validation-messages.js"></script>
     
-   <script src="${pageContext.request.contextPath}/js/paginas/fornecedor/formularioFornecedor.js"></script>
+<script src="${pageContext.request.contextPath}/js/paginas/fornecedor/formularioFornecedor.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
 

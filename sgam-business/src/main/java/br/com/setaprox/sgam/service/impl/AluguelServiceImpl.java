@@ -75,4 +75,9 @@ public class AluguelServiceImpl implements AluguelService  {
 		}
 	}
 
+	@Override
+	public List<Aluguel> reservasPorDia(Date data) {
+		return aluguelDAO.reservasPorDia(data);
+	}
+
 }

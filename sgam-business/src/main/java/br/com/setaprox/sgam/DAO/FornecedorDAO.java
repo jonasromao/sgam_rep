@@ -21,4 +21,6 @@ public interface FornecedorDAO {
 	
 	List<Fornecedor> findAll();
 	
+	List<Fornecedor> findByNome(String nome);
+	
 }

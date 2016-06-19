@@ -35,7 +35,7 @@
  </div>
  
  <div class="wrapper wrapper-content animated fadeInRight">
- 	<form method="post" class="form-horizontal" action="${linkTo[OcorrenciaController].cadastraOcorrencia}">
+ 	<form id="ocorrenciaForm" method="post" class="form-horizontal" action="${linkTo[OcorrenciaController].cadastraOcorrencia}">
  		
  		<input type="hidden" name="ocorrencia.id" value="${ocorrencia.id }"/>
 		<input type="hidden" name="ocorrencia.status" value="${ocorrencia.status }"/>
@@ -148,6 +148,11 @@
 <script src="${pageContext.request.contextPath}/manual_install_components/moment/moment-with-locales.min.js"></script>
 <script src="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/plugins/summernote/summernote.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-validation-messages.js"></script>
+
 <script src="${pageContext.request.contextPath}/js/paginas/ocorrencia/formularioOcorrencia.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>

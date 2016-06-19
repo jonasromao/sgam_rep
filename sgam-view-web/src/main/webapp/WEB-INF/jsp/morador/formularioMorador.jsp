@@ -31,7 +31,7 @@
  
  <div class="wrapper wrapper-content animated fadeInRight">
  	<div class="row">
- 		<form method="post" class="form-horizontal" action="${linkTo[MoradorController].cadastraMorador}">
+ 		<form id="moradorForm" method="post" class="form-horizontal"  action="${linkTo[MoradorController].cadastraMorador}">
 			<div class="col-lg-6">
 		        <div class="ibox-content">
 	         		<input type="hidden" name="morador.id" value="${morador.id }"/>
@@ -63,7 +63,7 @@
 	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Anos no Bairro</label>
 	                    <div class="col-sm-8">
-	                    	<input type="text" class="form-control" name="morador.inicioMoradia" value="${morador.inicioMoradia}" >
+	                    	<input type="text" id="tempoMorador" class="form-control" name="morador.inicioMoradia" value="${morador.inicioMoradia}" >
 	                    </div>
 	                </div>
 	                
@@ -117,7 +117,7 @@
 		    <div class="col-lg-6">
 			    <div class="ibox-content">
 		   			<div class="form-group">
-		            	<label class="col-sm-4 control-label">Endereço</label>
+		            	<label class="col-sm-4 control-label">Rua</label>
 		              	<div class="col-sm-8">
 		            		<input type="text" class="form-control" name="morador.endereco.rua" value="${morador.endereco.rua}">
 		                </div>
@@ -126,7 +126,14 @@
 		            <div class="form-group">
 		            	<label class="col-sm-4 control-label">Número</label>
 		                <div class="col-sm-8">
-		                	<input type="text" class="form-control" name="morador.endereco.numero" value="${morador.endereco.numero}">
+		                	<input type="text" id="numeroMorador" class="form-control" name="morador.endereco.numero" value="${morador.endereco.numero}">
+		                </div>
+		          	</div>
+		          	
+		          	<div class="form-group">
+		            	<label class="col-sm-4 control-label">CEP</label>
+		                <div class="col-sm-8">
+		                	<input type="text" class="form-control" name="morador.endereco.cep" value="${morador.endereco.numero}" data-mask="99999-999">
 		                </div>
 		          	</div>
 		               
@@ -199,6 +206,10 @@
 <script src="${pageContext.request.contextPath}/js/plugins/jasny/jasny-bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/manual_install_components/moment/moment-with-locales.min.js"></script>
 <script src="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-validation-messages.js"></script>
  
 <script src="${pageContext.request.contextPath}/js/paginas/morador/formularioMorador.js"></script>
 

@@ -1,5 +1,6 @@
 package br.com.setaprox.sgam.DAO;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -20,4 +21,6 @@ public interface ContasPagarDAO {
 	ContasPagar find( Long id ) ;
 	
 	List<ContasPagar> findAll();
+	
+	List<ContasPagar> contasVencimentoMensal(Date data);
 }

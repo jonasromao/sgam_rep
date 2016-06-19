@@ -26,5 +26,9 @@ public class AluguelComercioDAOImpl extends AbstractDAO<AluguelComercio> impleme
 		em.flush();
 	}
 
+	@Override
+	public void remove(Long id) {
+		em.remove( em.getReference( AluguelComercio.class, id ));
+	}
 
 }

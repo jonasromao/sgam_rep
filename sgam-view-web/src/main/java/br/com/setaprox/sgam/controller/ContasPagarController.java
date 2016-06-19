@@ -49,7 +49,8 @@ public class ContasPagarController {
 				result.redirectTo(this).listagemContasPagar();
 			}
 		}catch(Exception e){
-			e.printStackTrace();
+			result.include(e.getMessage());
+			result.use(Results.page()).redirectTo("/jsp/500.jsp");
 		}
 	}
 

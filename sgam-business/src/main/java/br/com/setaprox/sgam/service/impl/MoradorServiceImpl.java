@@ -1,5 +1,6 @@
 package br.com.setaprox.sgam.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -64,6 +65,21 @@ public class MoradorServiceImpl implements MoradorService {
 		
 		return moradorDAO.findAll();
 		
+	}
+
+	@Override
+	public List<Morador> findByNome(String nome) {
+		return moradorDAO.findByNome(nome);
+	}
+
+	@Override
+	public long totalMoradores() {
+		return moradorDAO.totalMoradores();
+	}
+
+	@Override
+	public long totalAssociados(Date inicio, Date fim) {
+		return moradorDAO.totalAssociados(inicio, fim);
 	}
 
 }

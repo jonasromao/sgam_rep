@@ -1,5 +1,6 @@
 package br.com.setaprox.sgam.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -18,4 +19,6 @@ public interface ContasPagarService {
 	ContasPagar find(Long id);
 	
 	void remove(Long id) throws PersistenceException;
+	
+	List<ContasPagar> contasVencimentoMensal(Date data);
 }

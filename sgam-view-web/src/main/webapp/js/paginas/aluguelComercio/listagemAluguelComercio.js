@@ -38,7 +38,11 @@ $(document).ready(function(){
 				swal("Excluído!", "O cadastro foi excluído com sucesso.", "success");
 				aluguel.fadeOut();
 			}).fail(function(jqXHR, textStatus, errorThrown){
-				swal("Erro!", "Erro ao excluir o cadastro.", "error");
+				var mensagem = jqXHR.responseText;
+				var start = mensagem.search('<body>');
+				var end = mensagem.search('</body>');
+				
+				swal("Atenção!", mensagem.slice(start+6, end), "warning");
 			});
         });
 	});

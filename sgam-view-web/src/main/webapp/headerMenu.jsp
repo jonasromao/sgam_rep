@@ -32,6 +32,7 @@
     <script src="${pageContext.request.contextPath}/js/inspinia.js"></script>
     <script src="${pageContext.request.contextPath}/js/plugins/pace/pace.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/menu.js"></script>
+    <script src="${pageContext.request.contextPath}/js/util.js"></script>
 
     <!-- Toastr -->
    <script src="${pageContext.request.contextPath}/js/plugins/toastr/toastr.min.js"></script>
@@ -67,12 +68,17 @@
 		                <i class="fa fa-th-large"></i> <span class="nav-label">Inicio</span></a>
 		            </li>
 		            
+		            <li id="menuOcorrencias"> 
+                    	<a onclick="marcarMenuAtivo('menuOcorrencias', '', '')" href="${linkTo[OcorrenciaController].listagemOcorrencias}">
+                    	<i class="fa fa-warning"></i> <span class="nav-label">Ocorrências</span></a>
+                    </li>
+		            
                     <li id="menuCadastros">
                         <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Cadastros</span> <span class="fa arrow"></span></a>
                         <ul id="collapseCadastros" class="nav nav-second-level collapse">
                             
                             <li id="submenuMoradores"> 
-                            	<a onclick="marcarMenuAtivo('menuCadastros', 'submenuMoradores', 'collapseCadastros')" href="${linkTo[MoradorController].listagemMoradores}">Moradores</a>
+                            	<a id="linkMoradorListagem" onclick="marcarMenuAtivo('menuCadastros', 'submenuMoradores', 'collapseCadastros')" href="${linkTo[MoradorController].listagemMoradores}">Moradores</a>
                             </li>
                             
                             <li id="submenuFornecedores"> 
@@ -83,9 +89,6 @@
                             	<a onclick="marcarMenuAtivo('menuCadastros', 'submenuRecursos', 'collapseCadastros')" href="${linkTo[RecursoController].listagemRecursos}">Recursos</a>
                             </li>
                             
-                            <li id="submenuOcorrencias"> 
-                            	<a onclick="marcarMenuAtivo('menuCadastros', 'submenuOcorrencias', 'collapseCadastros')" href="${linkTo[OcorrenciaController].listagemOcorrencias}">Ocorrências</a> 
-                            </li>
                         </ul>
                     </li>
                     

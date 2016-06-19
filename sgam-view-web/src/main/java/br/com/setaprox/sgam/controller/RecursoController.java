@@ -30,25 +30,31 @@ public class RecursoController {
 		this.validator = validator;
 	}
 	
-	public void cadastraRecurso(Recurso recurso){
-		validator.validate(recurso);
-		validator.onErrorRedirectTo(this).formularioRecurso();
-		
-		if(recurso.getId() != null && recurso.getId() > 0){
-			recursoService.editar(recurso);
-			result.redirectTo(this).listagemRecursos();	
-		}
-		else {
-			recursoService.persist(recurso);
-			result.redirectTo(this).formularioRecurso();
-		}
-	}
-	
 	public void listagemRecursos(){
 		result.include("recursos", recursoService.findAll());
 	}
 	
 	public void formularioRecurso(){
+		
+	}
+	
+	public void cadastraRecurso(Recurso recurso){
+		try{
+			validator.validate(recurso);
+			validator.onErrorRedirectTo(this).formularioRecurso();
+			
+			if(recurso.getId() != null && recurso.getId() > 0){
+				recursoService.editar(recurso);
+				result.redirectTo(this).listagemRecursos();	
+			}
+			else {
+				recursoService.persist(recurso);
+				result.redirectTo(this).formularioRecurso();
+			}
+		}catch(Exception e){
+			result.include(e.getMessage());
+			result.use(Results.page()).redirectTo("/jsp/500.jsp");
+		}
 		
 	}
 	

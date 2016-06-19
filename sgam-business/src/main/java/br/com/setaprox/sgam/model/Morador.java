@@ -55,6 +55,14 @@ public class Morador extends AbstractEntity<Morador> implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
+	@Column( name = "data_cadastro" )
+	@Temporal(TemporalType.DATE)
+	private Date dataCadastro;
+	
+	@Column( name = "data_associado" )
+	@Temporal(TemporalType.DATE)
+	private Date dataAssociado;
+	
 	@NotNull
 	@Column( name = "anos_bairro" )
 	private int inicioMoradia;
@@ -83,7 +91,6 @@ public class Morador extends AbstractEntity<Morador> implements Serializable {
 	@Column( name = "flag_inativo" )
 	private boolean flagInativo;
 
-	//alterado pra eager momentaneamente até acertar o controle de transação
 	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE}/*, orphanRemoval = true*/ )
 	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
 	private Endereco endereco;
@@ -209,6 +216,22 @@ public class Morador extends AbstractEntity<Morador> implements Serializable {
 
 	public void setAlugueis(List<Aluguel> alugueis) {
 		this.alugueis = alugueis;
+	}
+
+	public Date getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+	public Date getDataAssociado() {
+		return dataAssociado;
+	}
+
+	public void setDataAssociado(Date dataAssociado) {
+		this.dataAssociado = dataAssociado;
 	}
 
 	@Override

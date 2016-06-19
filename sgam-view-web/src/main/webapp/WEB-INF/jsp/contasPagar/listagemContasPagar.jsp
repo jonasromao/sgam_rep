@@ -55,7 +55,7 @@
 									<td><fmt:formatNumber value="${conta.valor}" type="currency"/></td>
 									
 									<c:choose>
-										<c:when test="${conta.status eq 'Pago'}">
+										<c:when test="${conta.status eq 'Paga'}">
 											<td><span class="label label-primary">${conta.status}</span></td>
 										</c:when>
 										

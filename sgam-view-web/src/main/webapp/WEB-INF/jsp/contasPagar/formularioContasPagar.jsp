@@ -31,7 +31,7 @@
  
  <div class="wrapper wrapper-content animated fadeInRight">
  	<div class="row">
- 		<form method="post" class="form-horizontal" action="${linkTo[ContasPagarController].cadastraContasPagar}">
+ 		<form id="contasPagarForm" method="post" class="form-horizontal" action="${linkTo[ContasPagarController].cadastraContasPagar}">
 			<div class="col-lg-7">
 		        <div class="ibox-content">
 	         		<input type="hidden" name="contaPagar.id" value="${contaPagar.id }"/>
@@ -142,7 +142,7 @@
 			                <div class="col-sm-12">
 			                	<div class="input-group">
 			                		<input type="hidden" id="idFornecedorCP" name="contaPagar.fornecedor.id" value="${contaPagar.fornecedor.id}" />
-			                		<input id="nomeFornecedorCP" disabled="disabled" placeholder="Fornecedor" type="text" class="form-control" name="contaPagar.fornecedor.nome" value="${contaPagar.fornecedor.nome}">
+			                		<input id="nomeFornecedorCP" type="text" placeholder="Fornecedor" class="form-control" name="contaPagar.fornecedor.nome" value="${contaPagar.fornecedor.nome}">
 			                		<a class="input-group-addon" id="btnModalFornecedorCP" style="cursor: pointer;"><i class="fa fa-shopping-cart"></i></a>
 			                	</div>
 			            	</div>
@@ -213,6 +213,10 @@
 <script src="${pageContext.request.contextPath}/manual_install_components/moment/moment-with-locales.min.js"></script>
 <script src="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/manual_install_components/jquery-maskmoney/jquery.maskMoney.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-validation-messages.js"></script>
     
 <script src="${pageContext.request.contextPath}/js/paginas/contasPagar/formularioContasPagar.js"></script>
 

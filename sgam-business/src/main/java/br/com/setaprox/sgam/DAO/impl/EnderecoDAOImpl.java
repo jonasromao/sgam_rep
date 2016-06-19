@@ -22,4 +22,15 @@ public class EnderecoDAOImpl extends AbstractDAO<Endereco> implements EnderecoDA
 	public Endereco find(Long id){
 		return em.find(Endereco.class, id );
 	}
+
+	@Override
+	public void editar(Endereco endereco) {
+		em.merge(endereco);
+		em.flush();
+	}
+	
+	@Override
+	public void remove(Long id) {
+		em.remove( em.getReference( Endereco.class, id ));
+	}
 }

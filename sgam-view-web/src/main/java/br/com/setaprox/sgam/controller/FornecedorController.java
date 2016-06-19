@@ -49,17 +49,22 @@ public class FornecedorController {
 	
 	@Post("/fornecedor/cadastro")
 	public void cadastraFornecedor(Fornecedor fornecedor){
-		validator.validate(fornecedor);
-		
-		validator.onErrorRedirectTo(this).formularioFornecedor();
-		
-		if(fornecedor.getId() != null && fornecedor.getId() > 0){
-			fornecedorFacade.editar(fornecedor);
-			result.redirectTo(this).listagemFornecedores();	
-		}
-		else {
-			fornecedorFacade.persist(fornecedor);
-			result.redirectTo(this).formularioFornecedor();
+		try{
+			validator.validate(fornecedor);
+			
+			validator.onErrorRedirectTo(this).formularioFornecedor();
+			
+			if(fornecedor.getId() != null && fornecedor.getId() > 0){
+				fornecedorFacade.editar(fornecedor);
+				result.redirectTo(this).listagemFornecedores();	
+			}
+			else {
+				fornecedorFacade.persist(fornecedor);
+				result.redirectTo(this).formularioFornecedor();
+			}
+		}catch(Exception e){
+			result.include(e.getMessage());
+			result.use(Results.page()).redirectTo("/jsp/500.jsp");
 		}
 		
 	}
@@ -78,8 +83,24 @@ public class FornecedorController {
 	
 	@Delete("/fornecedor/{id}")
 	public void removeFornecedor(Long id){
-		fornecedorFacade.remove(id);
-		result.use(Results.json()).from("Excluído com sucesso!", "mensagem").serialize();
+		try{
+			fornecedorFacade.remove(id);
+			result.use(Results.json()).from("Excluído com sucesso!", "mensagem").serialize();
+		}catch(Exception e){
+			if(e.getCause().getCause().getMessage().contains("ConstraintViolationException")){
+				result.use(Results.http()).sendError(500, "Não foi possível remover o cadastro desse morador pois existem faturamentos vinculado a esse registro.");
+			}
+			else {
+				result.use(Results.http()).sendError(500, "Erro ao remover conta. Favor entrar em contato com o suporte.");
+			}
+		}
+	}
+	
+	@Get("/fornecedor/fornecedoresModal/{nome}")
+	public void fornecedorModal(String nome){
+		List<Fornecedor> fornecedorList = fornecedorFacade.findByNome(nome);
+
+		result.use(Results.json()).from(fornecedorList, "fornecedores").serialize();
 	}
 	
 	@Get("/fornecedor/fornecedoresModal")

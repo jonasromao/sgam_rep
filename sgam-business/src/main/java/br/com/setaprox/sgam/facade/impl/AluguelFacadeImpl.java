@@ -74,4 +74,10 @@ public class AluguelFacadeImpl implements AluguelFacade {
 		contasReceberService.persist(conta);
 	}
 
+
+	@Override
+	public List<Aluguel> reservasPorDia(Date data) {
+		return aluguelService.reservasPorDia(data);
+	}
+
 }

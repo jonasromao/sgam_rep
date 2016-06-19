@@ -14,7 +14,6 @@ import br.com.caelum.vraptor.view.Results;
 import br.com.setaprox.sgam.facade.AluguelFacade;
 import br.com.setaprox.sgam.facade.RecursoFacade;
 import br.com.setaprox.sgam.model.Aluguel;
-import br.com.setaprox.sgam.model.ContasReceber;
 
 @Controller
 public class AluguelController {
@@ -76,7 +75,16 @@ public class AluguelController {
 	
 	@Delete("aluguel/remover/{id}")
 	public void removerAluguel(Long id){
-		aluguelFacade.remove(id);
-		result.use(Results.json()).from("Excluído com sucesso!", "mensagem").serialize();
+		try{
+			aluguelFacade.remove(id);
+			result.use(Results.json()).from("Excluído com sucesso!", "mensagem").serialize();
+		}catch(Exception e){
+			if(e.getCause().getCause().getMessage().contains("ConstraintViolationException")){
+				result.use(Results.http()).sendError(500, "Não foi possível remover esse aluguel pois existe uma conta vinculado a esse faturamento.");
+			}
+			else {
+				result.use(Results.http()).sendError(500, "Erro ao remover aluguel. Favor entrar em contato com o suporte.");
+			}
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package br.com.setaprox.sgam.facade;
 
+import java.util.Date;
 import java.util.List;
 
 import br.com.setaprox.sgam.model.Aluguel;
@@ -15,6 +16,8 @@ public interface AluguelFacade {
 	List<Aluguel> findAll();
 	
 	void remove(Long id);
+	
+	List<Aluguel> reservasPorDia(Date data);
 	
 
 }

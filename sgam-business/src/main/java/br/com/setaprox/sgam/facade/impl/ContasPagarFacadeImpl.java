@@ -1,5 +1,6 @@
 package br.com.setaprox.sgam.facade.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -40,6 +41,11 @@ public class ContasPagarFacadeImpl implements ContasPagarFacade {
 	@Override
 	public void remove(Long id) {
 		contasPagarService.remove(id);
+	}
+
+	@Override
+	public List<ContasPagar> contasVencimentoMensal(Date data) {
+		return contasPagarService.contasVencimentoMensal(data);
 	}
 
 }
