@@ -109,16 +109,36 @@ public class LoginController {
 	@Path("/home")
 	public void paginaInicial(){
 		LocalDate dataAtual = LocalDate.now();
-		List<Aluguel> alugueis = aluguelFacade.reservasPorDia(dataAtual.toDate());
-		List<ContasPagar> contas = contasPagarFacade.contasVencimentoMensal(dataAtual.toDate());
-		List<Ocorrencia> ocorrencias = ocorrenciaFacade.ocorrenciasPorStatus(Status.ABERTA.getCodigo());
 		
-		long totalMoradores = moradorFacade.totalMoradores();
-		long totalAssociados = moradorFacade.totalAssociados(null, null);
-		long totalAssociadosMes = moradorFacade.totalAssociados(dataAtual.toDate(), dataAtual.toDate());
+		List<Aluguel> alugueis = null;
+		List<ContasPagar> contas = null;
+		List<Ocorrencia> ocorrencias = null;
 		
-		double porcentSocios = (totalAssociados * 100) / totalMoradores;
-		double porcentSociosMes = (totalAssociadosMes * 100) / totalMoradores;
+		long totalMoradores = 0l;
+		long totalAssociados = 0l;
+		long totalAssociadosMes = 0l;
+		
+		double porcentSocios = 0;
+		double porcentSociosMes = 0;
+		
+		
+		try{
+			alugueis = aluguelFacade.reservasPorDia(dataAtual.toDate());
+			contas = contasPagarFacade.contasVencimentoMensal(dataAtual.toDate());
+			ocorrencias = ocorrenciaFacade.ocorrenciasPorStatus(Status.ABERTA.getCodigo());
+			
+			totalMoradores = moradorFacade.totalMoradores();
+			totalAssociados = moradorFacade.totalAssociados(null, null);
+			totalAssociadosMes = moradorFacade.totalAssociados(dataAtual.toDate(), dataAtual.toDate());
+			
+			porcentSocios = (totalAssociados * 100) / totalMoradores;
+			porcentSociosMes = (totalAssociadosMes * 100) / totalMoradores;
+			
+		} catch(ArithmeticException e){
+			e.printStackTrace();
+		} catch(Exception e){
+			e.printStackTrace();
+		}
 		
 		result.include("dataAtual", dataAtual.toDate());
 		result.include("alugueis", alugueis);
@@ -132,7 +152,6 @@ public class LoginController {
 		
 		result.include("porcentSocios", porcentSocios);
 		result.include("porcentSociosMes", porcentSociosMes);
-		
 	}
 
 }

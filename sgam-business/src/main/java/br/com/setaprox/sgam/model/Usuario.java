@@ -1,12 +1,17 @@
 package br.com.setaprox.sgam.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -48,6 +53,10 @@ public class Usuario implements Serializable {
 	@Column( name = "telefone" )
 	private String telefone;
 	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="usuario_perfil",joinColumns={@JoinColumn(name="id_usuario")},inverseJoinColumns={@JoinColumn(name="id_perfil")})
+	private List<Perfil> perfis;
+
 	public Long getId() {
 		return id;
 	}
@@ -94,6 +103,14 @@ public class Usuario implements Serializable {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public List<Perfil> getPerfis() {
+		return perfis;
+	}
+
+	public void setPerfis(List<Perfil> perfis) {
+		this.perfis = perfis;
 	}
 
 	@Override

@@ -132,7 +132,7 @@
                             	<a onclick="marcarMenuAtivo('menuConfiguracao', 'submenuUsuario', 'collapseConfiguracao')" href="${linkTo[UsuarioController].listagemUsuario}">Usuário</a>
                             </li>
                             <li id="submenuPerfil">
-                            	<a onclick="marcarMenuAtivo('menuConfiguracao', 'submenuPerfil', 'collapseConfiguracao')" href="#">Perfil</a>
+                            	<a onclick="marcarMenuAtivo('menuConfiguracao', 'submenuPerfil', 'collapseConfiguracao')" href="${linkTo[PerfilController].listagemPerfis}">Perfil</a>
                             </li>
                         </ul>
                     </li>
