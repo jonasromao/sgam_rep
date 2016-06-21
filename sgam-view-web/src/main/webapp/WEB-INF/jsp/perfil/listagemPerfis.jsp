@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
+<shiro:hasPermission name="sgam.configuracoes.perfil.consultar">
+
 <%@ include file="/headerMenu.jsp" %> 
 
 <link href="${pageContext.request.contextPath}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
@@ -18,10 +22,11 @@
                  <strong>Perfil</strong>
              </li>
 
-			<div class="pull-right">
-            	<a class="label label-primary labelButton" href="${linkTo[PerfilController].formularioPerfil}">Novo</a>
-            </div>
-
+			<shiro:hasPermission name="sgam.configuracoes.perfil.incluir">
+				<div class="pull-right">
+	            	<a class="label label-primary labelButton" href="${linkTo[PerfilController].formularioPerfil}">Novo</a>
+	            </div>
+			</shiro:hasPermission>
          </ol>
      </div>
  </div>
@@ -46,8 +51,13 @@
 									<td>${perfil.nome}</td>
 									<td>${perfil.descricao}</td>
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
-										<a title="Editar" class="editar" href="${linkTo[PerfilController].editarPerfil(perfil.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
-										<a title="Excluir" class="remover" href="${linkTo[PerfilController].removePerfil(perfil.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> 
+										<shiro:hasPermission name="sgam.configuracoes.perfil.editar">
+											<a title="Editar" class="editar" href="${linkTo[PerfilController].editarPerfil(perfil.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp;
+										</shiro:hasPermission>
+										
+										<shiro:hasPermission name="sgam.configuracoes.perfil.excluir"> 
+											<a title="Excluir" class="remover" href="${linkTo[PerfilController].removePerfil(perfil.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a>
+										</shiro:hasPermission> 
 									</td>
 								</tr>
 							</c:forEach>
@@ -64,3 +74,8 @@
 <script src="${pageContext.request.contextPath}/js/paginas/perfil/listagemPerfis.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
+</shiro:hasPermission>
+
+<shiro:lacksPermission name="sgam.configuracoes.perfil.consultar">
+	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
+</shiro:lacksPermission>

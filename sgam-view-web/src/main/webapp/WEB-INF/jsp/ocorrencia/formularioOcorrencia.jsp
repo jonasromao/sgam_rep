@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
+<shiro:hasPermission name="sgam.ocorrencia.incluir">
 
 <%@ include file="/headerMenu.jsp" %> 
 <%@ include file="/moradorModal.jsp" %> 
@@ -156,3 +159,8 @@
 <script src="${pageContext.request.contextPath}/js/paginas/ocorrencia/formularioOcorrencia.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
+</shiro:hasPermission>
+
+<shiro:lacksPermission name="sgam.ocorrencia.consultar">
+	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
+</shiro:lacksPermission>

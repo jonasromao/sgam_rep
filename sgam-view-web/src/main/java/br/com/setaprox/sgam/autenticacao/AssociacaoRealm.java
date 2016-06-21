@@ -17,8 +17,11 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 
 import br.com.setaprox.sgam.DAO.UsuarioDAO;
+import br.com.setaprox.sgam.model.Funcao;
+import br.com.setaprox.sgam.model.Perfil;
 import br.com.setaprox.sgam.model.Usuario;
 import br.com.setaprox.sgam.utils.LookupGenerate;
+import br.com.setaprox.sgam.utils.SecurityUtil;
 
 
 
@@ -26,7 +29,29 @@ public class AssociacaoRealm implements Realm, Authorizer {
 	
 	@Override
 	public boolean isPermitted(PrincipalCollection principals, String permission) {
-		// TODO Auto-generated method stub
+		//return SecurityUtil.temPermissao(permission);		
+		try{
+			Session sessao = SecurityUtils.getSubject().getSession();
+			Usuario usuario = (Usuario) sessao.getAttribute("usuarioLogado");
+			
+			if(usuario != null){
+				if(usuario.getPerfis() != null){
+					for(Perfil perfil : usuario.getPerfis()){
+						if(perfil.getFuncoes() != null){
+							for(Funcao funcao : perfil.getFuncoes()){
+								if(funcao.getCodigo().contains(permission)){
+									return true;
+								}
+							}
+						}
+					}
+				}
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+				
 		return false;
 	}
 
@@ -89,7 +114,23 @@ public class AssociacaoRealm implements Realm, Authorizer {
 
 	@Override
 	public boolean hasRole(PrincipalCollection subjectPrincipal, String roleIdentifier) {
-		// TODO Auto-generated method stub
+		try{
+			Session sessao = SecurityUtils.getSubject().getSession();
+			Usuario usuario = (Usuario) sessao.getAttribute("usuarioLogado");
+			
+			if(usuario != null){
+				if(usuario.getPerfis() != null){
+					for(Perfil perfil : usuario.getPerfis()){
+						if(perfil.getNome().equalsIgnoreCase(roleIdentifier)){
+							return true;
+						}
+					}
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		return false;
 	}
 

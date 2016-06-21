@@ -34,7 +34,7 @@ public class Perfil implements Serializable {
 	@Column( name = "descricao" )
 	private String descricao;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="perfil_funcao", joinColumns={ @JoinColumn(name="id_perfil")} , inverseJoinColumns={@JoinColumn(name="id_funcao")})
 	private List<Funcao> funcoes;
 

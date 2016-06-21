@@ -31,10 +31,7 @@ $(document).ready(function(){
             'contaPagar.fornecedor.nome': {
             	required: true
             }
-        },
-		submitHandler: function (form) {
-			$(form).submit();		
-	    }
+        }
     });
 
 });

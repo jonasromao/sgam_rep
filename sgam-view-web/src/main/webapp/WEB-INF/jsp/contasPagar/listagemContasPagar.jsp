@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
+<shiro:hasPermission name="sgam.financeiro.contas_pagar.consultar">
+
 <%@ include file="/headerMenu.jsp" %> 
 
 <link href="${pageContext.request.contextPath}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
@@ -18,11 +22,12 @@
              <li class="active">
                  <strong>Contas a Pagar</strong>
              </li>
-
-			<div class="pull-right">
-            	<a class="label label-primary labelButton" href="${linkTo[ContasPagarController].formularioContasPagar}">Novo</a>
-            </div>
-
+			
+			<shiro:hasPermission name="sgam.financeiro.contas_pagar.incluir">
+				<div class="pull-right">
+	            	<a class="label label-primary labelButton" href="${linkTo[ContasPagarController].formularioContasPagar}">Novo</a>
+	            </div>
+			</shiro:hasPermission>
          </ol>
      </div>
  </div>
@@ -86,3 +91,9 @@
 <script src="${pageContext.request.contextPath}/js/paginas/contasPagar/listagemContasPagar.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
+
+</shiro:hasPermission>
+
+<shiro:lacksPermission name="sgam.financeiro.contas_pagar.consultar">
+	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
+</shiro:lacksPermission>

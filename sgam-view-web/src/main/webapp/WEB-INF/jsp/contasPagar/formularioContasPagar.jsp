@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
+<shiro:hasPermission name="sgam.financeiro.contas_pagar.incluir">
+
 <%@ include file="/headerMenu.jsp" %> 
 <%@ include file="/fornecedorModal.jsp" %> 
 
@@ -221,4 +225,8 @@
 <script src="${pageContext.request.contextPath}/js/paginas/contasPagar/formularioContasPagar.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
+</shiro:hasPermission>
 
+<shiro:lacksPermission name="sgam.financeiro.contas_pagar.incluir">
+	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
+</shiro:lacksPermission>

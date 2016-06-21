@@ -1,43 +1,55 @@
-/*$('#btnSalvarUsuario').on('click', function(event){
-	//event.preventDefault();
-	var idUsuario = $('#idUsuario').val();
-	var senha = $('#senha').val();
+$(document).ready(function(){
+	$('#tabelaPerfil').dataTable({
+		searching: false,
+		ordering: false,
+		"scrollY":        "500px",
+        "scrollCollapse": true,
+        "paging":         false,
+        "info":     false,
+		"language": {
+			"search": "Pesquisar: ",
+			"lengthMenu": "_MENU_",
+			    "info": "Exibindo de _START_ até _END_ de um total de _MAX_ registros",
+			    "paginate": {
+				"first": "Primeira Página",
+				"last": "Última Página",
+				"previous": "Anterior",
+				"next": "Próxima"
+			    }
+		},
+		"autoWidth": false,
+		"columns": [
+		    {"width": "4%"},
+		    {"width": "96%"}
+		],
+	});
+
 	
-	alert('idUsuario: ' + idUsuario + ' senha: ' + senha);
-	
-	if(idUsuario != null || idUsuario != ''){
-		if(senha == null || senha == ''){
-			swal({
-	            title: "Atenção!",
-	            text: "A senha não foi alterada. Deseja manter a mesma senha?",
-	            type: "warning",
-	            showCancelButton: true,
-	            confirmButtonColor: "#DD6B55",
-	            cancelButtonText: "Cancelar",
-	            confirmButtonText: "Sim",
-	            closeOnConfirm: false
-	        }, function () {
-	            $.ajax({
-					url: 'novo',
-					type: 'POST',
-					data: $('usuarioForm').serialize()
-				}).done(function(data, textStatus, jqXHR) {
-					swal("Salvo!", "O cadastro foi alterado com sucesso.", "success");
-				}).fail(function(jqXHR, textStatus, errorThrown){
-					swal("Erro!", "Erro ao alterar o cadastro.", "error");
-				});
-	        });
+	$('#checkboxAll').on('click',function(event){	
+		if(this.checked) {
+			$('.marcar').each(function(){
+				$(this).prop("checked", true);   
+			});	
+
 		}
-	}
-	else {
-		$.ajax({
-			url: 'usuario/novo',
-			type: 'POST',
-			data: $('usuarioForm').serialize()
-		}).done(function(data, textStatus, jqXHR) {
-			swal("Salvo!", "O cadastro foi alterado com sucesso.", "success");
-		}).fail(function(jqXHR, textStatus, errorThrown){
-			swal("Erro!", "Erro ao alterar o cadastro.", "error");
+		else if(!this.checked) {
+			$('.marcar').each(function(){
+				$(this).prop("checked", false);   
+			});
+		}	
+		
+	});
+	
+	$('.perfisMarcados').each(function(){
+		var perfilMarcado = $(this).val();
+		
+		$('.marcar').each(function(){
+			var perfil = $(this).val();
+			
+			if(perfil == perfilMarcado){
+				$(this).prop("checked", true);
+			}
 		});
-	}
-});*/
+	});
+	
+});

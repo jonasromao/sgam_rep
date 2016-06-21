@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SGAM | 404 Error</title>
+    <title>SGAM | Acesso</title>
 
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -21,11 +21,11 @@
 
 
     <div class="middle-box text-center animated fadeInDown">
-        <h1>404</h1>
-        <h3 class="font-bold">Página não encontrada</h3>
+        <h1><i class="fa fa-ban"></i></h1>
+        <h3 class="font-bold">Acesso restrito</h3>
 
         <div class="error-desc">
-        	Desculpe, mas a página que você está procurando não foi encontrada. Tente recarregar a página no seu navegar ou tente encontrar o real motivo na aplicação.
+        	Seu usuário não possui permissão para acessar essa página.
         </div>
     </div>
 

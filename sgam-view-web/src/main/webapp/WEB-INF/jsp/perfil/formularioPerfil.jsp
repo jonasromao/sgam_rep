@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
+<shiro:hasPermission name="sgam.configuracoes.perfil.incluir">
 
 <%@ include file="/headerMenu.jsp" %> 
 
@@ -40,7 +43,7 @@
 			    	<div class="form-group">
 			 			<label class="col-sm-3 control-label">Nome</label>
 						<div class="col-sm-9">
-							<input id="nomePerfil" type="text" class="form-control" name="ocorrencia.titulo" value="${ocorrencia.titulo}">
+							<input id="nomePerfil" type="text" class="form-control" name="perfil.nome" value="${perfil.nome}">
 						</div>
 					</div>
 					
@@ -56,7 +59,7 @@
 						<div class="col-lg-12">
 							<div class="form-group">
 			                    <div class="col-sm-12">
-			                        <a class="btn btn-outline btn-default" href="${linkTo[OcorrenciaController].listagemOcorrencias}"> Cancelar</a>
+			                        <a class="btn btn-outline btn-default" href="${linkTo[PerfilController].listagemPerfis}"> Cancelar</a>
 			                        <button id="btnSalvar" class="btn btn-primary" type="submit"> <i class="fa fa-check"></i> Salvar</button>
 			                        
 			                        <ul class="errors">
@@ -75,11 +78,11 @@
 
 		 	<div class="col-lg-8">
 		 		<div class="ibox-content">
-       				<table id="tabelaFuncoes" class="table table-condensed table-hover ">
+       				<table id="tabelaFuncoes" class="table table-condensed table-hover">
               			<thead>
                 			<tr>
                 				<th>
-                           			<div class="checkbox checkbox-primary">
+                           			 <div class="checkbox checkbox-success">
                                			<input id="checkboxAll" type="checkbox">
                  						<label for="checkboxAll"></label>
                            			</div>
@@ -93,7 +96,7 @@
 	               			<c:forEach items="${funcoes}" var="funcao">
 								<tr>
 									<td>
-										<div class="checkbox checkbox-primary">
+										<div class="checkbox checkbox-success">
                                   			<input type="checkbox" class="marcar" name="perfil.funcoes" id="${funcao.id}" value="${funcao.id}"  >
                                   			<label for="${funcao.id}"></label>
                               			</div>
@@ -120,6 +123,10 @@
     </form>	
 </div>
 
+<c:forEach items="${perfil.funcoes}" var="funcao">
+	<input type="hidden" class="funcoesMarcadas" value="${funcao.id}" />
+</c:forEach>
+
 
 <script src="${pageContext.request.contextPath}/js/plugins/dataTables/datatables.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/plugins/jquery-ui/jquery-ui.min.js"></script>
@@ -129,3 +136,9 @@
 <script src="${pageContext.request.contextPath}/js/paginas/perfil/formularioPerfil.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
+
+</shiro:hasPermission>
+
+<shiro:lacksPermission name="sgam.configuracoes.perfil.incluir">
+	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
+</shiro:lacksPermission>

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
+<shiro:hasPermission name="sgam.faturamento.aluguel_comercio.consultar">
 <%@ include file="/headerMenu.jsp" %> 
 
 <link href="${pageContext.request.contextPath}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
@@ -18,11 +21,12 @@
              <li class="active">
                  <a href="${linkTo[AluguelComercioController].listagemAluguelComercio}"><strong>Comércio</strong></a>
              </li>
-             
-			<div class="pull-right">
-            	<a class="label label-primary labelButton" href="${linkTo[AluguelComercioController].formularioAluguelComercio}">Novo</a>
-            </div>
-
+            
+            <shiro:hasPermission name="sgam.faturamento.aluguel_comercio.incluir"> 
+				<div class="pull-right">
+	            	<a class="label label-primary labelButton" href="${linkTo[AluguelComercioController].formularioAluguelComercio}">Novo</a>
+	            </div>
+			</shiro:hasPermission>
          </ol>
      </div>
  </div>
@@ -55,8 +59,13 @@
 									<td>${aluguelComercio.numeroAlvara}</td>
 									<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${aluguelComercio.dataVencimento}" /> </td>
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
-										<a title="Editar" class="editar" href="${linkTo[AluguelComercioController].editarAluguelComercio(aluguelComercio.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
-										<a title="Excluir" class="remover" href="${linkTo[AluguelComercioController].removerAluguelComercio(aluguelComercio.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> 
+										<shiro:hasPermission name="sgam.faturamento.aluguel_comercio.editar">
+											<a title="Editar" class="editar" href="${linkTo[AluguelComercioController].editarAluguelComercio(aluguelComercio.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp;
+										</shiro:hasPermission>
+										
+										<shiro:hasPermission name="sgam.faturamento.aluguel_comercio.excluir"> 
+											<a title="Excluir" class="remover" href="${linkTo[AluguelComercioController].removerAluguelComercio(aluguelComercio.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a>
+										</shiro:hasPermission>
 									</td>
 								</tr>
 							</c:forEach>
@@ -72,3 +81,8 @@
 <script src="${pageContext.request.contextPath}/js/paginas/aluguelComercio/listagemAluguelComercio.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
+</shiro:hasPermission>
+
+<shiro:lacksPermission name="sgam.faturamento.aluguel_comercio.consultar">
+	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
+</shiro:lacksPermission>

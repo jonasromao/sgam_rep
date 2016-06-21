@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
+<shiro:hasPermission name="sgam.configuracoes.usuario.incluir">
+
 <%@ include file="/headerMenu.jsp" %> 
 
+<link href="${pageContext.request.contextPath}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
 <div class="row wrapper border-bottom white-bg page-heading">
      <div class="col-lg-12">
@@ -53,11 +59,22 @@
 	                    	<input type="text" class="form-control" name="usuario.telefone" value="${usuario.telefone}" data-mask="99999-9999">
 	                    </div>
 	                </div>
-
+	                
+	                <div class="form-group">
+	             		<label class="col-sm-4 control-label">Login</label>
+	                    <div class="col-sm-8">
+	                    	<input type="text" class="form-control" name="usuario.login" value="${usuario.login}">
+	                    </div>
+	                </div>
+	                
+	                <div class="form-group">
+	             		<label class="col-sm-4 control-label">Senha</label>
+	                    <div class="col-sm-8">
+	                    	<input id="senha" type="password" class="form-control" name="usuario.senha" value="" >
+	                    </div>
+	                </div>
 				</div>
 				
-				<br/>
-					
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="ibox-content">
@@ -78,32 +95,66 @@
 						</li>
 					</c:forEach>
 				</ul>
-				
+
 		    </div> 
 
 			<div class="col-lg-6">
 			    <div class="ibox-content">
-			    	<div class="form-group">
-	             		<label class="col-sm-4 control-label">Login</label>
-	                    <div class="col-sm-8">
-	                    	<input type="text" class="form-control" name="usuario.login" value="${usuario.login}">
-	                    </div>
-	                </div>
-	                
-	                <div class="form-group">
-	             		<label class="col-sm-4 control-label">Senha</label>
-	                    <div class="col-sm-8">
-	                    	<input id="senha" type="password" class="form-control" name="usuario.senha" value="" >
-	                    </div>
-	                </div>
-			    </div>
+					<fieldset>
+	    				<legend>Perfil</legend>
+	    				
+        				<table id="tabelaPerfil" class="table table-condensed table-hover">
+							<thead>
+	                			<tr>
+	                				<th>
+		                				<div class="checkbox checkbox-success">
+	                               			<input id="checkboxAll" type="checkbox">
+	                 						<label for="checkboxAll"></label>
+	                           			</div>
+	                				</th>
+	                    			<th>Perfil</th>
+	                			</tr>
+                			</thead>
+                			<tbody>
+	                			<c:forEach items="${listaPerfis}" var="perfil">
+									<tr>
+										<td>
+											<div class="checkbox checkbox-success">
+                                    			<input type="checkbox" class="marcar" name="usuario.perfis" id="${perfil.id}" value="${perfil.id}">
+                                    			<label for="${perfil.id}"></label>
+                                			</div>
+										</td>
+
+										<td>
+											${perfil.nome}
+										</td>
+									</tr>
+			 					</c:forEach>
+                			</tbody>
+						</table>
+	    			</fieldset>
+		    	</div>
 			</div>
-	   	
+			
+			<br/>
+			
+			
+
 	   	</form>         
     </div>
 </div>
 
-   <script src="${pageContext.request.contextPath}/js/paginas/usuario/formularioUsuario.js"></script>
+<c:forEach items="${usuario.perfis}" var="perfil">
+	<input type="hidden" class="perfisMarcados" value="${perfil.id}" />
+</c:forEach>
+
+<script src="${pageContext.request.contextPath}/js/plugins/dataTables/datatables.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/paginas/usuario/formularioUsuario.js"></script>
 
 ﻿<%@include file="/footer.jsp" %>
 
+</shiro:hasPermission>
+
+<shiro:lacksPermission name="sgam.configuracoes.usuario.incluir">
+	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
+</shiro:lacksPermission>

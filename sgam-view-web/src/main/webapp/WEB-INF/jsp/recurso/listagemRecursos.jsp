@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
+<shiro:hasPermission name="sgam.cadastros.recurso.consultar">
+
 <%@ include file="/headerMenu.jsp" %> 
 
 <link href="${pageContext.request.contextPath}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
@@ -19,10 +23,11 @@
                  <strong>Recursos</strong>
              </li>
 
-			<div class="pull-right">
-            	<a class="label label-primary labelButton" href="${linkTo[RecursoController].formularioRecurso}">Novo</a>
-            </div>
-
+			<shiro:hasPermission name="sgam.cadastros.recurso.incluir">
+				<div class="pull-right">
+	            	<a class="label label-primary labelButton" href="${linkTo[RecursoController].formularioRecurso}">Novo</a>
+	            </div>
+			</shiro:hasPermission>
          </ol>
      </div>
  </div>
@@ -49,8 +54,13 @@
 									<td><fmt:formatNumber value="${recurso.valor}" type="currency"/></td>
 									<td>${recurso.unidadeMedida}</td>
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
-										<a title="Editar" class="editar" href="${linkTo[RecursoController].editar(recurso.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
-										<a title="Excluir" class="remover" href="${linkTo[RecursoController].remover(recurso.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> &nbsp;
+										<shiro:hasPermission name="sgam.cadastros.recurso.editar">
+											<a title="Editar" class="editar" href="${linkTo[RecursoController].editar(recurso.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp;
+										</shiro:hasPermission> 
+										
+										<shiro:hasPermission name="sgam.cadastros.recurso.excluir">
+											<a title="Excluir" class="remover" href="${linkTo[RecursoController].remover(recurso.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> &nbsp;
+										</shiro:hasPermission>
 									</td>
 								</tr>
 							</c:forEach>
@@ -66,3 +76,9 @@
 <script src="${pageContext.request.contextPath}/js/paginas/recurso/listagemRecursos.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
+
+</shiro:hasPermission>
+
+<shiro:lacksPermission name="sgam.cadastros.recurso.consultar">
+	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
+</shiro:lacksPermission>

@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
+<shiro:hasPermission name="sgam.ocorrencia.consultar">
+
 <%@ include file="/headerMenu.jsp" %> 
 
 <link href="${pageContext.request.contextPath}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
@@ -19,10 +23,11 @@
                  <strong>Ocorrências</strong>
              </li>
 
-			<div class="pull-right">
-            	<a class="label label-primary labelButton" href="${linkTo[OcorrenciaController].formularioOcorrencia}">Novo</a>
-            </div>
-
+			<shiro:hasPermission name="sgam.ocorrencia.incluir">
+				<div class="pull-right">
+	            	<a class="label label-primary labelButton" href="${linkTo[OcorrenciaController].formularioOcorrencia}">Novo</a>
+	            </div>
+			</shiro:hasPermission>
          </ol>
      </div>
  </div>
@@ -54,7 +59,7 @@
 									<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${ocorrencia.dataFim}" /> </td>
 									
 									<c:choose>
-										<c:when test="${ocorrencia.status eq 'Aberto'}">
+										<c:when test="${ocorrencia.status eq 'Aberta'}">
 											<td><span class="label label-danger">${ocorrencia.status}</span></td>
 										</c:when>
 										
@@ -78,9 +83,17 @@
 									</c:choose>
 									
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
-										<a title="Editar" class="editar" href="${linkTo[OcorrenciaController].editarOcorrencia(ocorrencia.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
-										<a title="Excluir" class="remover" href="${linkTo[OcorrenciaController].removerOcorrencia(ocorrencia.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> &nbsp;
-										<a title="Resolver" class="resolver" href="${linkTo[OcorrenciaController].fechamentoOcorrencia(ocorrencia.id)}" > <i class="fa fa-check-square-o iconeDataTable"></i> </a>   
+										<shiro:hasPermission name="sgam.ocorrencia.editar">
+											<a title="Editar" class="editar" href="${linkTo[OcorrenciaController].editarOcorrencia(ocorrencia.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp;
+										</shiro:hasPermission>
+										
+										<shiro:hasPermission name="sgam.ocorrencia.excluir"> 
+											<a title="Excluir" class="remover" href="${linkTo[OcorrenciaController].removerOcorrencia(ocorrencia.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> &nbsp;
+										</shiro:hasPermission>
+										
+										<shiro:hasPermission name="sgam.ocorrencia.concluir">
+											<a title="Concluir" class="resolver" href="${linkTo[OcorrenciaController].fechamentoOcorrencia(ocorrencia.id)}" > <i class="fa fa-check-square-o iconeDataTable"></i> </a>
+										</shiro:hasPermission>
 									</td>
 								</tr>
 							</c:forEach>
@@ -120,3 +133,9 @@
 <script src="${pageContext.request.contextPath}/js/paginas/ocorrencia/listagemOcorrencias.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
+
+</shiro:hasPermission>
+
+<shiro:lacksPermission name="sgam.ocorrencia.consultar">
+	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
+</shiro:lacksPermission>

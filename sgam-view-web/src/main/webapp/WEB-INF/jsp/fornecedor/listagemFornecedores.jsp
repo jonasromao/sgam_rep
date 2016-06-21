@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
+<shiro:hasPermission name="sgam.cadastros.fornecedor.consultar">
+
 <%@ include file="/headerMenu.jsp" %> 
 
 <link href="${pageContext.request.contextPath}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
@@ -18,10 +22,12 @@
                  <strong>Fornecedores</strong>
              </li>
 
-			<div class="pull-right">
-            	<a class="label label-primary labelButton" href="${linkTo[FornecedorController].formularioFornecedor}">Novo</a>
-            </div>
-
+			<shiro:hasPermission name="sgam.cadastros.fornecedor.incluir">
+				<div class="pull-right">
+	            	<a class="label label-primary labelButton" href="${linkTo[FornecedorController].formularioFornecedor}">Novo</a>
+	            </div>
+			</shiro:hasPermission>
+			
          </ol>
      </div>
  </div>
@@ -66,8 +72,13 @@
 									</c:choose>
 									
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
-										<a title="Editar" class="editar" href="${linkTo[FornecedorController].editarFornecedor(fornecedor.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
-										<a title="Excluir" class="remover" href="${linkTo[FornecedorController].removeFornecedor(fornecedor.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> 
+										<shiro:hasPermission name="sgam.cadastros.fornecedor.editar">
+											<a title="Editar" class="editar" href="${linkTo[FornecedorController].editarFornecedor(fornecedor.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp;
+										</shiro:hasPermission>
+										
+										<shiro:hasPermission name="sgam.cadastros.fornecedor.excluir"> 
+											<a title="Excluir" class="remover" href="${linkTo[FornecedorController].removeFornecedor(fornecedor.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a>
+										</shiro:hasPermission> 
 									</td>
 								</tr>
 							</c:forEach>
@@ -84,3 +95,9 @@
 <script src="${pageContext.request.contextPath}/js/paginas/fornecedor/listagemFornecedores.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>
+
+</shiro:hasPermission>
+
+<shiro:lacksPermission name="sgam.cadastros.fornecedor.consultar">
+	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
+</shiro:lacksPermission>

@@ -25,9 +25,6 @@ $(document).ready(function(){
             'fornecedor.endereco.cidade': {
             	required: true
             }
-        },
-		submitHandler: function (form) {
-			$(form).submit();		
-	    }
+        }
     });
 });

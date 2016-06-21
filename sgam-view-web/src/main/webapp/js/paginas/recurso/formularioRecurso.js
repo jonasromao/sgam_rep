@@ -12,10 +12,7 @@ $(document).ready(function(){
             'recurso.valor': {
             	required: true
             }
-        },
-		submitHandler: function (form) {
-			$(form).submit();		
-	    }
+        }
     });
 
 });

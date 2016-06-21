@@ -11,6 +11,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.caelum.vraptor.view.Results;
+import br.com.setaprox.sgam.constante.Status;
 import br.com.setaprox.sgam.facade.MoradorFacade;
 import br.com.setaprox.sgam.facade.OcorrenciaFacade;
 import br.com.setaprox.sgam.model.Morador;
@@ -62,24 +63,13 @@ public class OcorrenciaController {
 	@Post("/ocorrencia/cadastro")
 	public void cadastraOcorrencia(Ocorrencia ocorrencia){
 		validator.validate(ocorrencia);
-		validator.onErrorRedirectTo(this).formularioOcorrencia();
-
-		Morador morador = null;
-		if(ocorrencia.getMorador() != null && ocorrencia.getMorador().getId() > 0){
-			morador = moradorFacade.find(ocorrencia.getMorador().getId());
-		}
-		
-		validator.validate(morador);
-		validator.onErrorRedirectTo(this).formularioOcorrencia();		
+		validator.onErrorRedirectTo(this).formularioOcorrencia();	
 		
 		if(ocorrencia.getId() != null && ocorrencia.getId() > 0){
-			ocorrencia.setMorador(morador);
 			ocorrenciaFacade.merge(ocorrencia);
 			result.redirectTo(this).listagemOcorrencias();
 		}
 		else {
-			ocorrencia.setMorador(morador);
-			ocorrencia.setStatus("Aberto");
 			ocorrenciaFacade.persist(ocorrencia);
 			result.redirectTo(this).formularioOcorrencia();
 		}
@@ -105,7 +95,6 @@ public class OcorrenciaController {
 		if(id != null && id > 0){
 			Ocorrencia ocorrencia = ocorrenciaFacade.find(id);
 			result.use(Results.json()).from(ocorrencia, "ocorrencia").serialize();
-			//result.use(Results.json()).from(new SimpleDateFormat("dd/MM/yyyy").format(ocorrencia.getDataInicio()), "dataAbertura").serialize();
 		}
 	}
 	
@@ -113,13 +102,6 @@ public class OcorrenciaController {
 	public void resolverOcorrencia(Ocorrencia ocorrencia){
 		validator.validate(ocorrencia);
 		validator.onErrorRedirectTo(this).fechamentoOcorrencia(ocorrencia.getId());
-		
-		if(ocorrencia.getDataFim() != null){
-			ocorrencia.setStatus("Fechado");
-		}
-		
-		Morador morador = moradorFacade.find(ocorrencia.getMorador().getId());
-		ocorrencia.setMorador(morador);
 		
 		ocorrenciaFacade.merge(ocorrencia);
 		result.redirectTo(this).listagemOcorrencias();

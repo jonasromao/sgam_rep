@@ -24,7 +24,6 @@ $(document).ready(function(){
 		 abrirModalMorador('ocorrencia');
 	 });
 
-
 	 $('#ocorrenciaForm').validate({
 	        rules: {
 	            'ocorrencia.titulo': {

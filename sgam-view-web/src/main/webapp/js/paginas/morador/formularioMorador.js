@@ -49,9 +49,6 @@ $(document).ready(function(){
             'morador.endereco.cidade': {
             	required: true
             }
-        },
-		submitHandler: function (form) {
-			$(form).submit();		
-	    }
+        }
     });
 });

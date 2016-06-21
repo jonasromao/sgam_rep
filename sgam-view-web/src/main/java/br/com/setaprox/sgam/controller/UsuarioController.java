@@ -1,5 +1,7 @@
 package br.com.setaprox.sgam.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.shiro.SecurityUtils;
@@ -13,7 +15,9 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.caelum.vraptor.view.Results;
+import br.com.setaprox.sgam.facade.PerfilFacade;
 import br.com.setaprox.sgam.facade.UsuarioFacade;
+import br.com.setaprox.sgam.model.Perfil;
 import br.com.setaprox.sgam.model.Usuario;
 import br.com.setaprox.sgam.utils.BusinessException;
 import br.com.setaprox.sgam.utils.CipherUtil;
@@ -24,6 +28,9 @@ public class UsuarioController {
 	
 	@Inject
 	private UsuarioFacade usuarioFacade;
+	
+	@Inject 
+	PerfilFacade perfilFacade;
 	
 	private Validator validator;
 	
@@ -42,7 +49,8 @@ public class UsuarioController {
 	}
 	
 	public void formularioUsuario(){
-		
+		List<Perfil> listaPerfis = perfilFacade.findAll();
+		result.include("listaPerfis", listaPerfis);
 	}
 	
 	@Post("usuario/novo")
