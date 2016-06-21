@@ -7,6 +7,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
+import org.joda.time.DateTime;
+
 import br.com.setaprox.sgam.facade.AluguelComercioFacade;
 import br.com.setaprox.sgam.model.Aluguel;
 import br.com.setaprox.sgam.model.AluguelComercio;
@@ -63,13 +65,13 @@ public class AluguelComercioFacadeImpl implements AluguelComercioFacade {
 		
 		Aluguel aluguel = aluguelComercio.getAluguel();
 		
-		Date dataEmissao = new Date(); 
+		DateTime dataEmissao = new DateTime(new Date()); 
 		ContasReceber conta = new ContasReceber();
 		conta.setNome(aluguel.getMorador().getNome());
-		conta.setHistorico(String.format("Aluguel da %s", aluguel.getRecurso().getNome()));
-		conta.setDataEmissao(dataEmissao);
+		conta.setHistorico(String.format("Comércio informal - Atividade %s", aluguelComercio.getNome()));
+		conta.setDataEmissao(dataEmissao.toDate());
 		conta.setDataVencimento(aluguel.getDataFinal());
-		conta.setNumero(String.format("%d%d%d%d%d%d", dataEmissao.getDate(),dataEmissao.getMonth(),dataEmissao.getYear(), dataEmissao.getHours(), dataEmissao.getMinutes(), dataEmissao.getSeconds()));
+		conta.setNumero(String.format("%d%d%d%d%d%d", dataEmissao.getDayOfMonth(),dataEmissao.getMonthOfYear(),dataEmissao.getYear(), dataEmissao.getHourOfDay(), dataEmissao.getMinuteOfHour(), dataEmissao.getSecondOfMinute()));
 		conta.setAluguel(aluguel);
 		conta.setDataPagamento(aluguel.getDataPagamento());
 		conta.setValor(aluguel.getRecurso().getValor());
