@@ -5,6 +5,7 @@ $(document).ready(function(){
 		"lengthMenu": [ 5 ],
 		"searching": false,
 		"lengthChange": false,
+		"info":     false,
 		"language": {
 			"search": "Pesquisar: ",
 			"lengthMenu": "_MENU_",

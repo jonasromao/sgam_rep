@@ -92,7 +92,7 @@
 										</shiro:hasPermission>
 										
 										<shiro:hasPermission name="sgam.ocorrencia.concluir">
-											<a title="Concluir" class="resolver" href="${linkTo[OcorrenciaController].fechamentoOcorrencia(ocorrencia.id)}" > <i class="fa fa-check-square-o iconeDataTable"></i> </a>
+											<a title="Concluir" class="resolver" href="${linkTo[OcorrenciaController].fechamentoOcorrencia(ocorrencia.id)}" > <i class="fa fa-check-circle-o iconeDataTable"></i> </a>
 										</shiro:hasPermission>
 									</td>
 								</tr>

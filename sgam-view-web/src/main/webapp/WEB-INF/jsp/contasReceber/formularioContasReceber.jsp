@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
-<shiro:hasPermission name="sgam.financeiro.contas_receber.incluir">
+<shiro:hasPermission name="sgam.financeiro.contas_receber.editar">
 <%@ include file="/headerMenu.jsp" %> 
 
 <link href="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
@@ -23,7 +23,7 @@
              </li>
 
 			<div class="pull-right">
-            	<a class="label label-default" href="${linkTo[ContasReceberController].listagemContasReceber}"> <i class="fa fa-angle-left"></i><i class="fa fa-angle-left"></i> Voltar</a>
+            	<a onclick="marcarMenuAtivo('menuFaturamento', 'submenuReservaEspaco', 'collapseFaturamento')" class="label label-default" href="${linkTo[ContasReceberController].listagemContasReceber}"> <i class="fa fa-angle-left"></i><i class="fa fa-angle-left"></i> Voltar</a>
             </div>
 
          </ol>
@@ -35,8 +35,9 @@
  		<form method="post" class="form-horizontal" action="${linkTo[ContasReceberController].cadastraContasReceber}">
 			<div class="col-lg-7">
 		        <div class="ibox-content">
-	         		<input type="hidden" name="contaReceber.id" value="${contaReceber.id}"/>
-	         		<input type="hidden" name="contaReceber.status" value="${contaReceber.status}"/>
+	         		<input type="hidden" name="contaReceber.id" value="${contaReceber.id}" />
+	         		<input type="hidden" name="contaReceber.status" value="${contaReceber.status}" />
+	         		<input type="hidden" name="contaReceber.aluguel.id" value="${contaReceber.aluguel.id}" />
 	         		
 	             	<div class="form-group">
 	             		<label class="col-sm-4 control-label">Número</label>
@@ -56,7 +57,6 @@
 	             		<label class="col-sm-4 control-label">Histórico</label>
 	                    <div class="col-sm-8">
 	                    	<textarea class="form-control" rows="2" cols="" name="contaReceber.historico">${contaReceber.historico}</textarea>
-	                    	
 	                    </div>
 	                </div>
 	                
@@ -120,7 +120,7 @@
 						<div class="ibox-content">
 							<div class="form-group">
 			                    <div class="col-sm-12">
-			                        <a class="btn btn-outline btn-default" href="${linkTo[ContasReceberController].listagemContasReceber}"> Cancelar</a>
+			                        <a onclick="marcarMenuAtivo('menuFaturamento', 'submenuReservaEspaco', 'collapseFaturamento')" class="btn btn-outline btn-default" href="${linkTo[ContasReceberController].listagemContasReceber}"> Cancelar</a>
 			                        <button class="btn btn-primary" type="submit"> <i class="fa fa-check"></i> Salvar</button>
 			                    </div>
 			                </div>			
@@ -141,7 +141,7 @@
 		    <div class="col-sm-5">
 				<div class="ibox">
 	            	<div class="ibox-content">
-	            		<a title="Visualizar cadastro do morador" href="${linkTo[MoradorController].editarMorador(contaReceber.aluguel.morador.id)}"> <h2>${contaReceber.aluguel.morador.nome}</h2>  </a>
+	            		<a title="Visualizar cadastro do morador" onclick="marcarMenuAtivo('menuCadastros', 'submenuMoradores', 'collapseCadastros')" href="${linkTo[MoradorController].editarMorador(contaReceber.aluguel.morador.id)}"> <h2>${contaReceber.aluguel.morador.nome}</h2>  </a>
 	            		
 						<div class="table-responsive">
 		           	     	<table class="table table-striped table-hover">
@@ -169,7 +169,7 @@
 		           	     	</table>
 	           	     	</div>
 	           	     	
-	           	     	<strong><a title="Detalhes" href="${linkTo[AluguelController].editarAluguel(contaReceber.aluguel.id)}"> Detalhes </a></strong>
+	           	     	<strong><a title="Detalhes" onclick="marcarMenuAtivo('menuOcorrencias', '', '')" href="${linkTo[AluguelController].editarAluguel(contaReceber.aluguel.id)}"> Detalhes </a></strong>
 
 	                    <ul class="list-group clear-list">
 	                     
@@ -187,7 +187,7 @@
 							</c:choose>
 	                         <li class="list-group-item">
 	                         	<c:choose>
-									<c:when test="${contaReceber.status eq 'Recebido'}">
+									<c:when test="${contaReceber.status eq 'Recebida'}">
 										<span class="pull-right label label-primary">${contaReceber.status}</span>
 									</c:when>
 									
@@ -223,6 +223,6 @@
 
 </shiro:hasPermission>
 
-<shiro:lacksPermission name="sgam.financeiro.contas_receber.incluir">
+<shiro:lacksPermission name="sgam.financeiro.contas_receber.editar">
 	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
 </shiro:lacksPermission>
