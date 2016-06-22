@@ -22,7 +22,7 @@
         <div>
             <div>
 
-                <h1 class="logo-name"></h1>
+                <h4 class="logo-name"></h4>
 
             </div>
             <h3>SGAM</h3>
@@ -36,12 +36,8 @@
                     <input type="password" name="usuario.senha" class="form-control" placeholder="Senha" required="">
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
-
-                <a href="#"><small>Esqueceu a senha?</small></a>
-                <p class="text-muted text-center"><small>Você tem uma conta?</small></p>
-                <a class="btn btn-sm btn-white btn-block" href="register.html">Crie uma conta</a>
             </form>
-            <p class="m-t"> <small>Indefinido &copy; 2015</small> </p>
+            <p class="m-t"> <small>SetaProx &copy; 2016</small> </p>
         </div>
     </div>
 
