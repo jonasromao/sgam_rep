@@ -1,6 +1,7 @@
 package br.com.setaprox.sgam.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -108,6 +109,7 @@ public class LoginController {
 
 	@Path("/home")
 	public void paginaInicial(){
+		Locale locale = new Locale("pt", "BR");
 		LocalDate dataAtual = LocalDate.now();
 		
 		List<Aluguel> alugueis = null;
@@ -140,6 +142,7 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		
+		result.include("mesCorrente", dataAtual.toString("MMMM",locale));
 		result.include("dataAtual", dataAtual.toDate());
 		result.include("alugueis", alugueis);
 		result.include("contas", contas);
