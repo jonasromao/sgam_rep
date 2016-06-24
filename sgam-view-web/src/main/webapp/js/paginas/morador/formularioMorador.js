@@ -4,6 +4,14 @@ $(document).ready(function(){
 	$('#tempoMorador').keypress(somenteNumeros);
 	$('#numeroMorador').keypress(somenteNumeros);
 	
+	var diaPagamento = $('#cmbDiaPagamentoMorador').val();
+	if(diaPagamento > 0){
+		$('#cmbDiaPagamentoMorador').attr({disabled: false});
+	}
+	else {
+		$('#cmbDiaPagamentoMorador').attr({disabled: true});
+	}
+	
 	$('#divDataNascimento').datetimepicker({
 		locale:"pt-br",
 		format: 'DD/MM/YYYY',
@@ -11,10 +19,15 @@ $(document).ready(function(){
 		showClear: true
 	});
 	
-	$('.i-checks').iCheck({
-        checkboxClass: 'icheckbox_square-green',
-        radioClass: 'iradio_square-green',
-    });
+	$("input[name='morador.associado']:radio").change(function(){
+		if(this.value == 'Sim'){
+			$('#cmbDiaPagamentoMorador').attr({disabled: false});
+		}
+		else {
+			$('#cmbDiaPagamentoMorador').val(0).change();
+			$('#cmbDiaPagamentoMorador').attr({disabled: true});
+		}
+	});
 	
 	$('#moradorForm').validate({
         rules: {
@@ -48,6 +61,9 @@ $(document).ready(function(){
             },
             'morador.endereco.cidade': {
             	required: true
+            },
+            'morador.diaPagamento': {
+            	min: 1
             }
         }
     });

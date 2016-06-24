@@ -1,11 +1,12 @@
 $(document).ready(function(){
 	$('#tabelaFuncoes').dataTable({
 		searching: true,
-		ordering: false,
 		"scrollY":        "500px",
         "scrollCollapse": true,
         "paging":         false,
         "info":     false,
+        "order": [[ 2, "asc" ]],
+        ordering: true,
 		"language": {
 			"search": "Pesquisar: ",
 			"lengthMenu": "_MENU_",
@@ -19,7 +20,8 @@ $(document).ready(function(){
 		},
 		
 		"columnDefs": [
-		    { "visible": false, "targets": 2 }
+		    { "visible": false, "targets": 2 },
+		    { "orderable": false, "targets": [0,1,3]}
         ],
         "drawCallback": function ( settings ) {
             var api = this.api();

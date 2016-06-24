@@ -58,7 +58,17 @@
 									<td>${morador.endereco.cidade}</td>
 									<td>${morador.endereco.bairro}</td>
 									<td>${morador.endereco.rua}</td>
-									<td>${morador.associado}</td>
+									
+									<c:choose>
+										<c:when test="${morador.associado eq 'Não'}">
+											<td><span class="label label-danger">${morador.associado}</span></td>
+										</c:when>
+										
+										<c:otherwise>
+											<td><span class="label label-primary">${morador.associado}</span></td>
+										</c:otherwise>
+									</c:choose>
+									
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
 										<shiro:hasPermission name="sgam.cadastros.morador.editar">
 											<a title="Editar" class="editar" href="${linkTo[MoradorController].editarMorador(morador.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp;

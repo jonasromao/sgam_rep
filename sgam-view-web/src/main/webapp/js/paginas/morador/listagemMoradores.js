@@ -11,6 +11,19 @@ $(document).ready(function(){
 				"next": "Próxima"
 			    }
 		},
+		"autoWidth": false,
+		"columns": [
+		    {"width": "30%"},
+		    {"width": "10%"},
+		    {"width": "12%"},
+		    {"width": "14%"},
+		    {"width": "14%"},
+		    {"width": "12%"},
+		    {"width": "8%"}
+		],
+		"columnDefs": [
+		    { "orderable": false, "targets": [1,6]}
+        ],
 		"lengthChange": false
 	}); 
 	

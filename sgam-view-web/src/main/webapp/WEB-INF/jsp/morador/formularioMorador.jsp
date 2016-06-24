@@ -7,7 +7,6 @@
 
 <%@ include file="/headerMenu.jsp" %> 
 
-<link href="${pageContext.request.contextPath}/css/plugins/iCheck/custom.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
@@ -166,33 +165,29 @@
 			                		<small class="text-navy">Morador Associado?</small>
 			                	</label>
 			                    <div class="col-sm-8">
-			                        <div class="i-checks">
-			                        	<label>
-			                        		<input type="radio" name="morador.associado" value="Sim" <c:if test="${morador.associado eq 'Sim' }">checked="checked"</c:if> > <i></i> 
-			                        		Sim, associado. 
-			                        	</label>
-			                        </div>
-			                        
-			                        <div class="i-checks">
-			                        	<label> 
-			                        		<input type="radio" name="morador.associado" value="Não" <c:if test="${morador.associado == null || morador.associado eq 'Não' }">checked="checked"</c:if> > <i></i> 
-			                        		Não, não associado. 
-			                        	</label>
-			                        </div>
+			                        <div class="radio radio-success">
+										<input id="option1" type="radio" name="morador.associado" value="Sim" <c:if test="${morador.associado eq 'Sim' }">checked="checked"</c:if> >
+										<label for="option1">Sim, associado.</label>
+									</div>
+									
+									<div class="radio radio-success">
+										<input id="option2" type="radio" name="morador.associado" value="Não" <c:if test="${morador.associado == null || morador.associado eq 'Não' }">checked="checked"</c:if> >
+										<label for="option2">Não, não associado.</label>
+									</div>
 			                    </div>
 			                </div>
 			                
 			                <div class="form-group">
 			                	<label class="col-sm-4 control-label">Vencimento</label>
 			                    <div class="col-sm-8">
-			                    	<select class="form-control m-b" name="morador.diaPagamento">
-			                         <option value="0">Selecione</option>
-			                         <option value="5"  <c:if test="${morador.diaPagamento == 5}">selected="selected"</c:if> >5</option>
-			                         <option value="10" <c:if test="${morador.diaPagamento == 10}">selected="selected"</c:if> >10</option>
-			                         <option value="15" <c:if test="${morador.diaPagamento == 15}">selected="selected"</c:if> >15</option>
-			                         <option value="20" <c:if test="${morador.diaPagamento == 20}">selected="selected"</c:if> >20</option>
-			                         <option value="25" <c:if test="${morador.diaPagamento == 25}">selected="selected"</c:if> >25</option>
-			                         <option value="30" <c:if test="${morador.diaPagamento == 30}">selected="selected"</c:if> >30</option>
+			                    	<select id="cmbDiaPagamentoMorador" class="form-control m-b" name="morador.diaPagamento">
+			                        	<option value="0">Selecione</option>
+			                         	<option value="5"  <c:if test="${morador.diaPagamento == 5}">selected="selected"</c:if> >5</option>
+			                         	<option value="10" <c:if test="${morador.diaPagamento == 10}">selected="selected"</c:if> >10</option>
+			                         	<option value="15" <c:if test="${morador.diaPagamento == 15}">selected="selected"</c:if> >15</option>
+			                         	<option value="20" <c:if test="${morador.diaPagamento == 20}">selected="selected"</c:if> >20</option>
+			                         	<option value="25" <c:if test="${morador.diaPagamento == 25}">selected="selected"</c:if> >25</option>
+			                         	<option value="30" <c:if test="${morador.diaPagamento == 30}">selected="selected"</c:if> >30</option>
 			                    	</select>
 			                    </div>
 			                </div>
@@ -205,8 +200,6 @@
     </div>
 </div>
 
-    
-<script src="${pageContext.request.contextPath}/js/plugins/iCheck/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/plugins/jasny/jasny-bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/manual_install_components/moment/moment-with-locales.min.js"></script>
 <script src="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
