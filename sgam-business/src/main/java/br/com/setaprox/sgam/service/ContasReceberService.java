@@ -1,5 +1,6 @@
 package br.com.setaprox.sgam.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -33,5 +34,7 @@ public interface ContasReceberService {
 	List<ContasReceber> findAllByCategoria(String nomeCategoria);
 	
 	List<ContasReceber> findAllByMorador(Long idMorador);
+	
+	List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria);
 
 }

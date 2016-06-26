@@ -50,7 +50,7 @@ public class AluguelComercioDAOImpl extends AbstractDAO<AluguelComercio> impleme
 		DateTime dataInicio = new DateTime(dt.getYear(), dt.getMonthOfYear(), dt.getDayOfMonth(), 0, 0);
 		DateTime dataFim = new DateTime(dt.getYear(), dt.getMonthOfYear(), dt.getDayOfMonth(), 23, 59);
 		
-		TypedQuery<AluguelComercio> query = em.createQuery("SELECT ac FROM AluguelComercio ac JOIN ac.aluguel a WHERE a.dataInicial >= :inicio and a.dataInicial <= :fim", AluguelComercio.class);  
+		TypedQuery<AluguelComercio> query = em.createQuery("SELECT ac FROM AluguelComercio ac JOIN ac.aluguel a WHERE a.dataInicial <= :inicio and a.dataFinal >= :fim order by a.dataEmissaoFaturamento desc", AluguelComercio.class);  
 		query.setParameter("inicio", dataInicio.toDate());     
 		query.setParameter("fim", dataFim.toDate());     
 	   

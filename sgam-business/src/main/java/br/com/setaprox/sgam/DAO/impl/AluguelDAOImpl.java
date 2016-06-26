@@ -50,7 +50,7 @@ public class AluguelDAOImpl extends AbstractDAO<Aluguel> implements AluguelDAO {
 		DateTime dataInicio = new DateTime(dt.getYear(), dt.getMonthOfYear(), dt.getDayOfMonth(), 0, 0);
 		DateTime dataFim = new DateTime(dt.getYear(), dt.getMonthOfYear(), dt.getDayOfMonth(), 23, 59);
 		
-		TypedQuery<Aluguel> query = em.createQuery("from Aluguel a where a.dataInicial >= :inicio and a.dataInicial <= :fim order by a.dataEmissaoFaturamento desc", Aluguel.class);  
+		TypedQuery<Aluguel> query = em.createQuery("from Aluguel a where a.dataInicial <= :inicio and a.dataFinal >= :fim order by a.dataEmissaoFaturamento desc", Aluguel.class);  
 		query.setParameter("inicio", dataInicio.toDate());     
 		query.setParameter("fim", dataFim.toDate());     
 	   

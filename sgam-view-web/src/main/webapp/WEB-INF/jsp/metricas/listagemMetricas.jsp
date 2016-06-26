@@ -7,6 +7,7 @@
 
 <%@ include file="/headerMenu.jsp" %> 
 
+<link href="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
 
@@ -27,7 +28,7 @@
  </div>
  
  <div class="wrapper wrapper-content animated fadeInRight">
- 	<form class="form-horizontal" >
+ 	<form class="form-horizontal" method="post"  action="${linkTo[MetricasController].buscaPeriodo}">
 		<div class="ibox-content">
 	 		<div class="row">
 		    	<div class="col-lg-4">
@@ -35,7 +36,7 @@
 	             		<label class="col-sm-4 control-label">Data Inicial</label>
 	                    <div class="col-sm-8">
 	                    	<div class="input-group date">
-	                    		<input type="text" class="form-control" name="aluguelComercio.dataEmissao"  data-mask="99/99/9999" >
+	                    		<input type="text" class="form-control" name="dataInicio" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${dataInicio}" />"  data-mask="99/99/9999" >
 	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 	                    	</div>
 	                    </div>
@@ -47,7 +48,7 @@
 	             		<label class="col-sm-4 control-label">Data Final</label>
 	                    <div class="col-sm-8">
 	                    	<div class="input-group date">
-	                    		<input type="text" class="form-control" name="aluguelComercio.dataEmissao" data-mask="99/99/9999" >
+	                    		<input type="text" class="form-control" name="dataFim" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${dataFim}" />" data-mask="99/99/9999" >
 	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 	                    	</div>
 	                    </div>
@@ -55,10 +56,11 @@
 		    	</div>
 		    	
 		    	<div class="col-lg-4 pull-right">
-					<button type="button" id="btnBuscar"    class="btn btn-primary pull-right">Buscar</button>
+					<button type="submit" id="btnBuscar" class="btn btn-primary pull-right">Buscar</button>
 		    	</div>
 			</div>
 		</div>
+	</form>	
 		
 		<div class="row">
 			<div class="col-lg-12">
@@ -73,67 +75,95 @@
 	                </div>
 		        	
 		        	<div class="ibox-content">
-		        		<div class="table-responsive">
-							<table id="tableListagemContasReceberAssociados" class="table table-striped table-bordered table-hover"> 
+		        		
+							<table id="tabelaRecursosMetricas" class="table table-striped table-bordered table-hover"> 
 								<thead>
 									<tr>
-										<th>Número</th>
-										<th>Nome</th>
-										<th>Emissão</th>
-										<th>Vencimento</th>
+										<th>Recurso</th>
+										<th>Início</th>
+										<th>Fim</th>
+										<th>Período</th>
+										<th>Pagamento</th>
 										<th>Valor</th>
-										<th>Status</th>
-										<th>Opções</th>
 									</tr>
 								</thead>
+								<tfoot>
+						            <tr>
+						                <th colspan="5" style="text-align:right">Total:</th>
+						                <th><fmt:formatNumber value="${valorTotalAluguel}" type="currency"/></th>
+						            </tr>
+						        </tfoot>
 								
 								<tbody>
-									<c:forEach var="conta" items="${contasAssociados}">
-										<tr class="linhaContaReceber">
-											<td>${conta.numero}</td>
-											<td>${conta.nome}</td>
-											<td><fmt:formatDate pattern="dd/MM/yyyy" value="${conta.dataEmissao}" /></td>
-											<td><fmt:formatDate pattern="dd/MM/yyyy" value="${conta.dataVencimento}" /></td>
+									<c:forEach var="conta" items="${contasReceber}">
+										<tr >
+											<td>${conta.aluguel.recurso.nome}</td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy" value="${conta.aluguel.dataInicial}" /></td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy" value="${conta.aluguel.dataFinal}" /></td>
+											<td><fmt:formatDate pattern="HH:mm" value="${conta.aluguel.dataInicial}" /> - <fmt:formatDate pattern="HH:mm" value="${conta.aluguel.dataFinal}" /></td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy" value="${conta.dataPagamento}" /></td>
 											<td><fmt:formatNumber value="${conta.valor}" type="currency"/></td>
-											
-											<c:choose>
-												<c:when test="${conta.status eq 'Recebida'}">
-													<td><span class="label label-primary">${conta.status}</span></td>
-												</c:when>
-												
-												<c:when test="${conta.status eq 'Pendente'}">
-													<td><span class="label label-warning">${conta.status}</span></td>
-												</c:when>
-												
-												<c:otherwise>
-													<td><span class="label label-danger">${conta.status}</span></td>
-												</c:otherwise>
-											</c:choose>
-											
-											
-											<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
-												<shiro:hasPermission name="sgam.financeiro.contas_receber.editar">
-													<a title="Editar" class="editar" href="${linkTo[ContasReceberController].editarContaAssociado(conta.id)}"> <i class="fa fa-edit"></i> </a> &nbsp;
-												</shiro:hasPermission>
-												<shiro:hasPermission name="sgam.financeiro.contas_receber.excluir">
-													<a title="Excluir" class="remover" href="${linkTo[ContasReceberController].removeConta(conta.id)}"> <i class="fa fa-trash-o"></i> </a>
-												</shiro:hasPermission>
-											</td>
-											
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
-						</div>
+						
 					</div>
 				</div>
 		    </div>            
 	    </div>
-		
-		
-    </form>	
+	    
+	    <div class="row">
+			<div class="col-lg-12">
+	        	<div class="ibox float-e-margins">
+		        	<div class="ibox-title">
+	                    <h5>Associados <small>Visão detalhada de valores recebidos dos associados</small></h5>
+	                    <div class="ibox-tools">
+	                        <a class="collapse-link">
+	                            <i class="fa fa-chevron-up"></i>
+	                        </a>
+	                    </div>
+	                </div>
+		        	
+		        	<div class="ibox-content">
+		        		
+							<table id="tabelaAssociadosMetricas" class="table table-striped table-bordered table-hover"> 
+								<thead>
+									<tr>
+										<th>Morador</th>
+										<th>Vencimento</th>
+										<th>Pagamento</th>
+										<th>Valor</th>
+									</tr>
+								</thead>
+								<tfoot>
+						            <tr>
+						                <th colspan="3" style="text-align:right">Total:</th>
+						                <th><fmt:formatNumber value="${valorTotalAssociado}" type="currency"/></th>
+						            </tr>
+						        </tfoot>
+								
+								<tbody>
+									<c:forEach var="conta" items="${contasReceberAssociados}">
+										<tr >
+											<td>${conta.morador.nome}</td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy" value="${conta.dataVencimento}" /></td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy" value="${conta.dataPagamento}" /></td>
+											<td><fmt:formatNumber value="${conta.valor}" type="currency"/></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						
+					</div>
+				</div>
+		    </div>            
+	    </div>
 </div>
 
+<script src="${pageContext.request.contextPath}/manual_install_components/moment/moment-with-locales.min.js"></script>
+<script src="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/dataTables/datatables.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/paginas/metricas/listagemMetricas.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>

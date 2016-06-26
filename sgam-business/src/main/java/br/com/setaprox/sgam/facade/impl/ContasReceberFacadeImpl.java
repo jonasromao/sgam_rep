@@ -1,5 +1,6 @@
 package br.com.setaprox.sgam.facade.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -50,6 +51,11 @@ public class ContasReceberFacadeImpl implements ContasReceberFacade {
 	@Override
 	public List<ContasReceber> findAllByMorador(Long idMorador) {
 		return contasReceberService.findAllByMorador(idMorador);
+	}
+
+	@Override
+	public List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria) {
+		return contasReceberService.findAllByPeriodo(dataInicio, dataFim, categoria);
 	}
 
 }

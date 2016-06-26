@@ -10,7 +10,6 @@ import javax.persistence.PersistenceException;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.Hours;
 import org.joda.time.Minutes;
 import org.joda.time.Months;
 import org.joda.time.Weeks;
@@ -117,14 +116,12 @@ public class ContasReceberServiceImpl implements ContasReceberService {
 		DateTime dataInicio = new DateTime(aluguel.getDataInicial());
 		DateTime dataFim = new DateTime(aluguel.getDataFinal());
 
-		DateTime dataHoraFim = new DateTime(dataInicio.getYear(), dataInicio.getMonthOfYear(), dataInicio.getDayOfMonth(), dataFim.getHourOfDay(), dataFim.getMinuteOfHour());
-
 		String unidadeMedida = aluguel.getRecurso().getUnidadeMedida(); 
 		double qtdeMedida = 1.0;
 		
 		switch(unidadeMedida) {
 			case "Hora":
-				qtdeMedida = this.calculaHoras(dataInicio, dataHoraFim, dataFim);
+				qtdeMedida = this.calculaHoras(dataInicio, dataFim);
 				break;
 			case "Dia":
 				qtdeMedida = Days.daysBetween(dataInicio.withTimeAtStartOfDay() , dataFim.withTimeAtStartOfDay()).getDays();	
@@ -196,12 +193,19 @@ public class ContasReceberServiceImpl implements ContasReceberService {
 		return conta;
 	}
 	
-	private double calculaHoras(DateTime dataHoraInicio, DateTime dataHoraFim, DateTime dataFim){
+	private double calculaHoras(DateTime dataHoraInicio, DateTime dataFim){
+		DateTime dataHoraFim = new DateTime(dataHoraInicio.getYear(), dataHoraInicio.getMonthOfYear(), dataHoraInicio.getDayOfMonth(), dataFim.getHourOfDay(), dataFim.getMinuteOfHour());
+		
 		double qtdeMinutos = Minutes.minutesBetween(dataHoraInicio, dataHoraFim).getMinutes();
 		double qtdeDias = Days.daysBetween(dataHoraInicio.withTimeAtStartOfDay() , dataFim.withTimeAtStartOfDay()).getDays() + 1;
 		double qtdeHoras = qtdeMinutos / 60;
 		
 		return qtdeHoras * qtdeDias;
+	}
+
+	@Override
+	public List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria) {
+		return contasReceberDAO.findAllByPeriodo(dataInicio, dataFim, categoria);
 	}
 
 	
