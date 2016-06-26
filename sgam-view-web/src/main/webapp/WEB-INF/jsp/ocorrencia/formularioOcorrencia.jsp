@@ -21,9 +21,6 @@
              <li>
                  <a href="${linkTo[LoginController].paginaInicial}">Inicio</a>
              </li>
-             <li>
-                 <span>Cadastros</span>
-             </li>
              <li class="active">
                  <a href="${linkTo[OcorrenciaController].listagemOcorrencias}"><strong>Ocorrências</strong></a>
              </li>

@@ -145,18 +145,21 @@
 	                    </li>
                     </shiro:hasPermission>
                     
-                    <!-- <li id="menuRelatorio">
-                        <a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label">Relatórios </span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="">Espaços em Uso</a></li>
-                            <li><a href="">Inadimplentes</a></li>
-                        </ul>
-                    </li> -->
+                    <li id="menuMetricas">
+	                    <a onclick="marcarMenuAtivo('menuMetricas', '', '')" href="${linkTo[MetricasController].listagemMetricas}">
+	                    <i class="fa fa-pie-chart"></i> <span class="nav-label">Métricas</span> </a>
+	                </li>
                     
                     <shiro:hasPermission name="sgam.configuracoes">
 	                    <li id="menuConfiguracao">
 	                        <a href="#"><i class="fa fa fa-cogs"></i> <span class="nav-label">Configurações </span><span class="fa arrow"></span></a>
 	                        <ul id="collapseConfiguracao" class="nav nav-second-level collapse">
+	                            
+	                            <shiro:hasPermission name="sgam.configuracoes.categoria_contas_receber.consultar">
+		                            <li id="submenuCategoriasReceber">
+		                            	<a onclick="marcarMenuAtivo('menuConfiguracao', 'submenuCategoriasReceber', 'collapseConfiguracao')" href="${linkTo[CategoriaContasReceberController].listagemCategoriasContasReceber}">Categorias de recebimento</a>
+		                            </li>
+	                            </shiro:hasPermission>
 	                            
 	                            <shiro:hasPermission name="sgam.configuracoes.usuario.consultar">
 		                            <li id="submenuUsuario">

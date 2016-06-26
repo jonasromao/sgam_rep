@@ -98,6 +98,9 @@ public class Morador extends AbstractEntity<Morador> implements Serializable {
 	@OneToMany(mappedBy="morador")
 	private List<Aluguel> alugueis;
 	
+	@OneToMany(mappedBy="morador")
+	private List<ContasReceber> contas;
+	
 	public Morador() {
 		
 		if(endereco == null) {
@@ -232,6 +235,14 @@ public class Morador extends AbstractEntity<Morador> implements Serializable {
 
 	public void setDataAssociado(Date dataAssociado) {
 		this.dataAssociado = dataAssociado;
+	}
+
+	public List<ContasReceber> getContas() {
+		return contas;
+	}
+
+	public void setContas(List<ContasReceber> contas) {
+		this.contas = contas;
 	}
 
 	@Override

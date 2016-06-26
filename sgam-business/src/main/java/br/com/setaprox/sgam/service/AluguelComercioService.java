@@ -1,5 +1,6 @@
 package br.com.setaprox.sgam.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -20,5 +21,7 @@ public interface AluguelComercioService {
 	AluguelComercio find(Long id);
 
 	List<AluguelComercio> findAll();
+	
+	List<AluguelComercio> reservasPorDia(Date data);
 
 }

@@ -25,6 +25,24 @@ $(document).ready(function(){
 		$('#dataHoraInicioAluguel').val(dataHoraInicio);
 		$('#dataHoraFinalAluguel').val(dataHoraFinal);
 	});
+	
+	$('#aluguelForm').validate({
+        rules: {
+            'aluguel.dataInicial': {
+            	required: true
+            },
+            'aluguel.dataFinal': {
+            	required: true
+            },
+            'aluguel.morador.nome': {
+            	required: true
+            },
+            'aluguel.recurso.id': {
+            	required: true,
+            	min: 1
+            }
+        }
+    });
 });
 
 var insereDadosMoradorFaturamento = function(morador){

@@ -41,7 +41,7 @@
 						<thead>
 							<tr>
 								<th>Nome</th>
-								<th>Telefone</th>
+								<th>Celular</th>
 								<th>Cidade</th>
 								<th>Bairro</th>
 								<th>Rua</th>

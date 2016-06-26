@@ -15,7 +15,10 @@ $(document).ready(function(){
 				"previous": "Anterior",
 				"next": "Próxima"
 			    }
-		}
+		},
+		"columnDefs": [
+	        { "orderable": false, "targets": [1,2]}
+        ],
 	});
 	
 });

@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
 	$('#nomeFornecedor').focus();
+	$('#numeroFornecedor').keypress(somenteNumeros);
 	
 	$('.i-checks').iCheck({
         checkboxClass: 'icheckbox_square-green',

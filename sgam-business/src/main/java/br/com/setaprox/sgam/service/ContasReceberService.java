@@ -7,7 +7,9 @@ import javax.persistence.PersistenceException;
 
 import br.com.setaprox.sgam.model.Aluguel;
 import br.com.setaprox.sgam.model.AluguelComercio;
+import br.com.setaprox.sgam.model.CategoriaContasReceber;
 import br.com.setaprox.sgam.model.ContasReceber;
+import br.com.setaprox.sgam.model.Morador;
 
 @Local
 public interface ContasReceberService {
@@ -22,8 +24,14 @@ public interface ContasReceberService {
 	
 	void remove(Long id) throws PersistenceException;
 	
-	void registraContaReceber(Aluguel aluguel);
+	void registraContaReceber(Aluguel aluguel, CategoriaContasReceber categoria);
 	
-	void registraContaReceber(AluguelComercio aluguelComercio);
+	void registraContaReceber(AluguelComercio aluguelComercio, CategoriaContasReceber categoria);
+	
+	void registraContaReceber(Morador morador, CategoriaContasReceber categoria);
+	
+	List<ContasReceber> findAllByCategoria(String nomeCategoria);
+	
+	List<ContasReceber> findAllByMorador(Long idMorador);
 
 }

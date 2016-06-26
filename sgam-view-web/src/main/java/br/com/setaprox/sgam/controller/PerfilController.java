@@ -12,7 +12,6 @@ import br.com.caelum.vraptor.view.Results;
 import br.com.setaprox.sgam.facade.FuncaoFacade;
 import br.com.setaprox.sgam.facade.PerfilFacade;
 import br.com.setaprox.sgam.model.Funcao;
-import br.com.setaprox.sgam.model.Morador;
 import br.com.setaprox.sgam.model.Perfil;
 
 @Controller

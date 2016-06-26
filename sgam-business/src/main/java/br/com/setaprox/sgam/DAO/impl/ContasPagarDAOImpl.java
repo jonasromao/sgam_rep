@@ -14,6 +14,7 @@ import br.com.setaprox.sgam.DAO.AbstractDAO;
 import br.com.setaprox.sgam.DAO.ContasPagarDAO;
 import br.com.setaprox.sgam.constante.Status;
 import br.com.setaprox.sgam.model.ContasPagar;
+import br.com.setaprox.sgam.model.ContasReceber;
 
 @Stateless
 @LocalBean
@@ -38,13 +39,19 @@ public class ContasPagarDAOImpl extends AbstractDAO<ContasPagar> implements Cont
 	}
 	
 	@Override
+	public List<ContasPagar> findAll(){
+		TypedQuery<ContasPagar> query = em.createQuery("Select cp from ContasPagar cp order by cp.dataVencimento, cp.status asc", ContasPagar.class);
+		return query.getResultList(); 
+	}
+	
+	@Override
 	public List<ContasPagar> contasVencimentoMensal(Date data){
 		DateTime dt = new DateTime(data);
 		
 		DateTime dataInicio = dt.dayOfMonth().withMinimumValue();
 		DateTime dataFim = dataInicio.dayOfMonth().withMaximumValue();
 		
-		TypedQuery<ContasPagar> query = em.createQuery("from ContasPagar c where ( c.dataVencimento >= :inicio and c.dataVencimento <= :fim ) or ( c.status = :status ) ", ContasPagar.class);  
+		TypedQuery<ContasPagar> query = em.createQuery("from ContasPagar c where ( c.dataVencimento >= :inicio and c.dataVencimento <= :fim ) or ( c.status = :status ) order by c.dataVencimento, c.status asc ", ContasPagar.class);  
 		query.setParameter("inicio", dataInicio.toDate());     
 		query.setParameter("fim", dataFim.toDate());
 		query.setParameter("status", Status.ATRASADA.getCodigo());

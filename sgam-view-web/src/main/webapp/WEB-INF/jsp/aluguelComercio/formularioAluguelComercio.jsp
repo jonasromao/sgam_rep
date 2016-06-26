@@ -35,7 +35,7 @@
  
  <div class="wrapper wrapper-content animated fadeInRight">
  	<div class="row">
- 		<form method="post" class="form-horizontal" action="${linkTo[AluguelComercioController].cadastraAluguelComercio}">
+ 		<form id="aluguelComercioForm" method="post" class="form-horizontal" action="${linkTo[AluguelComercioController].cadastraAluguelComercio}">
 			<div class="col-lg-6">
 			<fieldset>
 			    <legend>Geral</legend>
@@ -50,7 +50,7 @@
 		                <div class="col-sm-8">
 		                	<div class="input-group">
 		                		<input id="idMoradorFaturamento" type="hidden" name="aluguelComercio.aluguel.morador.id" value="${aluguelComercio.aluguel.morador.id }"/> 
-		                		<input id="nomeMoradorFaturamento" type="text" class="form-control" value="${aluguelComercio.aluguel.morador.nome}">
+		                		<input id="nomeMoradorFaturamento" type="text" placeholder="Selecione um morador" class="form-control" name="aluguelComercio.aluguel.morador.nome" value="${aluguelComercio.aluguel.morador.nome}">
 		                		<a class="input-group-addon" id="btnAbreModalMoradorFaturamento" style="cursor: pointer;"><i class="fa fa-user"></i></a>
 		                	</div>
 		            	</div>
@@ -71,7 +71,7 @@
 	                <div class="form-group" >
 	             		<label class="col-sm-4 control-label">Período</label>
 	                    <div class="col-sm-8">
-	                    	<div class="input-group date">
+	                    	<div class="input-group periodo">
 	                    		<input type="hidden" id="dataHoraInicioAluguelComercio" name="aluguelComercio.aluguel.dataHoraInicio" />
 	                    		<input type="text" id="dataInicioAluguelComercio" class="form-control" name="aluguelComercio.aluguel.dataInicial" value="<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${aluguelComercio.aluguel.dataInicial}" />"  data-mask="99/99/9999 99:99" >
 	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -82,23 +82,13 @@
 	                <div class="form-group" >
 	             		<label class="col-sm-4 control-label"></label>
 	                    <div class="col-sm-8">
-	                    	<div class="input-group date">
+	                    	<div class="input-group periodo">
 	                    		<input type="hidden" id="dataHoraFinalAluguelComercio" name="aluguelComercio.aluguel.dataHoraFinal" />
 	                    		<input type="text" id="dataFinalAluguelComercio" class="form-control" name="aluguelComercio.aluguel.dataFinal" value="<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${aluguelComercio.aluguel.dataFinal}" />"  data-mask="99/99/9999 99:99" >
 	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 	                    	</div>
 	                    </div>
-	                </div>
-	                
-	                <div class="form-group" >
-	             		<label class="col-sm-4 control-label">Pagamento</label>
-	                    <div class="col-sm-8">
-	                    	<div class="input-group" id="dataPagamentoAluguelComercio">
-	                    		<input type="text" class="form-control" name="aluguelComercio.aluguel.dataPagamento" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${aluguelComercio.aluguel.dataPagamento}" />"  data-mask="99/99/9999" >
-	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-	                    	</div>
-	                    </div>
-	                </div>
+	                </div>          
 	                
 	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Observação</label>
@@ -140,7 +130,7 @@
 			    <div class="ibox-content">
 			    	
 			    	<div class="form-group">
-		            	<label class="col-sm-4 control-label">Nome</label>
+		            	<label class="col-sm-4 control-label">Atividade</label>
 		              	<div class="col-sm-8">
 		            		<input type="text" class="form-control" name="aluguelComercio.nome" value="${aluguelComercio.nome}">
 		                </div>
@@ -153,20 +143,20 @@
 		                </div>
 		        	</div>
 		        	
-		        	<div class="form-group" id="dataPagamento">
+		        	<div class="form-group">
 	             		<label class="col-sm-4 control-label">Data Emissão</label>
 	                    <div class="col-sm-8">
-	                    	<div class="input-group dataAlvara">
+	                    	<div class="input-group date">
 	                    		<input type="text" class="form-control" name="aluguelComercio.dataEmissao" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${aluguelComercio.dataEmissao}" />"  data-mask="99/99/9999" >
 	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 	                    	</div>
 	                    </div>
 	                </div>
 	                
-	                <div class="form-group" id="dataPagamento">
+	                <div class="form-group" >
 	             		<label class="col-sm-4 control-label">Data Vencimento</label>
 	                    <div class="col-sm-8">
-	                    	<div class="input-group dataAlvara">
+	                    	<div class="input-group date">
 	                    		<input type="text" class="form-control" name="aluguelComercio.dataVencimento" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${aluguelComercio.dataVencimento}" />"  data-mask="99/99/9999" >
 	                    		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 	                    	</div>
@@ -218,6 +208,11 @@
 <script src="${pageContext.request.contextPath}/manual_install_components/moment/moment-with-locales.min.js"></script>
 <script src="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/manual_install_components/jquery-maskmoney/jquery.maskMoney.min.js"></script>   
+
+<script src="${pageContext.request.contextPath}/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-validation-messages.js"></script>
+
 <script src="${pageContext.request.contextPath}/js/paginas/aluguelComercio/formularioAluguelComercio.js"></script>
 
 ﻿<%@ include file="/footer.jsp" %>

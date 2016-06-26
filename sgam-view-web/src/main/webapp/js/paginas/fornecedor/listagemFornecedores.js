@@ -11,6 +11,9 @@ $(document).ready(function(){
 				"next": "Próxima"
 			    }
 		},
+		"columnDefs": [
+   		    { "orderable": false, "targets": [1,2,7]}
+   		],
 		"lengthChange": false
 	}); 
 	

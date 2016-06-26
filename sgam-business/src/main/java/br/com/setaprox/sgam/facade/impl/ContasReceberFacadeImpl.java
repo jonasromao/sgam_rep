@@ -29,23 +29,27 @@ public class ContasReceberFacadeImpl implements ContasReceberFacade {
 	
 	@Override
 	public List<ContasReceber> findAll() {
-		
 		return contasReceberService.findAll();
-		
 	}
 
 	@Override
 	public ContasReceber find(Long id) {
-		
 		return contasReceberService.find(id);
-		
 	}
 
 	@Override
 	public void remove(Long id) {
-		
 		contasReceberService.remove(id);
-		
+	}
+
+	@Override
+	public List<ContasReceber> findAllByCategoria(String nomeCategoria) {
+		return contasReceberService.findAllByCategoria(nomeCategoria);
+	}
+
+	@Override
+	public List<ContasReceber> findAllByMorador(Long idMorador) {
+		return contasReceberService.findAllByMorador(idMorador);
 	}
 
 }

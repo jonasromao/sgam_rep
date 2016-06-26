@@ -7,9 +7,12 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
+import br.com.setaprox.sgam.constante.Categoria;
 import br.com.setaprox.sgam.facade.AluguelFacade;
 import br.com.setaprox.sgam.model.Aluguel;
+import br.com.setaprox.sgam.model.CategoriaContasReceber;
 import br.com.setaprox.sgam.service.AluguelService;
+import br.com.setaprox.sgam.service.CategoriaContasReceberService;
 import br.com.setaprox.sgam.service.ContasReceberService;
 
 @Named
@@ -18,6 +21,9 @@ public class AluguelFacadeImpl implements AluguelFacade {
 
 	@EJB
 	private AluguelService aluguelService;
+	
+	@EJB
+	private CategoriaContasReceberService categoriaService;
 	
 	@EJB
 	private ContasReceberService contasReceberService;
@@ -45,7 +51,9 @@ public class AluguelFacadeImpl implements AluguelFacade {
 	@Override
 	public void persist(Aluguel aluguel) {		
 		aluguelService.persist(aluguel);
-		contasReceberService.registraContaReceber(aluguel);
+		
+		CategoriaContasReceber categoria = categoriaService.find(Categoria.ALUGUEL.getCodigo());
+		contasReceberService.registraContaReceber(aluguel, categoria);
 	}
 
 	@Override

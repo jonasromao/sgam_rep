@@ -11,6 +11,7 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
+import br.com.setaprox.sgam.constante.Categoria;
 import br.com.setaprox.sgam.facade.ContasReceberFacade;
 import br.com.setaprox.sgam.model.ContasReceber;
 
@@ -31,9 +32,16 @@ public class ContasReceberController {
 		
 	}
 	
+	public void formularioContasReceberAssociado(){
+		
+	}
+	
 	public void listagemContasReceber(){
-		List<ContasReceber> contas = contasReceberFacade.findAll();
-		result.include("contas", contas);
+		List<ContasReceber> contasAlugueis = contasReceberFacade.findAllByCategoria(Categoria.ALUGUEL.getCodigo());
+		List<ContasReceber> contasAssociados = contasReceberFacade.findAllByCategoria(Categoria.ASSOCIADO.getCodigo());
+		
+		result.include("contasAlugueis", contasAlugueis);
+		result.include("contasAssociados", contasAssociados);
 	}
 	
 	@Post("/contasReceber/novo")
@@ -58,6 +66,18 @@ public class ContasReceberController {
 			ContasReceber conta = contasReceberFacade.find(id);
 			result.include("contaReceber", conta);
 			result.redirectTo(this).formularioContasReceber();
+		}
+		else {
+			result.notFound();
+		}
+	}
+	
+	@Get("/contasReceber/associado/editar/{id}")
+	public void editarContaAssociado(Long id){
+		if(id != null && id > 0){
+			ContasReceber conta = contasReceberFacade.find(id);
+			result.include("contaReceber", conta);
+			result.redirectTo(this).formularioContasReceberAssociado();
 		}
 		else {
 			result.notFound();

@@ -13,7 +13,11 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.Hours;
 import org.joda.time.LocalDate;
+import org.joda.time.Minutes;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
@@ -21,11 +25,13 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.setaprox.sgam.constante.Status;
+import br.com.setaprox.sgam.facade.AluguelComercioFacade;
 import br.com.setaprox.sgam.facade.AluguelFacade;
 import br.com.setaprox.sgam.facade.ContasPagarFacade;
 import br.com.setaprox.sgam.facade.MoradorFacade;
 import br.com.setaprox.sgam.facade.OcorrenciaFacade;
 import br.com.setaprox.sgam.model.Aluguel;
+import br.com.setaprox.sgam.model.AluguelComercio;
 import br.com.setaprox.sgam.model.ContasPagar;
 import br.com.setaprox.sgam.model.Ocorrencia;
 import br.com.setaprox.sgam.model.Usuario;
@@ -37,6 +43,9 @@ public class LoginController {
 	
 	@Inject
 	private AluguelFacade aluguelFacade;
+	
+	@Inject
+	private AluguelComercioFacade aluguelComercioFacade;
 	
 	@Inject
 	private ContasPagarFacade contasPagarFacade;
@@ -109,10 +118,10 @@ public class LoginController {
 
 	@Path("/home")
 	public void paginaInicial(){
-		Locale locale = new Locale("pt", "BR");
 		LocalDate dataAtual = LocalDate.now();
 		
 		List<Aluguel> alugueis = null;
+		List<AluguelComercio> alugueisComercio = null;
 		List<ContasPagar> contas = null;
 		List<Ocorrencia> ocorrencias = null;
 		
@@ -126,6 +135,7 @@ public class LoginController {
 		
 		try{
 			alugueis = aluguelFacade.reservasPorDia(dataAtual.toDate());
+			alugueisComercio = aluguelComercioFacade.reservasPorDia(dataAtual.toDate());
 			contas = contasPagarFacade.contasVencimentoMensal(dataAtual.toDate());
 			ocorrencias = ocorrenciaFacade.ocorrenciasPorStatus(Status.ABERTA.getCodigo());
 			
@@ -142,9 +152,10 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		
-		result.include("mesCorrente", dataAtual.toString("MMMM",locale));
+		result.include("mesCorrente", dataAtual.toString("MMMM",new Locale("pt", "BR")));
 		result.include("dataAtual", dataAtual.toDate());
 		result.include("alugueis", alugueis);
+		result.include("alugueisComercio", alugueisComercio);
 		result.include("contas", contas);
 		result.include("ocorrencias", ocorrencias);
 		result.include("qtdOcorrencias", ocorrencias.size());

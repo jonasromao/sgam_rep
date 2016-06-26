@@ -11,8 +11,31 @@ $(document).ready(function(){
 				"next": "Próxima"
 			    }
 		},
+		"order": [],
+		"columnDefs": [
+  		    { "orderable": false, "targets": [0,7]}
+  		],
 		"lengthChange": false
-	}); 
+	});
+	
+	$('#tableListagemContasReceberAssociados').dataTable({
+		"language": {
+			"search": "Pesquisar: ",
+			"lengthMenu": "_MENU_",
+			    "info": "Exibindo de _START_ até _END_ de um total de _MAX_ registros",
+			    "paginate": {
+				"first": "Primeira Página",
+				"last": "Última Página",
+				"previous": "Anterior",
+				"next": "Próxima"
+			    }
+		},
+		"order": [],
+		"columnDefs": [
+ 		    { "orderable": false, "targets": [0,6]}
+ 		],
+		"lengthChange": false
+	});
 	
 	$('.remover').on('click', function(event){
 		event.preventDefault();

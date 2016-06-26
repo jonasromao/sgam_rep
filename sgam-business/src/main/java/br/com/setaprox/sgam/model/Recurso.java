@@ -1,12 +1,15 @@
 package br.com.setaprox.sgam.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -38,6 +41,9 @@ public class Recurso extends AbstractEntity<Recurso> implements Serializable {
 	
 	@Column( name = "flag_inativo" )
 	private boolean flagInativo;
+	
+	@OneToMany(mappedBy="recurso", fetch = FetchType.LAZY)
+	private List<Aluguel> alugueis;
 
 	public Long getId() {
 		return id;
@@ -85,6 +91,14 @@ public class Recurso extends AbstractEntity<Recurso> implements Serializable {
 
 	public void setFlagInativo(boolean flagInativo) {
 		this.flagInativo = flagInativo;
+	}
+
+	public List<Aluguel> getAlugueis() {
+		return alugueis;
+	}
+
+	public void setAlugueis(List<Aluguel> alugueis) {
+		this.alugueis = alugueis;
 	}
 
 	@Override

@@ -11,6 +11,10 @@ $(document).ready(function(){
 				"next": "Próxima"
 			    }
 		},
+		"order": [],
+		"columnDefs": [
+		    { "orderable": false, "targets": [7]}
+		],
 		"lengthChange": false
 	}); 
 	

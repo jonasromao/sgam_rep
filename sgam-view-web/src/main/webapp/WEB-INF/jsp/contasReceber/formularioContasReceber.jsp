@@ -38,6 +38,7 @@
 	         		<input type="hidden" name="contaReceber.id" value="${contaReceber.id}" />
 	         		<input type="hidden" name="contaReceber.status" value="${contaReceber.status}" />
 	         		<input type="hidden" name="contaReceber.aluguel.id" value="${contaReceber.aluguel.id}" />
+	         		<input type="hidden" name="contaReceber.categoria.id" value="${contaReceber.categoria.id}" />
 	         		
 	             	<div class="form-group">
 	             		<label class="col-sm-4 control-label">Número</label>

@@ -60,6 +60,9 @@ public class AluguelComercio extends AbstractEntity<AluguelComercio> implements 
 	@Column( name = "descricao_produtos" )
 	private String produtos;
 	
+	@Column( name = "status_alvara" )
+	private String statusAlvara;
+	
 	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE}/*, orphanRemoval = true*/ )
     @JoinColumn(name = "id_aluguel")
 	private Aluguel aluguel;
@@ -180,6 +183,14 @@ public class AluguelComercio extends AbstractEntity<AluguelComercio> implements 
 
 	public void setDataHoraFinal(String dataHoraFinal) {
 		this.dataHoraFinal = dataHoraFinal;
+	}
+
+	public String getStatusAlvara() {
+		return statusAlvara;
+	}
+
+	public void setStatusAlvara(String statusAlvara) {
+		this.statusAlvara = statusAlvara;
 	}
 
 	@Override

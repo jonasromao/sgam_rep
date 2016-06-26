@@ -11,7 +11,10 @@ $(document).ready(function(){
             },
             'recurso.valor': {
             	required: true
-            }
+            }/*,
+            'recurso.unidadeMedida': {
+            	min: 1
+            }*/
         }
     });
 

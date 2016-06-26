@@ -43,7 +43,8 @@
 								<th>Recurso</th>
 								<th>Início</th>
 								<th>Fim</th>
-								<th>Observação</th>
+								<th>Horário</th>
+								<th>Conta</th>								
 								<th>Opções</th>
 							</tr>
 						</thead>
@@ -53,9 +54,17 @@
 								<tr class="linhaAluguel">
 									<td>${aluguel.morador.nome}</td>
 									<td>${aluguel.recurso.nome}</td>
-									<td> <fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${aluguel.dataInicial}" /> </td>
-									<td> <fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${aluguel.dataFinal}" /> </td>
-									<td>${aluguel.observacao}</td>
+									<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.dataInicial}" /> </td>
+									<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.dataFinal}" /> </td>
+									<td> <fmt:formatDate pattern="HH:mm" value="${aluguel.dataInicial}" /> - <fmt:formatDate pattern="HH:mm" value="${aluguel.dataFinal}" /> </td>
+									
+									<shiro:hasPermission name="sgam.financeiro.contas_receber.editar">
+										<td> <a onclick="marcarMenuAtivo('menuFinanceiro', 'submenuContasReceber', 'collapseFinanceiro')" title="Link para acessar a respectiva conta a receber" class="editar" href="${linkTo[ContasReceberController].editarConta(aluguel.contaReceber.id)}"> Conta </a> </td>
+									</shiro:hasPermission>
+									<shiro:lacksPermission name="sgam.financeiro.contas_receber.editar">
+										<td style="text-align: center; margin: 20px 0; padding: 10px;"> - </td>
+									</shiro:lacksPermission>
+
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
 										<shiro:hasPermission name="sgam.faturamento.aluguel.editar">
 											<a title="Editar" class="editar" href="${linkTo[AluguelController].editarAluguel(aluguel.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp;

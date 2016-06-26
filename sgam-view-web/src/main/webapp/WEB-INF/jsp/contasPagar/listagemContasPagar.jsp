@@ -74,8 +74,13 @@
 									</c:choose>
 									
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
-										<a title="Editar" class="editar" href="${linkTo[ContasPagarController].editarConta(conta.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp; 
-										<a title="Excluir" class="remover" href="${linkTo[ContasPagarController].removeConta(conta.id)}"> <i class="fa fa-trash-o iconeDataTable"></i> </a> 
+										<shiro:hasPermission name="sgam.financeiro.contas_pagar.editar">
+											<a title="Editar" class="editar" href="${linkTo[ContasPagarController].editarConta(conta.id)}"> <i class="fa fa-edit"></i> </a> &nbsp;
+										</shiro:hasPermission>
+										
+										<shiro:hasPermission name="sgam.financeiro.contas_pagar.excluir"> 
+											<a title="Excluir" class="remover" href="${linkTo[ContasPagarController].removeConta(conta.id)}"> <i class="fa fa-trash-o"></i> </a>
+										</shiro:hasPermission> 
 									</td>
 								</tr>
 							</c:forEach>

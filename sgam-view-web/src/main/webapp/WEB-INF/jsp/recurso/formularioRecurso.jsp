@@ -47,7 +47,7 @@
 	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Descrição</label>
 	                    <div class="col-sm-8">
-	                    	<input type="text" class="form-control" name="recurso.descricao" value="${recurso.descricao}" >
+	                    	<textarea class="form-control" name="recurso.descricao" rows="3" cols="">${recurso.descricao}</textarea>
 	                    </div>
 	                </div>
 	                
@@ -64,8 +64,10 @@
 	                    	<select class="form-control m-b" name="recurso.unidadeMedida">
 	                         <option value="0">Selecione</option>
 	                         <option value="Hora"  <c:if test="${recurso.unidadeMedida == 'Hora'}">selected="selected"</c:if> >Hora</option>
-	                         <option value="Minuto" <c:if test="${recurso.unidadeMedida == 'Minuto'}">selected="selected"</c:if> >Minuto</option>
 	                         <option value="Dia" <c:if test="${recurso.unidadeMedida == 'Dia'}">selected="selected"</c:if> >Dia</option>
+	                         <option value="Dia" <c:if test="${recurso.unidadeMedida == 'Semana'}">selected="selected"</c:if> >Semana</option>
+	                         <option value="Dia" <c:if test="${recurso.unidadeMedida == 'Mês'}">selected="selected"</c:if> >Mês</option>
+	                         <option value="Dia" <c:if test="${recurso.unidadeMedida == 'Ano'}">selected="selected"</c:if> >Ano</option>
 	                    	</select>
 	                    </div>
 	                </div>

@@ -7,21 +7,14 @@ $(document).ready(function(){
 	
 	$('.date').datetimepicker({
 		locale:"pt-br",
-		format: 'DD/MM/YYYY HH:mm',
+		format: 'DD/MM/YYYY',
 		allowInputToggle: true,
 		showClear: true
 	});
 	
-	$('.dataAlvara').datetimepicker({
+	$('.periodo').datetimepicker({
 		locale:"pt-br",
-		format: 'DD/MM/YYYY',
-		allowInputToggle: true,
-		showClear: true
-	}); 
-	
-	$('#dataPagamentoAluguelComercio').datetimepicker({
-		locale:"pt-br",
-		format: 'DD/MM/YYYY',
+		format: 'DD/MM/YYYY HH:mm',
 		allowInputToggle: true,
 		showClear: true
 	});
@@ -37,6 +30,42 @@ $(document).ready(function(){
 		$('#dataHoraInicioAluguelComercio').val(dataHoraInicio);
 		$('#dataHoraFinalAluguelComercio').val(dataHoraFinal);
 	});
+	
+	$('#aluguelComercioForm').validate({
+        rules: {
+            'aluguelComercio.aluguel.morador.nome': {
+            	required: true
+            },
+            'aluguelComercio.aluguel.dataInicial': {
+            	required: true
+            },
+            'aluguelComercio.aluguel.dataFinal': {
+            	required: true
+            },
+            'aluguelComercio.aluguel.recurso.id': {
+            	required: true,
+            	min: 1
+            },
+            'aluguelComercio.nome': {
+            	required: true
+            },
+            'aluguelComercio.numeroAlvara': {
+            	required: true
+            },
+            'aluguelComercio.dataEmissao': {
+            	required: true
+            },
+            'aluguelComercio.dataVencimento': {
+            	required: true
+            },
+            'aluguelComercio.equipamentos': {
+            	required: true
+            },
+            'aluguelComercio.produtos': {
+            	required: true
+            }
+        }
+    });
 });
 
 var insereDadosMoradorFaturamento = function(morador){

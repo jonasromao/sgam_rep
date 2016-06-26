@@ -16,4 +16,8 @@ public interface ContasReceberFacade {
 	
 	void remove(Long id);
 	
+	List<ContasReceber> findAllByCategoria(String nomeCategoria);
+	
+	List<ContasReceber> findAllByMorador(Long idMorador);
+	
 }

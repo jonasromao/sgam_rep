@@ -3,7 +3,6 @@ package br.com.setaprox.sgam.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -59,10 +59,17 @@ public class ContasReceber extends AbstractEntity<ContasReceber> implements Seri
 	@Column( name = "status" )
 	private String status;
 	
-	
 	@OneToOne(fetch = FetchType.LAZY/*, orphanRemoval = true*/ )
 	@JoinColumn(name = "id_aluguel")
 	private Aluguel aluguel;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_categoria_contas_receber")
+	private CategoriaContasReceber categoria;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_morador")
+	private Morador morador;
 	
 	
 	public ContasReceber() {
@@ -163,6 +170,22 @@ public class ContasReceber extends AbstractEntity<ContasReceber> implements Seri
 
 	public void setAluguel(Aluguel aluguel) {
 		this.aluguel = aluguel;
+	}
+
+	public CategoriaContasReceber getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaContasReceber categoria) {
+		this.categoria = categoria;
+	}
+
+	public Morador getMorador() {
+		return morador;
+	}
+
+	public void setMorador(Morador morador) {
+		this.morador = morador;
 	}
 
 	@Override

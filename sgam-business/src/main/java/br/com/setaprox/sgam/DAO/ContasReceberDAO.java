@@ -22,4 +22,8 @@ public interface ContasReceberDAO {
 	
 	List<ContasReceber> findAll();
 	
+	List<ContasReceber> findAllByCategoria(String nomeCategoria);
+	
+	List<ContasReceber> findAllByMorador(Long idMorador);
+	
 }

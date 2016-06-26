@@ -118,7 +118,7 @@
 		            <div class="form-group">
 		            	<label class="col-sm-4 control-label">Número</label>
 		                <div class="col-sm-8">
-		                	<input type="text" class="form-control" name="fornecedor.endereco.numero" value="${fornecedor.endereco.numero}">
+		                	<input type="text" id="numeroFornecedor" class="form-control" name="fornecedor.endereco.numero" value="${fornecedor.endereco.numero}">
 		                </div>
 		          	</div>
 		          	

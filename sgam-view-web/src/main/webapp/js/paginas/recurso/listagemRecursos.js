@@ -18,6 +18,9 @@ $(document).ready(function(){
 		    {"width": "15%"},
 		    {"width": "10%"}
 		],
+		"columnDefs": [
+  		    { "orderable": false, "targets": [3]}
+  		],
 		"lengthChange": false
 	}); 
 	

@@ -38,6 +38,8 @@
 			<div class="col-lg-6">
 		        <div class="ibox-content">
 	         		<input type="hidden" name="morador.id" value="${morador.id }"/>
+	         		<input type="hidden" name="morador.dataCadastro" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${morador.dataCadastro}" />" />
+	         		<input type="hidden" name="morador.dataAssociado" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${morador.dataAssociado}" />"/>
 	         	
 	             	<div class="form-group">
 	             		<label class="col-sm-4 control-label">Nome</label>

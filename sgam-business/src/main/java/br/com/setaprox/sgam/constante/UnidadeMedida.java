@@ -2,7 +2,7 @@ package br.com.setaprox.sgam.constante;
 
 public enum UnidadeMedida {
 	
-	HORA("Hora"), MINUTO("Minuto"), DIA("Dia");
+	MINUTO("Minuto"), HORA("Hora"), DIA("Dia"), SEMANA("Semana"), MES("Mês"), ANO("Ano");
 	
 	private final String codigo;
 	

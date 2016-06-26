@@ -35,7 +35,7 @@
  
  <div class="wrapper wrapper-content animated fadeInRight">
  	<div class="row">
- 		<form method="post" class="form-horizontal" action="${linkTo[AluguelController].cadastraAluguel}">
+ 		<form id="aluguelForm" method="post" class="form-horizontal" action="${linkTo[AluguelController].cadastraAluguel}">
 			<div class="col-lg-7">
 		        <div class="ibox-content">
 		        
@@ -128,7 +128,7 @@
 			                <div class="col-sm-12">
 			                	<div class="input-group">
 			                		<input id="idMoradorFaturamento" type="hidden" name="aluguel.morador.id" value="${aluguel.morador.id }"/> 
-			                		<input id="nomeMoradorFaturamento" placeholder="Morador" disabled="disabled" type="text" class="form-control" value="${aluguel.morador.nome}">
+			                		<input id="nomeMoradorFaturamento" placeholder="Morador" type="text" name="aluguel.morador.nome" class="form-control" value="${aluguel.morador.nome}">
 			                		<a class="input-group-addon" id="btnAbreModalMoradorFaturamento" style="cursor: pointer;"><i class="fa fa-user"></i></a>
 			                	</div>
 			            	</div>
@@ -174,6 +174,10 @@
 
 <script src="${pageContext.request.contextPath}/manual_install_components/moment/moment-with-locales.min.js"></script>
 <script src="${pageContext.request.contextPath}/manual_install_components/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-validation-messages.js"></script>
     
 <script src="${pageContext.request.contextPath}/js/paginas/aluguel/formularioAluguel.js"></script>
 

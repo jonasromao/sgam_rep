@@ -16,9 +16,6 @@
              <li>
                  <a href="${linkTo[LoginController].paginaInicial}">Inicio</a>
              </li>
-             <li>
-                 <span>Cadastros</span>
-             </li>
              <li class="active">
                  <strong>Ocorrências</strong>
              </li>

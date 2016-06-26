@@ -2,6 +2,7 @@ package br.com.setaprox.sgam.service.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,27 +36,22 @@ public class AluguelServiceImpl implements AluguelService  {
 	@Override
 	public void remove(Long id) {		
 		aluguelDAO.remove(id);
-		
 	}
 
 	@Override
 	public void editar(Aluguel aluguel) {
 		parseDataHora(aluguel);
 		aluguelDAO.editar(aluguel);
-		
 	}
 
 	@Override
 	public Aluguel find(Long id) {
 		return aluguelDAO.find(id);
-		
 	}
 
 	@Override
-	public List<Aluguel> findAll() {
-		
-		return aluguelDAO.findAll();
-		
+	public List<Aluguel> findAll() {		
+		return this.removeAluguelComercio(aluguelDAO.findAll());
 	}
 	
 	private void parseDataHora(Aluguel aluguel){
@@ -77,7 +73,23 @@ public class AluguelServiceImpl implements AluguelService  {
 
 	@Override
 	public List<Aluguel> reservasPorDia(Date data) {
-		return aluguelDAO.reservasPorDia(data);
+		return this.removeAluguelComercio(aluguelDAO.reservasPorDia(data));
+	}
+	
+	private List<Aluguel> removeAluguelComercio(List<Aluguel> alugueis){
+		List<Aluguel> lista = null;
+		
+		if(alugueis != null && !alugueis.isEmpty()){
+			lista = new ArrayList<Aluguel>();
+			
+			for(Aluguel a : alugueis){
+				if(a.getAluguelComercio() == null){
+					lista.add(a);
+				}
+			}
+		}
+		
+		return lista;
 	}
 
 }

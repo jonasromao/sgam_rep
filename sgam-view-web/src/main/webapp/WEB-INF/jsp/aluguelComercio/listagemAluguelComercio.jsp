@@ -41,10 +41,11 @@
 							<tr>
 								<th>Morador</th>
 								<th>Atividade</th>
-								<th>Início Atividades</th>
-								<th>Fim Atividades</th>
+								<th>Início</th>
+								<th>Fim</th>
 								<th>Alvará</th>
-								<th>Vencimento Alvará</th>
+								<th>Venc. Alvará</th>
+								<th>Status Alvará</th>
 								<th>Opções</th>
 							</tr>
 						</thead>
@@ -54,10 +55,19 @@
 								<tr class="linhaAluguel">
 									<td>${aluguelComercio.aluguel.morador.nome}</td>
 									<td>${aluguelComercio.nome}</td>
-									<td> <fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${aluguelComercio.aluguel.dataInicial}" /> </td>
-									<td> <fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${aluguelComercio.aluguel.dataFinal}" /> </td>
+									<td><fmt:formatDate pattern="dd/MM/yyyy" value="${aluguelComercio.aluguel.dataInicial}" /></td>
+									<td><fmt:formatDate pattern="dd/MM/yyyy" value="${aluguelComercio.aluguel.dataFinal}" /></td>
 									<td>${aluguelComercio.numeroAlvara}</td>
 									<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${aluguelComercio.dataVencimento}" /> </td>
+									<c:choose>
+										<c:when test="${aluguelComercio.statusAlvara eq 'Ativo'}">
+											<td><span class="label label-primary">${aluguelComercio.statusAlvara}</span></td>
+										</c:when>
+
+										<c:otherwise>
+											<td><span class="label label-danger">${aluguelComercio.statusAlvara}</span></td>
+										</c:otherwise>
+									</c:choose>
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
 										<shiro:hasPermission name="sgam.faturamento.aluguel_comercio.editar">
 											<a title="Editar" class="editar" href="${linkTo[AluguelComercioController].editarAluguelComercio(aluguelComercio.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp;
