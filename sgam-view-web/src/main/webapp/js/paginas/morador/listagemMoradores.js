@@ -24,6 +24,18 @@ $(document).ready(function(){
 		"columnDefs": [
 		    { "orderable": false, "targets": [1,6]}
         ],
+        dom: '<"html5buttons"B>lTfgitp',
+        buttons: [
+            {extend: 'excel', title: 'Moradores', exportOptions: {columns: [0,1,2,3,4,5]}},
+            {extend: 'pdf', title: 'Moradores', orientation: 'landscape', exportOptions: {columns: [0,1,2,3,4,5]}},
+            {extend: 'print', title: 'Moradores', text: 'Imprimir', exportOptions: {columns: [0,1,2,3,4,5]},
+                customize: function (win){
+                    $(win.document.body).addClass('white-bg');
+                    $(win.document.body).css('font-size', '10px');
+                    $(win.document.body).find('table').addClass('compact').css('font-size', 'inherit');
+                }
+            }
+        ],
 		"lengthChange": false
 	}); 
 	

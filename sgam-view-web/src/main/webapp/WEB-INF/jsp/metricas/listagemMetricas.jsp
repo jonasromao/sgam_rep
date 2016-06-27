@@ -75,7 +75,7 @@
 	                </div>
 		        	
 		        	<div class="ibox-content">
-		        		
+		        		<div class="table-responsive">
 							<table id="tabelaRecursosMetricas" class="table table-striped table-bordered table-hover"> 
 								<thead>
 									<tr>
@@ -107,7 +107,7 @@
 									</c:forEach>
 								</tbody>
 							</table>
-						
+						</div>
 					</div>
 				</div>
 		    </div>            
@@ -126,7 +126,7 @@
 	                </div>
 		        	
 		        	<div class="ibox-content">
-		        		
+		        		<div class="table-responsive">
 							<table id="tabelaAssociadosMetricas" class="table table-striped table-bordered table-hover"> 
 								<thead>
 									<tr>
@@ -154,7 +154,7 @@
 									</c:forEach>
 								</tbody>
 							</table>
-						
+						</div>
 					</div>
 				</div>
 		    </div>            

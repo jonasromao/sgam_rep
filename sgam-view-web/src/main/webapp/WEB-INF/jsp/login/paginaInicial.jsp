@@ -222,57 +222,59 @@
                                         </div>
                                     </div>
                                     <div class="ibox-content">
-                                        <table class="table table-hover no-margins">
-                                            <thead>
-                                            <tr>
-                                                <th>Recurso</th>
-                                                <th>Morador</th>
-                                                <th>Inicio</th>
-                                                <th>Fim</th>
-                                                <th>Até</th>
-                                                <th>Valor</th>
-                                                <th>Pagamento</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-	                                            <c:forEach var="aluguel" items="${alugueis}">
-													<tr>
-														<shiro:hasPermission name="sgam.faturamento.aluguel.editar">
-															<td><a onclick="marcarMenuAtivo('menuFaturamento', 'submenuReservaEspaco', 'collapseFaturamento')" title="Link para acessar cadastro do aluguel do espaço" class="editar" href="${linkTo[AluguelController].editarAluguel(aluguel.id)}">${aluguel.recurso.nome}</a></td>
-														</shiro:hasPermission>
-														<shiro:lacksPermission name="sgam.faturamento.aluguel.editar">
-															<td>${aluguel.recurso.nome}</td>
-														</shiro:lacksPermission>
-														
-														<shiro:hasPermission name="sgam.cadastros.morador.editar">
-															<td><a onclick="marcarMenuAtivo('menuCadastros', 'submenuMoradores', 'collapseCadastros')" title="Link para acessar cadastro do morador" href="${linkTo[MoradorController].editarMorador(aluguel.morador.id)}">${aluguel.morador.nome}</a></td>
-														</shiro:hasPermission>
-														<shiro:lacksPermission name="sgam.cadastros.morador.editar">
-															<td>${aluguel.morador.nome}</td>
-														</shiro:lacksPermission>
-														
-														
-														<td><i class="fa fa-clock-o"></i> <fmt:formatDate pattern="HH:mm" value="${aluguel.dataInicial}" /></td>
-														<td><i class="fa fa-clock-o"></i> <fmt:formatDate pattern="HH:mm" value="${aluguel.dataFinal}" /></td>
-														<td><i class="fa fa-calendar"></i> <fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.dataFinal}" /></td>
-														<td><fmt:formatNumber value="${aluguel.contaReceber.valor}" type="currency"/></td>
-														<c:choose>
-															<c:when test="${aluguel.contaReceber.status eq 'Recebida'}">
-																<td><span class="label label-primary">${aluguel.contaReceber.status}</span></td>
-															</c:when>
+                                        <div class="table-responsive">
+	                                        <table class="table table-hover no-margins">
+	                                            <thead>
+	                                            <tr>
+	                                                <th>Recurso</th>
+	                                                <th>Morador</th>
+	                                                <th>Inicio</th>
+	                                                <th>Fim</th>
+	                                                <th>Até</th>
+	                                                <th>Valor</th>
+	                                                <th>Pagamento</th>
+	                                            </tr>
+	                                            </thead>
+	                                            <tbody>
+		                                            <c:forEach var="aluguel" items="${alugueis}">
+														<tr>
+															<shiro:hasPermission name="sgam.faturamento.aluguel.editar">
+																<td><a onclick="marcarMenuAtivo('menuFaturamento', 'submenuReservaEspaco', 'collapseFaturamento')" title="Link para acessar cadastro do aluguel do espaço" class="editar" href="${linkTo[AluguelController].editarAluguel(aluguel.id)}">${aluguel.recurso.nome}</a></td>
+															</shiro:hasPermission>
+															<shiro:lacksPermission name="sgam.faturamento.aluguel.editar">
+																<td>${aluguel.recurso.nome}</td>
+															</shiro:lacksPermission>
 															
-															<c:when test="${aluguel.contaReceber.status eq 'Pendente'}">
-																<td><span class="label label-warning">${aluguel.contaReceber.status}</span></td>
-															</c:when>
+															<shiro:hasPermission name="sgam.cadastros.morador.editar">
+																<td><a onclick="marcarMenuAtivo('menuCadastros', 'submenuMoradores', 'collapseCadastros')" title="Link para acessar cadastro do morador" href="${linkTo[MoradorController].editarMorador(aluguel.morador.id)}">${aluguel.morador.nome}</a></td>
+															</shiro:hasPermission>
+															<shiro:lacksPermission name="sgam.cadastros.morador.editar">
+																<td>${aluguel.morador.nome}</td>
+															</shiro:lacksPermission>
 															
-															<c:otherwise>
-																<td><span class="label label-danger">${aluguel.contaReceber.status}</span></td>
-															</c:otherwise>
-														</c:choose>
-													</tr>
-												</c:forEach>
-                                            </tbody>
-                                        </table>
+															
+															<td><i class="fa fa-clock-o"></i> <fmt:formatDate pattern="HH:mm" value="${aluguel.dataInicial}" /></td>
+															<td><i class="fa fa-clock-o"></i> <fmt:formatDate pattern="HH:mm" value="${aluguel.dataFinal}" /></td>
+															<td><i class="fa fa-calendar"></i> <fmt:formatDate pattern="dd/MM/yyyy" value="${aluguel.dataFinal}" /></td>
+															<td><fmt:formatNumber value="${aluguel.contaReceber.valor}" type="currency"/></td>
+															<c:choose>
+																<c:when test="${aluguel.contaReceber.status eq 'Recebida'}">
+																	<td><span class="label label-primary">${aluguel.contaReceber.status}</span></td>
+																</c:when>
+																
+																<c:when test="${aluguel.contaReceber.status eq 'Pendente'}">
+																	<td><span class="label label-warning">${aluguel.contaReceber.status}</span></td>
+																</c:when>
+																
+																<c:otherwise>
+																	<td><span class="label label-danger">${aluguel.contaReceber.status}</span></td>
+																</c:otherwise>
+															</c:choose>
+														</tr>
+													</c:forEach>
+	                                            </tbody>
+	                                        </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -290,50 +292,52 @@
                                         </div>
                                     </div>
                                     <div class="ibox-content">
-                                        <table class="table table-hover no-margins">
-                                            <thead>
-                                            <tr>
-                                                <th>Atividade</th>
-                                                <th>Morador</th>
-                                                <th>Inicio</th>
-                                                <th>Fim</th>
-                                                <th>Validade Alvará</th>
-                                                <th>Status Alvará</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-	                                            <c:forEach var="comercio" items="${alugueisComercio}">
-													<tr>
-														<shiro:hasPermission name="sgam.faturamento.aluguel_comercio.editar">
-															<td><a onclick="marcarMenuAtivo('menuFaturamento', 'submenuComercios', 'collapseFaturamento')" title="Link para acessar cadastro de comércio informal" href="${linkTo[AluguelComercioController].editarAluguelComercio(comercio.id)}">${comercio.nome}</a></td>
-														</shiro:hasPermission>
-														<shiro:lacksPermission name="sgam.faturamento.aluguel_comercio.editar">
-															<td>${comercio.nome}</td>
-														</shiro:lacksPermission>
-														
-														<shiro:hasPermission name="sgam.cadastros.morador.editar">
-															<td><a onclick="marcarMenuAtivo('menuCadastros', 'submenuMoradores', 'collapseCadastros')" title="Link para acessar cadastro do morador" href="${linkTo[MoradorController].editarMorador(comercio.aluguel.morador.id)}">${comercio.aluguel.morador.nome}</a></td>
-														</shiro:hasPermission>
-														<shiro:lacksPermission name="sgam.cadastros.morador.editar">
-															${comercio.aluguel.morador.nome}
-														</shiro:lacksPermission>
-														
-														<td><i class="fa fa-clock-o"></i> <fmt:formatDate pattern="HH:mm" value="${comercio.aluguel.dataInicial}" /></td>
-														<td><i class="fa fa-clock-o"></i> <fmt:formatDate pattern="HH:mm" value="${comercio.aluguel.dataFinal}" /></td>
-														<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${comercio.dataVencimento}" /> </td>
-														<c:choose>
-															<c:when test="${comercio.statusAlvara eq 'Ativo'}">
-																<td><span class="label label-primary">${comercio.statusAlvara}</span></td>
-															</c:when>
-					
-															<c:otherwise>
-																<td><span class="label label-danger">${comercio.statusAlvara}</span></td>
-															</c:otherwise>
-														</c:choose>
-													</tr>
-												</c:forEach>
-                                            </tbody>
-                                        </table>
+                                        <div class="table-responsive">
+	                                        <table class="table table-hover no-margins">
+	                                            <thead>
+	                                            <tr>
+	                                                <th>Atividade</th>
+	                                                <th>Morador</th>
+	                                                <th>Inicio</th>
+	                                                <th>Fim</th>
+	                                                <th>Validade Alvará</th>
+	                                                <th>Status Alvará</th>
+	                                            </tr>
+	                                            </thead>
+	                                            <tbody>
+		                                            <c:forEach var="comercio" items="${alugueisComercio}">
+														<tr>
+															<shiro:hasPermission name="sgam.faturamento.aluguel_comercio.editar">
+																<td><a onclick="marcarMenuAtivo('menuFaturamento', 'submenuComercios', 'collapseFaturamento')" title="Link para acessar cadastro de comércio informal" href="${linkTo[AluguelComercioController].editarAluguelComercio(comercio.id)}">${comercio.nome}</a></td>
+															</shiro:hasPermission>
+															<shiro:lacksPermission name="sgam.faturamento.aluguel_comercio.editar">
+																<td>${comercio.nome}</td>
+															</shiro:lacksPermission>
+															
+															<shiro:hasPermission name="sgam.cadastros.morador.editar">
+																<td><a onclick="marcarMenuAtivo('menuCadastros', 'submenuMoradores', 'collapseCadastros')" title="Link para acessar cadastro do morador" href="${linkTo[MoradorController].editarMorador(comercio.aluguel.morador.id)}">${comercio.aluguel.morador.nome}</a></td>
+															</shiro:hasPermission>
+															<shiro:lacksPermission name="sgam.cadastros.morador.editar">
+																${comercio.aluguel.morador.nome}
+															</shiro:lacksPermission>
+															
+															<td><i class="fa fa-clock-o"></i> <fmt:formatDate pattern="HH:mm" value="${comercio.aluguel.dataInicial}" /></td>
+															<td><i class="fa fa-clock-o"></i> <fmt:formatDate pattern="HH:mm" value="${comercio.aluguel.dataFinal}" /></td>
+															<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${comercio.dataVencimento}" /> </td>
+															<c:choose>
+																<c:when test="${comercio.statusAlvara eq 'Ativo'}">
+																	<td><span class="label label-primary">${comercio.statusAlvara}</span></td>
+																</c:when>
+						
+																<c:otherwise>
+																	<td><span class="label label-danger">${comercio.statusAlvara}</span></td>
+																</c:otherwise>
+															</c:choose>
+														</tr>
+													</c:forEach>
+	                                            </tbody>
+	                                        </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -351,64 +355,61 @@
                                         </div>
                                     </div>
                                     <div class="ibox-content">
-                                        <table class="table table-hover no-margins">
-                                            <thead>
-                                            <tr>
-                                                <th>Nome</th>
-                                                <th>Fornecedor</th>
-                                                <th>Vencimento</th>
-                                                <th>Valor</th>
-                                                <th>Status</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            	<c:forEach var="conta" items="${contas}">
-													<tr>
-														<shiro:hasPermission name="sgam.financeiro.contas_pagar.editar">
-															<td><a onclick="marcarMenuAtivo('menuFinanceiro', 'submenuContasPagar', 'collapseFinanceiro')" title="Link para acessar o cadastro da conta a pagar" href="${linkTo[ContasPagarController].editarConta(conta.id)}">${conta.nome}</a></td>
-														</shiro:hasPermission>
-														<shiro:lacksPermission name="sgam.financeiro.contas_pagar.editar">
-															<td>${conta.nome}</td>
-														</shiro:lacksPermission>
-														
-														<shiro:hasPermission name="sgam.cadastros.fornecedor.editar">
-															<td><a onclick="marcarMenuAtivo('menuCadastros', 'submenuFornecedores', 'collapseCadastros')" title="Link para acessar cadastro do fornecedor" href="${linkTo[FornecedorController].editarFornecedor(conta.fornecedor.id)}">${conta.fornecedor.nome}</a></td>
-														</shiro:hasPermission>
-														<shiro:lacksPermission name="sgam.cadastros.fornecedor.editar">
-															<td>${conta.fornecedor.nome}</td>
-														</shiro:lacksPermission>
-
-														<td><fmt:formatDate pattern="dd/MM/yyyy" value="${conta.dataVencimento}" /></td>
-														<td><fmt:formatNumber value="${conta.valor}" type="currency"/></td>
-														<c:choose>
-															<c:when test="${conta.status eq 'Paga'}">
-																<td><span class="label label-primary">${conta.status}</span></td>
-															</c:when>
+                                        <div class="table-responsive">
+	                                        <table class="table table-hover no-margins">
+	                                            <thead>
+	                                            <tr>
+	                                                <th>Nome</th>
+	                                                <th>Fornecedor</th>
+	                                                <th>Vencimento</th>
+	                                                <th>Valor</th>
+	                                                <th>Status</th>
+	                                            </tr>
+	                                            </thead>
+	                                            <tbody>
+	                                            	<c:forEach var="conta" items="${contas}">
+														<tr>
+															<shiro:hasPermission name="sgam.financeiro.contas_pagar.editar">
+																<td><a onclick="marcarMenuAtivo('menuFinanceiro', 'submenuContasPagar', 'collapseFinanceiro')" title="Link para acessar o cadastro da conta a pagar" href="${linkTo[ContasPagarController].editarConta(conta.id)}">${conta.nome}</a></td>
+															</shiro:hasPermission>
+															<shiro:lacksPermission name="sgam.financeiro.contas_pagar.editar">
+																<td>${conta.nome}</td>
+															</shiro:lacksPermission>
 															
-															<c:when test="${conta.status eq 'Pendente'}">
-																<td><span class="label label-warning">${conta.status}</span></td>
-															</c:when>
-															
-															<c:otherwise>
-																<td><span class="label label-danger">${conta.status}</span></td>
-															</c:otherwise>
-														</c:choose>
-													</tr>
-												</c:forEach>
-                                            </tbody>
-                                        </table>
+															<shiro:hasPermission name="sgam.cadastros.fornecedor.editar">
+																<td><a onclick="marcarMenuAtivo('menuCadastros', 'submenuFornecedores', 'collapseCadastros')" title="Link para acessar cadastro do fornecedor" href="${linkTo[FornecedorController].editarFornecedor(conta.fornecedor.id)}">${conta.fornecedor.nome}</a></td>
+															</shiro:hasPermission>
+															<shiro:lacksPermission name="sgam.cadastros.fornecedor.editar">
+																<td>${conta.fornecedor.nome}</td>
+															</shiro:lacksPermission>
+	
+															<td><fmt:formatDate pattern="dd/MM/yyyy" value="${conta.dataVencimento}" /></td>
+															<td><fmt:formatNumber value="${conta.valor}" type="currency"/></td>
+															<c:choose>
+																<c:when test="${conta.status eq 'Paga'}">
+																	<td><span class="label label-primary">${conta.status}</span></td>
+																</c:when>
+																
+																<c:when test="${conta.status eq 'Pendente'}">
+																	<td><span class="label label-warning">${conta.status}</span></td>
+																</c:when>
+																
+																<c:otherwise>
+																	<td><span class="label label-danger">${conta.status}</span></td>
+																</c:otherwise>
+															</c:choose>
+														</tr>
+													</c:forEach>
+	                                            </tbody>
+	                                        </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
-                        
-
                     </div>
-
                 </div>
             </div>
-
 
  <!-- Flot -->
     <script src="${pageContext.request.contextPath}/js/plugins/flot/jquery.flot.js"></script>

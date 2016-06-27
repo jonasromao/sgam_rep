@@ -25,7 +25,19 @@ $(document).ready(function(){
 		    {"width": "15%"},
 		    {"width": "15%"}
 		],
-		"lengthChange": false
+		"lengthChange": false,
+		dom: '<"html5buttons"B>lTfgitp',
+        buttons: [
+            {extend: 'excel', title: 'Pagamento dos associados', footer: true},
+            {extend: 'pdf', title: 'Pagamento dos associados', orientation: 'landscape', footer: true},
+            {extend: 'print', title: 'Pagamento dos associados', text: 'Imprimir', footer: true,
+                 customize: function (win){
+                     $(win.document.body).addClass('white-bg');
+                     $(win.document.body).css('font-size', '10px');
+                     $(win.document.body).find('table').addClass('compact').css('font-size', 'inherit');
+                 }
+            }
+        ]
 	});
 	
 	$('#tabelaRecursosMetricas').dataTable({
@@ -43,6 +55,18 @@ $(document).ready(function(){
 		"lengthChange": false,
 		"columnDefs": [
 		    { "visible": false, "targets": 0 }
+        ],
+        dom: '<"html5buttons"B>lTfgitp',
+        buttons: [
+            {extend: 'excel', title: 'Pagamento por recursos', footer: true},
+            {extend: 'pdf', title: 'Pagamento por recursos', orientation: 'landscape', footer: true},
+            {extend: 'print', title: 'Pagamento por recursos', text: 'Imprimir', footer: true,
+                customize: function (win){
+                    $(win.document.body).addClass('white-bg');
+                    $(win.document.body).css('font-size', '10px');
+                    $(win.document.body).find('table').addClass('compact').css('font-size', 'inherit');
+                }
+            }
         ],
         "drawCallback": function ( settings ) {
             var api = this.api();

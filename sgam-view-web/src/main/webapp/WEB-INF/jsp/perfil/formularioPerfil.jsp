@@ -78,45 +78,38 @@
 
 		 	<div class="col-lg-8">
 		 		<div class="ibox-content">
-       				<table id="tabelaFuncoes" class="table table-condensed table-hover">
-              			<thead>
-                			<tr>
-                				<th>
-                           			 <div class="checkbox checkbox-success">
-                               			<input id="checkboxAll" type="checkbox">
-                 						<label for="checkboxAll"></label>
-                           			</div>
-                             	</th>
-                    			<th>Nome</th>
-                    			<th>Menu</th>
-                    			<th>Descrição</th>
-                			</tr>
-               			</thead>
-               			<tbody>
-	               			<c:forEach items="${funcoes}" var="funcao">
-								<tr>
-									<td>
-										<div class="checkbox checkbox-success">
-                                  			<input type="checkbox" class="marcar" name="perfil.funcoes" id="${funcao.id}" value="${funcao.id}"  >
-                                  			<label for="${funcao.id}"></label>
-                              			</div>
-									</td>
-	
-									<td>
-										${funcao.nome}
-									</td>
-									
-									<td>
-										${funcao.categoriaFuncao.nome}
-									</td>
-						
-									<td>
-										${funcao.descricao}
-									</td>
-								</tr>
-		 					</c:forEach>
-             			</tbody>
-					</table>
+       				<div class="table-responsive">
+	       				<table id="tabelaFuncoes" class="table table-condensed table-hover">
+	              			<thead>
+	                			<tr>
+	                				<th>
+	                           			 <div class="checkbox checkbox-success">
+	                               			<input id="checkboxAll" type="checkbox">
+	                 						<label for="checkboxAll"></label>
+	                           			</div>
+	                             	</th>
+	                    			<th>Nome</th>
+	                    			<th>Menu</th>
+	                    			<th>Descrição</th>
+	                			</tr>
+	               			</thead>
+	               			<tbody>
+		               			<c:forEach items="${funcoes}" var="funcao">
+									<tr>
+										<td>
+											<div class="checkbox checkbox-success">
+	                                  			<input type="checkbox" class="marcar" name="perfil.funcoes" id="${funcao.id}" value="${funcao.id}"  >
+	                                  			<label for="${funcao.id}"></label>
+	                              			</div>
+										</td>
+										<td>${funcao.nome}</td>
+										<td>${funcao.categoriaFuncao.nome}</td>
+										<td>${funcao.descricao}</td>
+									</tr>
+			 					</c:forEach>
+	             			</tbody>
+						</table>
+					</div>
 		 		</div>  
 	 		</div> 
 	    </div>

@@ -11,6 +11,18 @@ $(document).ready(function(){
 				"next": "Próxima"
 			    }
 		},
+		dom: '<"html5buttons"B>lTfgitp',
+        buttons: [
+            {extend: 'excel', title: 'Contas a pagar', exportOptions: {columns: [0,1,2,3,4,5]}},
+            {extend: 'pdf', title: 'Contas a pagar', orientation: 'landscape', exportOptions: {columns: [0,1,2,3,4,5]}},
+            {extend: 'print', title: 'Contas a pagar', text: 'Imprimir', exportOptions: {columns: [0,1,2,3,4,5]},
+                customize: function (win){
+                    $(win.document.body).addClass('white-bg');
+                    $(win.document.body).css('font-size', '10px');
+                    $(win.document.body).find('table').addClass('compact').css('font-size', 'inherit');
+                }
+            }
+        ],
 		"columnDefs": [
    		    { "orderable": false, "targets": [0,6]}
    		],
