@@ -15,7 +15,7 @@ $(document).ready(function(){
 		"columnDefs": [
 		    { "orderable": false, "targets": [4,5,6]}
 		],
-		dom: '<"html5buttons"B>lTfgitp',
+		dom: '<"html5buttons"B>lTfgtpi',
         buttons: [
             {extend: 'excel', title: 'Espaços alugados', exportOptions: {columns: [0,1,2,3,4]}},
             {extend: 'pdf', title: 'Espaços alugados', orientation: 'landscape', exportOptions: {columns: [0,1,2,3,4]}},

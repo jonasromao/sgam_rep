@@ -15,7 +15,7 @@ $(function() {
 		"columnDefs": [
  		    { "orderable": false, "targets": [6]}
  		],
- 		dom: '<"html5buttons"B>lTfgitp',
+ 		dom: '<"html5buttons"B>lTfgtpi',
         buttons: [
             {extend: 'excel', title: 'Ocorrências', exportOptions: {columns: [0,1,2,3,4,5]}},
             {extend: 'pdf', title: 'Ocorrências', orientation: 'landscape', exportOptions: {columns: [0,1,2,3,4,5]}},

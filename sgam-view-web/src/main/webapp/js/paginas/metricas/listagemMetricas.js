@@ -26,7 +26,7 @@ $(document).ready(function(){
 		    {"width": "15%"}
 		],
 		"lengthChange": false,
-		dom: '<"html5buttons"B>lTfgitp',
+		dom: '<"html5buttons"B>lTfgtpi',
         buttons: [
             {extend: 'excel', title: 'Pagamento dos associados', footer: true},
             {extend: 'pdf', title: 'Pagamento dos associados', orientation: 'landscape', footer: true},
@@ -56,7 +56,7 @@ $(document).ready(function(){
 		"columnDefs": [
 		    { "visible": false, "targets": 0 }
         ],
-        dom: '<"html5buttons"B>lTfgitp',
+        dom: '<"html5buttons"B>lTfgtpi',
         buttons: [
             {extend: 'excel', title: 'Pagamento por recursos', footer: true},
             {extend: 'pdf', title: 'Pagamento por recursos', orientation: 'landscape', footer: true},

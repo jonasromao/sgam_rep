@@ -14,7 +14,7 @@ $(document).ready(function(){
 		"columnDefs": [
    		    { "orderable": false, "targets": [1,2,7]}
    		],
-   		dom: '<"html5buttons"B>lTfgitp',
+   		dom: '<"html5buttons"B>Tfgtpi',
         buttons: [
             {extend: 'excel', title: 'Fornecedores', exportOptions: {columns: [0,1,2,3,4,5,6]}},
             {extend: 'pdf', title: 'Fornecedores', orientation: 'landscape', exportOptions: {columns: [0,1,2,3,4,5,6]}},

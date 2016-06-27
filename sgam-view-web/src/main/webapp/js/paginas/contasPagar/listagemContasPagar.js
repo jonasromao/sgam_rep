@@ -11,7 +11,7 @@ $(document).ready(function(){
 				"next": "Próxima"
 			    }
 		},
-		dom: '<"html5buttons"B>lTfgitp',
+		dom: '<"html5buttons"B>lTfgtpi',
         buttons: [
             {extend: 'excel', title: 'Contas a pagar', exportOptions: {columns: [0,1,2,3,4,5]}},
             {extend: 'pdf', title: 'Contas a pagar', orientation: 'landscape', exportOptions: {columns: [0,1,2,3,4,5]}},

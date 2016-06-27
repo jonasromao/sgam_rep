@@ -24,7 +24,7 @@ $(document).ready(function(){
 		"columnDefs": [
 		    { "orderable": false, "targets": [1,6]}
         ],
-        dom: '<"html5buttons"B>lTfgitp',
+        dom: '<"html5buttons"B>lTfgtpi',
         buttons: [
             {extend: 'excel', title: 'Moradores', exportOptions: {columns: [0,1,2,3,4,5]}},
             {extend: 'pdf', title: 'Moradores', orientation: 'landscape', exportOptions: {columns: [0,1,2,3,4,5]}},
