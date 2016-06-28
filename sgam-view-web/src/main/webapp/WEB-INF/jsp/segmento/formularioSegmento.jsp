@@ -40,7 +40,7 @@
 	             	<div class="form-group">
 	             		<label class="col-sm-4 control-label">Nome</label>
 	                    <div class="col-sm-8">
-	                    	<input type="text" name="segmento.nome" class="form-control" value="${segmento.nome}">
+	                    	<input type="text" id="nomeSegmento" name="segmento.nome" class="form-control" value="${segmento.nome}">
 	                    </div>
 	                </div>
 				</div>

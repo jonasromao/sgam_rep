@@ -37,7 +37,7 @@
 		<div class="col-lg-12">
         	<div class="ibox-content">
         		<div class="table-responsive">
-					<table id="tableListagemMoradores" class="table table-striped table-bordered table-hover"> 
+					<table id="tableListagemComercios" class="table table-striped table-bordered table-hover"> 
 						<thead>
 							<tr>
 								<th>Nome fantasia</th>

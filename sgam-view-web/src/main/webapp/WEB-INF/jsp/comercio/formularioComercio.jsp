@@ -43,7 +43,7 @@
 	             	<div class="form-group">
 	             		<label class="col-sm-4 control-label">Nome Fantasia</label>
 	                    <div class="col-sm-8">
-	                    	<input id="nome" type="text" class="form-control" name="comercio.nomeFantasia" value="${comercio.nomeFantasia}">
+	                    	<input id="nome" id="nomeFantasia" type="text" class="form-control" name="comercio.nomeFantasia" value="${comercio.nomeFantasia}">
 	                    </div>
 	                </div>
 	                
@@ -154,7 +154,7 @@
 		            <div class="form-group">
 		            	<label class="col-sm-4 control-label">Número</label>
 		                <div class="col-sm-8">
-		                	<input type="text" id="numeroMorador" class="form-control" name="comercio.endereco.numero" value="${comercio.endereco.numero}">
+		                	<input type="text" id="numeroComercio" class="form-control" name="comercio.endereco.numero" value="${comercio.endereco.numero}">
 		                </div>
 		          	</div>
 		          	
