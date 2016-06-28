@@ -21,4 +21,6 @@ public interface ContasPagarService {
 	void remove(Long id) throws PersistenceException;
 	
 	List<ContasPagar> contasVencimentoMensal(Date data);
+	
+	List<ContasPagar> findAllByPeriodo(Date dataInicio, Date dataFim, String status);
 }

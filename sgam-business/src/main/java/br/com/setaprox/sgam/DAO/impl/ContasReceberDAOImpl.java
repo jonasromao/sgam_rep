@@ -12,6 +12,7 @@ import org.joda.time.DateTime;
 
 import br.com.setaprox.sgam.DAO.AbstractDAO;
 import br.com.setaprox.sgam.DAO.ContasReceberDAO;
+import br.com.setaprox.sgam.constante.Status;
 import br.com.setaprox.sgam.model.ContasReceber;
 
 @Stateless
@@ -59,16 +60,29 @@ public class ContasReceberDAOImpl extends AbstractDAO<ContasReceber> implements 
 	}
 	
 	@Override
-	public List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria){
+	public List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria, String status){
 		
 		DateTime inicio = new DateTime(dataInicio).withTimeAtStartOfDay();
 		DateTime fim = new DateTime(dataFim).withTimeAtStartOfDay();
 		
-		TypedQuery<ContasReceber> query = em.createQuery("from ContasReceber cr where (cr.dataPagamento >= :inicio and cr.dataPagamento <= :fim) and cr.categoria.nome = :categoria order by cr.dataPagamento asc", ContasReceber.class);  
+		TypedQuery<ContasReceber> query = null; 
+		
+		if(status.equals("P")){
+			query = em.createQuery("from ContasReceber cr where (cr.dataVencimento >= :inicio and cr.dataVencimento <= :fim) and cr.categoria.nome = :categoria and cr.status = :status order by cr.dataVencimento asc", ContasReceber.class);
+			query.setParameter("status", Status.RECEBIDA.getCodigo());
+		}
+		else if(status.equals("NP")){
+			query = em.createQuery("from ContasReceber cr where (cr.dataVencimento >= :inicio and cr.dataVencimento <= :fim) and cr.categoria.nome = :categoria and cr.status <> :status order by cr.dataVencimento asc", ContasReceber.class);
+			query.setParameter("status", Status.RECEBIDA.getCodigo());
+		}
+		else {
+			query = em.createQuery("from ContasReceber cr where (cr.dataVencimento >= :inicio and cr.dataVencimento <= :fim) and cr.categoria.nome = :categoria order by cr.dataVencimento asc", ContasReceber.class);
+		}
+				  
 		query.setParameter("inicio", inicio.toDate());     
 		query.setParameter("fim", fim.toDate());
 		query.setParameter("categoria", categoria);
-	   
+
 		return query.getResultList(); 
 	}
 

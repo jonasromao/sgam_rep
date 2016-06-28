@@ -59,4 +59,9 @@ public class UsuarioFacadeImpl implements UsuarioFacade {
 		
 	}
 
+	@Override
+	public void persist(Usuario usuario) throws BusinessException {
+		usuarioService.persist(usuario);
+	}
+
 }

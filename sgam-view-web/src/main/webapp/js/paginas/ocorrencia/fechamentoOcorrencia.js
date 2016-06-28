@@ -4,6 +4,19 @@ $(document).ready(function(){
         height: '485px'
     });
 	
+	$('#descricaoFechamentoOcorrencia').summernote({
+		 focus: true,
+		 height: 333,
+		 toolbar: [
+		     ['style', ['fontname', 'bold', 'italic', 'underline', 'clear']],
+			 ['fontsize', ['fontsize']],
+		     ['color', ['color']],
+		     ['para', ['ul', 'ol', 'paragraph']],
+		     ['height', ['height']],
+		     ['misc', ['fullscreen']]
+		]
+	 });
+	
 	$('#dataFechamento').datetimepicker({
 		locale:"pt-br",
 		format: 'DD/MM/YYYY',

@@ -17,4 +17,6 @@ public interface UsuarioFacade {
 	List<Usuario> findAll();
 	
 	Usuario merge( Usuario usuario ) throws BusinessException;
+	
+	void persist(Usuario usuario) throws BusinessException;
 }

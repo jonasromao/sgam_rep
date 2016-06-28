@@ -53,6 +53,9 @@ public class Usuario implements Serializable {
 	@Column( name = "telefone" )
 	private String telefone;
 	
+	@Column(name = "cargo")
+	private String cargo;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="usuario_perfil",joinColumns={@JoinColumn(name="id_usuario")},inverseJoinColumns={@JoinColumn(name="id_perfil")})
 	private List<Perfil> perfis;
@@ -111,6 +114,14 @@ public class Usuario implements Serializable {
 
 	public void setPerfis(List<Perfil> perfis) {
 		this.perfis = perfis;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 	@Override

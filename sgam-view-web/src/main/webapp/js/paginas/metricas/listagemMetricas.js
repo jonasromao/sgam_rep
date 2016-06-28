@@ -6,6 +6,34 @@ $(document).ready(function(){
 		showClear: true
 	});
 	
+	$('#tabelaTotaisMetricas').dataTable({
+		"language": {
+			"search": "Pesquisar: ",
+			"lengthMenu": "_MENU_",
+			    "info": "Exibindo de _START_ até _END_ de um total de _MAX_ registros",
+			    "paginate": {
+				"first": "Primeira Página",
+				"last": "Última Página",
+				"previous": "Anterior",
+				"next": "Próxima"
+			    }
+		},
+		"ordering": false,
+		"lengthChange": false,
+		dom: '<"html5buttons"B>lTgt',
+        buttons: [
+            {extend: 'excel', title: 'Total geral'},
+            {extend: 'pdf', title: 'Total geral', orientation: 'landscape'},
+            {extend: 'print', title: 'Total geral', text: 'Imprimir',
+                 customize: function (win){
+                     $(win.document.body).addClass('white-bg');
+                     $(win.document.body).css('font-size', '10px');
+                     $(win.document.body).find('table').addClass('compact').css('font-size', 'inherit');
+                 }
+            }
+        ]
+	});
+	
 	$('#tabelaAssociadosMetricas').dataTable({
 		"language": {
 			"search": "Pesquisar: ",
@@ -54,7 +82,7 @@ $(document).ready(function(){
 		},
 		"lengthChange": false,
 		"columnDefs": [
-		    { "visible": false, "targets": 0 }
+		    { "visible": false, "targets": 0}
         ],
         dom: '<"html5buttons"B>lTfgtpi',
         buttons: [
@@ -94,6 +122,36 @@ $(document).ready(function(){
             table.order( [ 0, 'asc' ] ).draw();
         }
     } );
+	
+	$('#tabelaContasPagarMetricas').dataTable({
+		"language": {
+			"search": "Pesquisar: ",
+			"lengthMenu": "_MENU_",
+			    "info": "Exibindo de _START_ até _END_ de um total de _MAX_ registros",
+			    "paginate": {
+				"first": "Primeira Página",
+				"last": "Última Página",
+				"previous": "Anterior",
+				"next": "Próxima"
+			    }
+		},
+		"lengthChange": false,
+		"columnDefs": [
+		    { "visible": false, "targets": 0 }
+        ],
+        dom: '<"html5buttons"B>lTfgtpi',
+        buttons: [
+            {extend: 'excel', title: 'Contas a pagar', footer: true},
+            {extend: 'pdf', title: 'Contas a pagar', orientation: 'landscape', footer: true},
+            {extend: 'print', title: 'Contas a pagar', text: 'Imprimir', footer: true,
+                customize: function (win){
+                    $(win.document.body).addClass('white-bg');
+                    $(win.document.body).css('font-size', '10px');
+                    $(win.document.body).find('table').addClass('compact').css('font-size', 'inherit');
+                }
+            }
+        ]
+	});
 	
 
 	

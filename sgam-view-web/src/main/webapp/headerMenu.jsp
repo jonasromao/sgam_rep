@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html>
+
+<%@ page import="org.apache.shiro.session.Session" %>
+<%@ page import="org.apache.shiro.SecurityUtils" %>
+<%@ page import="br.com.setaprox.sgam.model.Usuario" %>
+    
+<%
+Session sessao = SecurityUtils.getSubject().getSession();
+Usuario usuario = (Usuario) sessao.getAttribute("usuarioLogado");
+
+request.setAttribute("nomeUsuario", usuario.getNome().split(" ")[0]);
+request.setAttribute("cargoUsuario", usuario.getCargo());
+%>
+
 <html>
 
 <head>
@@ -51,8 +64,8 @@
                             <img alt="image" class="img-circle" src="${pageContext.request.contextPath}/img/profile_small.jpg" />
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"> <shiro:principal /> </strong>
-                             </span> <span class="text-muted text-xs block">Presidente <b class="caret"></b></span> </span> </a>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"> ${nomeUsuario} </strong>
+                             </span> <span class="text-muted text-xs block">${cargoUsuario} <b class="caret"></b></span> </span> </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a href="${linkTo[UsuarioController].editarUsuarioLogado}">Cadastro</a></li>
                                 <li class="divider"></li>
@@ -129,6 +142,12 @@
 	                        <a href="#"><i class="fa fa-bank"></i> <span class="nav-label">Financeiro</span><span class="fa arrow"></span></a>
 	                        <ul id="collapseFinanceiro" class="nav nav-second-level collapse">
 	                            
+	                            <shiro:hasPermission name="sgam.financeiro.fluxo_caixa.consultar">
+		                            <li id="submenuFluxoCaixa">
+		                            	<a onclick="marcarMenuAtivo('menuFinanceiro', 'submenuFluxoCaixa', 'collapseFinanceiro')" href="${linkTo[MetricasController].listagemMetricas}">Fluxo de Caixa</a>
+		                            </li>
+	                            </shiro:hasPermission>
+	                            
 	                            <shiro:hasPermission name="sgam.financeiro.contas_pagar.consultar">
 		                            <li id="submenuContasPagar">
 		                            	<a onclick="marcarMenuAtivo('menuFinanceiro', 'submenuContasPagar', 'collapseFinanceiro')" href="${linkTo[ContasPagarController].listagemContasPagar}">Contas a Pagar</a>
@@ -145,10 +164,10 @@
 	                    </li>
                     </shiro:hasPermission>
                     
-                    <li id="menuMetricas">
+                    <%-- <li id="menuMetricas">
 	                    <a onclick="marcarMenuAtivo('menuMetricas', '', '')" href="${linkTo[MetricasController].listagemMetricas}">
 	                    <i class="fa fa-pie-chart"></i> <span class="nav-label">Métricas</span> </a>
-	                </li>
+	                </li> --%>
                     
                     <shiro:hasPermission name="sgam.configuracoes">
 	                    <li id="menuConfiguracao">

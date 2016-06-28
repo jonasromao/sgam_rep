@@ -54,8 +54,8 @@ public class ContasReceberFacadeImpl implements ContasReceberFacade {
 	}
 
 	@Override
-	public List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria) {
-		return contasReceberService.findAllByPeriodo(dataInicio, dataFim, categoria);
+	public List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria, String status) {
+		return contasReceberService.findAllByPeriodo(dataInicio, dataFim, categoria, status);
 	}
 
 }

@@ -23,4 +23,6 @@ public interface ContasPagarDAO {
 	List<ContasPagar> findAll();
 	
 	List<ContasPagar> contasVencimentoMensal(Date data);
+	
+	List<ContasPagar> findAllByPeriodo(Date dataInicio, Date dataFim, String status);
 }

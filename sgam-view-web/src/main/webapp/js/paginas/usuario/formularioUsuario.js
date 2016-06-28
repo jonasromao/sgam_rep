@@ -52,4 +52,29 @@ $(document).ready(function(){
 		});
 	});
 	
+	$('#usuarioForm').validate({
+        rules: {
+            'usuario.nome': {
+                required: true,
+                maxlength: 100
+            },
+            'usuario.cargo': {
+                required: true
+            },
+            'usuario.email': {
+            	required: true,
+            	email: true
+            },
+            'usuario.telefone': {
+            	required: true
+            },
+            'usuario.login': {
+            	required: true
+            },
+            'usuario.senha': {
+            	required: true
+            }
+        }
+    });
+	
 });

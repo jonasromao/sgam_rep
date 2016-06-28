@@ -204,8 +204,8 @@ public class ContasReceberServiceImpl implements ContasReceberService {
 	}
 
 	@Override
-	public List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria) {
-		return contasReceberDAO.findAllByPeriodo(dataInicio, dataFim, categoria);
+	public List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria, String status) {
+		return contasReceberDAO.findAllByPeriodo(dataInicio, dataFim, categoria, status);
 	}
 
 	

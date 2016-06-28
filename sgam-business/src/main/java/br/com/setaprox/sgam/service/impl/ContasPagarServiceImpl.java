@@ -66,4 +66,9 @@ public class ContasPagarServiceImpl implements ContasPagarService {
 		return contasPagarDAO.contasVencimentoMensal(data);
 	}
 
+	@Override
+	public List<ContasPagar> findAllByPeriodo(Date dataInicio, Date dataFim, String status) {
+		return contasPagarDAO.findAllByPeriodo(dataInicio, dataFim, status);
+	}
+
 }

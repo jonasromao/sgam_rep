@@ -14,7 +14,6 @@ import br.com.setaprox.sgam.DAO.AbstractDAO;
 import br.com.setaprox.sgam.DAO.ContasPagarDAO;
 import br.com.setaprox.sgam.constante.Status;
 import br.com.setaprox.sgam.model.ContasPagar;
-import br.com.setaprox.sgam.model.ContasReceber;
 
 @Stateless
 @LocalBean
@@ -56,6 +55,32 @@ public class ContasPagarDAOImpl extends AbstractDAO<ContasPagar> implements Cont
 		query.setParameter("fim", dataFim.toDate());
 		query.setParameter("status", Status.ATRASADA.getCodigo());
 	   
+		return query.getResultList(); 
+	}
+	
+	@Override
+	public List<ContasPagar> findAllByPeriodo(Date dataInicio, Date dataFim, String status){
+		
+		DateTime inicio = new DateTime(dataInicio).withTimeAtStartOfDay();
+		DateTime fim = new DateTime(dataFim).withTimeAtStartOfDay();
+		
+		TypedQuery<ContasPagar> query = null; 
+		
+		if(status.equals("P")){
+			query = em.createQuery("from ContasPagar cr where (cr.dataVencimento >= :inicio and cr.dataVencimento <= :fim) and cr.status = :status order by cr.dataVencimento asc", ContasPagar.class);
+			query.setParameter("status", Status.PAGA.getCodigo());
+		}
+		else if(status.equals("NP")){
+			query = em.createQuery("from ContasPagar cr where (cr.dataVencimento >= :inicio and cr.dataVencimento <= :fim) and cr.status <> :status order by cr.dataVencimento asc", ContasPagar.class);
+			query.setParameter("status", Status.PAGA.getCodigo());
+		}
+		else {
+			query = em.createQuery("from ContasPagar cr where (cr.dataVencimento >= :inicio and cr.dataVencimento <= :fim) order by cr.dataVencimento asc", ContasPagar.class);
+		}
+				  
+		query.setParameter("inicio", inicio.toDate());     
+		query.setParameter("fim", fim.toDate());
+
 		return query.getResultList(); 
 	}
 

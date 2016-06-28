@@ -66,12 +66,13 @@ public class UsuarioController {
 			
 			validator.onErrorRedirectTo(this).formularioUsuario();
 			
-			Usuario usuarioRetorno = usuarioFacade.merge(usuario);
-			
-			if(usuarioRetorno != null){
-				result.redirectTo(this).listagemUsuario();	
-			} else {
+			if(usuario.getId() == null || usuario.getId() == 0){
+				usuarioFacade.persist(usuario);
 				result.redirectTo(this).formularioUsuario();
+			}
+			else {
+				usuarioFacade.merge(usuario);
+				result.redirectTo(this).listagemUsuario();
 			}
 			
 		} catch (BusinessException e) {

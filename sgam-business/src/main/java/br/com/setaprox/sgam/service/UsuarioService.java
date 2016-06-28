@@ -22,4 +22,6 @@ public interface UsuarioService {
 	
 	void remove( Long id ) throws BusinessException;
 	
+	void persist(Usuario usuario) throws BusinessException;
+	
 }

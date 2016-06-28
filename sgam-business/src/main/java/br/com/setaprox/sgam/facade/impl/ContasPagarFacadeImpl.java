@@ -48,4 +48,9 @@ public class ContasPagarFacadeImpl implements ContasPagarFacade {
 		return contasPagarService.contasVencimentoMensal(data);
 	}
 
+	@Override
+	public List<ContasPagar> findAllByPeriodo(Date dataInicio, Date dataFim, String status) {
+		return contasPagarService.findAllByPeriodo(dataInicio, dataFim, status);
+	}
+
 }

@@ -21,6 +21,6 @@ public interface ContasReceberFacade {
 	
 	List<ContasReceber> findAllByMorador(Long idMorador);
 	
-	List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria);
+	List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria, String status);
 	
 }

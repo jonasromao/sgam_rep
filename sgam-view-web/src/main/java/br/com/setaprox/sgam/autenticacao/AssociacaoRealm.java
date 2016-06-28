@@ -21,7 +21,6 @@ import br.com.setaprox.sgam.model.Funcao;
 import br.com.setaprox.sgam.model.Perfil;
 import br.com.setaprox.sgam.model.Usuario;
 import br.com.setaprox.sgam.utils.LookupGenerate;
-import br.com.setaprox.sgam.utils.SecurityUtil;
 
 
 

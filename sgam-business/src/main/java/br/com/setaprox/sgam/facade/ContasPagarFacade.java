@@ -17,4 +17,6 @@ public interface ContasPagarFacade {
 	void remove(Long id);
 	
 	List<ContasPagar> contasVencimentoMensal(Date data);
+	
+	List<ContasPagar> findAllByPeriodo(Date dataInicio, Date dataFim, String status);
 }

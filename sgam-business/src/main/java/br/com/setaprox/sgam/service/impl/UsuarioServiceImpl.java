@@ -83,4 +83,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 	}
 
+	@Override
+	public void persist(Usuario usuario) throws BusinessException {
+		usuarioDAO.persist(usuario);
+	}
+
 }

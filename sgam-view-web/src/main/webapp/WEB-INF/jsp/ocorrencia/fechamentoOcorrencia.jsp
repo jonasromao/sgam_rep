@@ -15,9 +15,7 @@
              <li>
                  <a href="${linkTo[LoginController].paginaInicial}">Inicio</a>
              </li>
-             <li>
-                 <span>Cadastros</span>
-             </li>
+ 
              <li class="active">
                  <a href="${linkTo[OcorrenciaController].listagemOcorrencias}"><strong>Ocorrências</strong></a>
              </li>
@@ -36,9 +34,7 @@
 	         <div class="ibox float-e-margins">
 	             <div class="ibox-content no-padding ">
 	             	<div id="descricaoFechamentoOcorrencia" class="click2edit wrapper p-md" >
-	             		<div class="height-scroll">
-	             			${ocorrencia.descricao}
-	             		</div>
+	             		${ocorrencia.descricao}
 	             	</div>
 	             </div>
 	       	</div>

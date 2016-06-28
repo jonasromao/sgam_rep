@@ -45,6 +45,13 @@
 	                    	<input type="text" class="form-control" name="usuario.nome" value="${usuario.nome}">
 	                    </div>
 	                </div>
+	                
+	                <div class="form-group">
+	             		<label class="col-sm-4 control-label">Cargo</label>
+	                    <div class="col-sm-8">
+	                    	<input type="text" class="form-control" name="usuario.cargo" value="${usuario.cargo}">
+	                    </div>
+	                </div>
 
 	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Email</label>
@@ -148,6 +155,11 @@
 	<input type="hidden" class="perfisMarcados" value="${perfil.id}" />
 </c:forEach>
 
+<script src="${pageContext.request.contextPath}/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-validation-messages.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/plugins/jasny/jasny-bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/plugins/dataTables/datatables.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/paginas/usuario/formularioUsuario.js"></script>
 
