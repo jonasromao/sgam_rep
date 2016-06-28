@@ -102,11 +102,9 @@ public class Morador extends AbstractEntity<Morador> implements Serializable {
 	private List<ContasReceber> contas;
 	
 	public Morador() {
-		
 		if(endereco == null) {
 			endereco = new Endereco();
 		}
-		
 	}
 
 	public Long getId() {
