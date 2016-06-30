@@ -11,7 +11,9 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
 import br.com.setaprox.sgam.facade.ComercioFacade;
+import br.com.setaprox.sgam.facade.SegmentoFacade;
 import br.com.setaprox.sgam.model.Comercio;
+import br.com.setaprox.sgam.model.Segmento;
 
 @Controller
 public class ComercioController {
@@ -22,11 +24,17 @@ public class ComercioController {
 	@Inject
 	private ComercioFacade comercioFacade;
 	
+	@Inject
+	private SegmentoFacade segmentoFacade;
+	
 	@Get("/comercio/formulario")
-	public void formularioComercio(){}
+	public void formularioComercio(){
+		List<Segmento> segmentos = segmentoFacade.findAll();
+		result.include("segmentos", segmentos);
+	}
 	
 	@Get("/comercio/listagem")
-	public void listagemComercios(){
+	public void listagemComercio(){
 		List<Comercio> comercios = comercioFacade.findAll();
 		result.include("comercios", comercios);
 	}
@@ -36,7 +44,7 @@ public class ComercioController {
 		try{
 			if(comercio.getId() != null && comercio.getId() > 0){
 				comercioFacade.editar(comercio);
-				result.redirectTo(this).listagemComercios();
+				result.redirectTo(this).listagemComercio();
 			}
 			else {
 				comercioFacade.persist(comercio);

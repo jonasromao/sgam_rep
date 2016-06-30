@@ -7,6 +7,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.PersistenceException;
 
+import org.joda.time.DateTime;
+
 import br.com.setaprox.sgam.DAO.ComercioDAO;
 import br.com.setaprox.sgam.model.Comercio;
 import br.com.setaprox.sgam.service.ComercioService;
@@ -20,6 +22,7 @@ public class ComercioServiceImpl implements ComercioService {
 	
 	@Override
 	public void persist(Comercio comercio) {
+		comercio.setDataCadastro(new DateTime().toDate());
 		comercioDAO.persist(comercio);
 	}
 

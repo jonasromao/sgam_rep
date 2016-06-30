@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
-<shiro:hasPermission name="sgam.cadastros.morador.consultar">
+<shiro:hasPermission name="sgam.cadastros.comercio.consultar">
 
 <%@ include file="/headerMenu.jsp" %> 
 
@@ -22,7 +22,7 @@
                  <strong>Comércios</strong>
              </li>
 			
-			<shiro:hasPermission name="sgam.cadastros.morador.incluir">
+			<shiro:hasPermission name="sgam.cadastros.comercio.incluir">
 				<div class="pull-right">
 	            	<a class="label label-primary labelButton" href="${linkTo[ComercioController].formularioComercio}">Novo</a>
 	            </div>
@@ -43,7 +43,6 @@
 								<th>Nome fantasia</th>
 								<th>Razão social</th>
 								<th>Segmento</th>
-								<th>Inicio Atividade</th>
 								<th>Telefone</th>
 								<th>Responsável</th>
 								<th>Opções</th>
@@ -56,16 +55,15 @@
 									<td>${comercio.nomeFantasia}</td>
 									<td>${comercio.razaoSocial}</td>
 									<td>${comercio.segmento.nome}</td>
-									<td>${comercio.inicioAtividade}</td>
 									<td>${comercio.telefone}</td>
 									<td>${comercio.responsavel}</td>
 									
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
-										<shiro:hasPermission name="sgam.cadastros.morador.editar">
+										<shiro:hasPermission name="sgam.cadastros.comercio.editar">
 											<a title="Editar" class="editar" href="${linkTo[ComercioController].edita(comercio.id)}"> <i class="fa fa-edit"></i> </a> &nbsp;
 										</shiro:hasPermission>
 										
-										<shiro:hasPermission name="sgam.cadastros.morador.excluir">
+										<shiro:hasPermission name="sgam.cadastros.comercio.excluir">
 											<a title="Excluir" class="remover" href="${linkTo[ComercioController].remove(comercio.id)}"> <i class="fa fa-trash-o"></i> </a>
 										</shiro:hasPermission> 
 									</td>
@@ -87,6 +85,6 @@
 
 </shiro:hasPermission>
 
-<shiro:lacksPermission name="sgam.cadastros.morador.consultar">
+<shiro:lacksPermission name="sgam.cadastros.comercio.consultar">
 	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
 </shiro:lacksPermission>

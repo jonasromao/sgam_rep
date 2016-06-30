@@ -3,6 +3,7 @@ package br.com.setaprox.sgam.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +20,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
 @Table(name = "comercio")
-public class Comercio implements Serializable {
+public class Comercio extends AbstractEntity<Comercio> implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -54,12 +55,21 @@ public class Comercio implements Serializable {
 	@Column(name = "observacao")
 	private String observacao;
 	
+	@Column(name = "data_cadastro")
+	private Date dataCadastro;
+	
+	@Column(name = "data_associado")
+	private Date dataAssociado;
+	
+	@Column(name = "responsavel")
+	private String responsavel;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_segmento")
 	private Segmento segmento;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_endereco")
+	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE})
+	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
 	private Endereco endereco;
 
 	public Long getId() {
@@ -148,6 +158,38 @@ public class Comercio implements Serializable {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public Date getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+	public Date getDataAssociado() {
+		return dataAssociado;
+	}
+
+	public void setDataAssociado(Date dataAssociado) {
+		this.dataAssociado = dataAssociado;
+	}
+
+	public String getResponsavel() {
+		return responsavel;
+	}
+
+	public void setResponsavel(String responsavel) {
+		this.responsavel = responsavel;
 	}
 
 	@Override

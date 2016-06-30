@@ -14,21 +14,20 @@ $(document).ready(function(){
 		"autoWidth": false,
 		"columns": [
 		    {"width": "30%"},
-		    {"width": "10%"},
+		    {"width": "24%"},
 		    {"width": "12%"},
-		    {"width": "14%"},
 		    {"width": "14%"},
 		    {"width": "12%"},
 		    {"width": "8%"}
 		],
 		"columnDefs": [
-		    { "orderable": false, "targets": [3,4]}
+		    { "orderable": false, "targets": [3,5]}
         ],
         dom: '<"html5buttons"B>lTfgtpi',
         buttons: [
-            {extend: 'excel', title: 'Moradores', exportOptions: {columns: [0,1,2,3,4,5]}},
-            {extend: 'pdf', title: 'Moradores', orientation: 'landscape', exportOptions: {columns: [0,1,2,3,4,5]}},
-            {extend: 'print', title: 'Moradores', text: 'Imprimir', exportOptions: {columns: [0,1,2,3,4,5]},
+            {extend: 'excel', title: 'Moradores', exportOptions: {columns: [0,1,2,3,4]}},
+            {extend: 'pdf', title: 'Moradores', orientation: 'landscape', exportOptions: {columns: [0,1,2,3,4]}},
+            {extend: 'print', title: 'Moradores', text: 'Imprimir', exportOptions: {columns: [0,1,2,3,4]},
                 customize: function (win){
                     $(win.document.body).addClass('white-bg');
                     $(win.document.body).css('font-size', '10px');

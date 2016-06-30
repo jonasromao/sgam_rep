@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
-<shiro:hasPermission name="sgam.configuracoes.categoria_contas_receber.editar">
+<shiro:hasPermission name="sgam.configuracoes.segmento.incluir">
 
 <%@ include file="/headerMenu.jsp" %> 
 
@@ -23,7 +23,7 @@
              </li>
 
 			<div class="pull-right">
-            	<a class="label label-default" href="${linkTo[SegmentoController].listagemSegmentos}"> <i class="fa fa-angle-left"></i><i class="fa fa-angle-left"></i> Voltar</a>
+            	<a class="label label-default" href="${linkTo[SegmentoController].listagemSegmento}"> <i class="fa fa-angle-left"></i><i class="fa fa-angle-left"></i> Voltar</a>
             </div>
 
          </ol>
@@ -52,7 +52,7 @@
 						<div class="ibox-content">
 							<div class="form-group">
 			                    <div class="col-sm-12">
-			                        <a class="btn btn-outline btn-default" href="${linkTo[SegmentoController].listagemSegmentos}"> Cancelar</a>
+			                        <a class="btn btn-outline btn-default" href="${linkTo[SegmentoController].listagemSegmento}"> Cancelar</a>
 			                        <button class="btn btn-primary" type="submit"> <i class="fa fa-check"></i> Salvar</button>
 			                    </div>
 			                </div>			
@@ -83,6 +83,6 @@
 
 </shiro:hasPermission>
 
-<shiro:lacksPermission name="sgam.configuracoes.categoria_contas_receber.editar">
+<shiro:lacksPermission name="sgam.configuracoes.segmento.incluir">
 	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
 </shiro:lacksPermission>
