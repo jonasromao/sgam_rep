@@ -16,7 +16,7 @@ import br.com.setaprox.sgam.service.SegmentoService;
 public class SegmentoServiceImpl implements SegmentoService {
 
 	@EJB
-	private SegmentoDAO segmentoDAO; 
+	private SegmentoDAO segmentoDAO;
 	
 	@Override
 	public void persist(Segmento segmento) {

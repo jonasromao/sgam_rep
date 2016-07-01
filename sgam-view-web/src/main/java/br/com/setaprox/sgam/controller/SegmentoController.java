@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
@@ -12,6 +13,7 @@ import br.com.caelum.vraptor.view.Results;
 import br.com.setaprox.sgam.facade.SegmentoFacade;
 import br.com.setaprox.sgam.model.Segmento;
 
+@Controller
 public class SegmentoController {
 	
 	@Inject
@@ -24,17 +26,17 @@ public class SegmentoController {
 	public void formularioSegmento(){}
 	
 	@Get("/segmento/listagem")
-	public void listagemSegmentos(){
+	public void listagemSegmento(){
 		List<Segmento> segmentos = segmentoFacade.findAll();
 		result.include("segmentos", segmentos);
 	}
 	
 	@Post("/segmento/cadastro")
-	public void cadastraComercio(Segmento segmento){
+	public void cadastraSegmento(Segmento segmento){
 		try{
 			if(segmento.getId() != null && segmento.getId() > 0){
 				segmentoFacade.editar(segmento);
-				result.redirectTo(this).listagemSegmentos();
+				result.redirectTo(this).listagemSegmento();
 			}
 			else {
 				segmentoFacade.persist(segmento);

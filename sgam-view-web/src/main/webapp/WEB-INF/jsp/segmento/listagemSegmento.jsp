@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
-<shiro:hasPermission name="sgam.cadastros.recurso.consultar">
+<shiro:hasPermission name="sgam.configuracoes.segmento.consultar">
 
 <%@ include file="/headerMenu.jsp" %> 
 
@@ -23,7 +23,7 @@
                  <strong>Segmentos</strong>
              </li>
 
-			<shiro:hasPermission name="sgam.cadastros.recurso.incluir">
+			<shiro:hasPermission name="sgam.configuracoes.segmento.incluir">
 				<div class="pull-right">
 	            	<a class="label label-primary labelButton" href="${linkTo[SegmentoController].formularioSegmento}">Novo</a>
 	            </div>
@@ -50,12 +50,12 @@
 								<tr class="linhaSegmento">
 									<td>${segmento.nome}</td>
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
-										<shiro:hasPermission name="sgam.cadastros.recurso.editar">
-											<a title="Editar" class="editar" href="${linkTo[SegmentoController].editar(segmento.id)}"> <i class="fa fa-edit"></i> </a> &nbsp;
+										<shiro:hasPermission name="sgam.configuracoes.segmento.editar">
+											<a title="Editar" class="editar" href="${linkTo[SegmentoController].edita(segmento.id)}"> <i class="fa fa-edit"></i> </a> &nbsp;
 										</shiro:hasPermission> 
 										
-										<shiro:hasPermission name="sgam.cadastros.recurso.excluir">
-											<a title="Excluir" class="remover" href="${linkTo[SegmentoController].remover(segmento.id)}"> <i class="fa fa-trash-o"></i> </a> &nbsp;
+										<shiro:hasPermission name="sgam.configuracoes.segmento.excluir">
+											<a title="Excluir" class="remover" href="${linkTo[SegmentoController].remove(segmento.id)}"> <i class="fa fa-trash-o"></i> </a> &nbsp;
 										</shiro:hasPermission>
 									</td>
 								</tr>
@@ -75,6 +75,6 @@
 
 </shiro:hasPermission>
 
-<shiro:lacksPermission name="sgam.cadastros.recurso.consultar">
+<shiro:lacksPermission name="sgam.configuracoes.segmento.consultar">
 	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
 </shiro:lacksPermission>

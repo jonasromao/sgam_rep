@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
-<shiro:hasPermission name="sgam.cadastros.morador.incluir">
+<shiro:hasPermission name="sgam.cadastros.comercio.incluir">
 
 <%@ include file="/headerMenu.jsp" %> 
 
@@ -21,11 +21,11 @@
                  <span>Cadastros</span>
              </li>
              <li class="active">
-                 <a href="${linkTo[ComercioController].listagemMoradores}"><strong>Comércios</strong></a>
+                 <a href="${linkTo[ComercioController].listagemComercio}"><strong>Comércios</strong></a>
              </li>
 
 			<div class="pull-right">
-            	<a class="label label-default" href="${linkTo[ComercioController].listagemComercios}"> <i class="fa fa-angle-left"></i><i class="fa fa-angle-left"></i> Voltar</a>
+            	<a class="label label-default" href="${linkTo[ComercioController].listagemComercio}"> <i class="fa fa-angle-left"></i><i class="fa fa-angle-left"></i> Voltar</a>
             </div>
 
          </ol>
@@ -37,8 +37,8 @@
  		<form id="comercioForm" method="post" class="form-horizontal"  action="${linkTo[ComercioController].cadastraComercio}">
 			<div class="col-lg-6">
 		        <div class="ibox-content">
-	         		<input type="hidden" name="comercio.id" value="${morador.id }"/>
-	         		<input type="hidden" name="comercio.segmento.id" value="${comercio.segmento.id}" />
+	         		<input type="hidden" name="comercio.id" value="${comercio.id }"/>
+	         		<input type="hidden" name="comercio.dataCadastro" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${comercio.dataCadastro}" />" />
 	         		
 	             	<div class="form-group">
 	             		<label class="col-sm-4 control-label">Nome Fantasia</label>
@@ -82,8 +82,11 @@
 	             		<label class="col-sm-4 control-label">Segmento</label>
 	                    <div class="col-sm-8">
 	                    	<select class="form-control" name="comercio.segmento.id">
-	                    		<option>Selecione</option>
-	                    	</select>
+	                    		<option value="0">Selecione</option>
+		                         <c:forEach items="${segmentos}" var="segmento">
+		                         	<option value="${segmento.id}" <c:if test="${comercio.segmento.id == segmento.id}">selected="selected"</c:if> >${segmento.nome} </option>
+		                         </c:forEach>
+		                    </select>                    	
 	                    </div>
 	                </div>
 	                
@@ -179,22 +182,24 @@
 		                </div>
 		          	</div>
 			    </div>
+			    
+			    <br/>
+		   	
+			   	<div class="row">
+			    	<div class="col-lg-12">
+			    		<div class="ibox-content">
+					    	<div class="form-group">
+				            	<label class="col-sm-4 control-label">Observação</label>
+				                <div class="col-sm-8">
+				                	<textarea class="form-control" name="comercio.observacao" rows="4" cols="">${comercio.observacao}</textarea>
+				                </div>
+				          	</div>
+			    		</div>
+			    	</div>
+			    </div>
 		   	</div>
 		   	
-		   	<br/>
 		   	
-		   	<div class="row">
-		    	<div class="col-lg-12">
-		    		<div class="ibox-content">
-				    	<div class="form-group">
-			            	<label class="col-sm-4 control-label">Observação</label>
-			                <div class="col-sm-8">
-			                	<textarea class="form-control" name="comercio.observacao" rows="4" cols="">${comercio.observacao}</textarea>
-			                </div>
-			          	</div>
-		    		</div>
-		    	</div>
-		    </div>
 		   	
 	   	</form>         
     </div>
@@ -214,6 +219,6 @@
 
 </shiro:hasPermission>
 
-<shiro:lacksPermission name="sgam.cadastros.morador.incluir">
+<shiro:lacksPermission name="sgam.cadastros.comercio.incluir">
 	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
 </shiro:lacksPermission>

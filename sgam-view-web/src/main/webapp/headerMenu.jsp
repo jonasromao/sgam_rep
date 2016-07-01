@@ -100,6 +100,12 @@ request.setAttribute("cargoUsuario", usuario.getCargo());
 		                            </li>
 	                            </shiro:hasPermission>
 	                            
+	                            <shiro:hasPermission name="sgam.cadastros.comercio.consultar">
+		                            <li id="submenuComercio"> 
+		                            	<a id="linkMoradorListagem" onclick="marcarMenuAtivo('menuCadastros', 'submenuComercio', 'collapseCadastros')" href="${linkTo[ComercioController].listagemComercio}">Comércios</a>
+		                            </li>
+	                            </shiro:hasPermission>
+	                            
 	                            <shiro:hasPermission name="sgam.cadastros.fornecedor.consultar">
 		                            <li id="submenuFornecedores"> 
 		                            	<a onclick="marcarMenuAtivo('menuCadastros', 'submenuFornecedores', 'collapseCadastros')" href="${linkTo[FornecedorController].listagemFornecedores}">Fornecedores</a>
@@ -129,7 +135,7 @@ request.setAttribute("cargoUsuario", usuario.getCargo());
 	                            
 	                            <shiro:hasPermission name="sgam.faturamento.aluguel_comercio.consultar">
 		                            <li id="submenuComercios"> 
-		                            	<a onclick="marcarMenuAtivo('menuFaturamento', 'submenuComercios', 'collapseFaturamento')" href="${linkTo[AluguelComercioController].listagemAluguelComercio}">Comércios Informais</a>
+		                            	<a onclick="marcarMenuAtivo('menuFaturamento', 'submenuComercios', 'collapseFaturamento')" href="${linkTo[AluguelComercioController].listagemAluguelComercio}">Comerciantes Informais</a>
 		                            </li>
 	                            </shiro:hasPermission>
 	                            
@@ -164,15 +170,16 @@ request.setAttribute("cargoUsuario", usuario.getCargo());
 	                    </li>
                     </shiro:hasPermission>
                     
-                    <%-- <li id="menuMetricas">
-	                    <a onclick="marcarMenuAtivo('menuMetricas', '', '')" href="${linkTo[MetricasController].listagemMetricas}">
-	                    <i class="fa fa-pie-chart"></i> <span class="nav-label">Métricas</span> </a>
-	                </li> --%>
-                    
                     <shiro:hasPermission name="sgam.configuracoes">
 	                    <li id="menuConfiguracao">
 	                        <a href="#"><i class="fa fa fa-cogs"></i> <span class="nav-label">Configurações </span><span class="fa arrow"></span></a>
 	                        <ul id="collapseConfiguracao" class="nav nav-second-level collapse">
+	                            
+	                            <shiro:hasPermission name="sgam.configuracoes.segmento.consultar">
+		                            <li id="submenuSegmento">
+		                            	<a onclick="marcarMenuAtivo('menuConfiguracao', 'submenuSegmento', 'collapseConfiguracao')" href="${linkTo[SegmentoController].listagemSegmento}">Segmentos</a>
+		                            </li>
+	                            </shiro:hasPermission>
 	                            
 	                            <shiro:hasPermission name="sgam.configuracoes.categoria_contas_receber.consultar">
 		                            <li id="submenuCategoriasReceber">
