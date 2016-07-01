@@ -27,19 +27,22 @@ import br.com.setaprox.sgam.utils.LookupGenerate;
 public class AssociacaoRealm implements Realm, Authorizer {
 	
 	@Override
-	public boolean isPermitted(PrincipalCollection principals, String permission) {
-		//return SecurityUtil.temPermissao(permission);		
+	public boolean isPermitted(PrincipalCollection principals, String permission) {		
 		try{
 			Session sessao = SecurityUtils.getSubject().getSession();
 			Usuario usuario = (Usuario) sessao.getAttribute("usuarioLogado");
+			
+			String[] funcoesTela = permission.split(":");
 			
 			if(usuario != null){
 				if(usuario.getPerfis() != null){
 					for(Perfil perfil : usuario.getPerfis()){
 						if(perfil.getFuncoes() != null){
 							for(Funcao funcao : perfil.getFuncoes()){
-								if(funcao.getCodigo().contains(permission)){
-									return true;
+								for(String check : funcoesTela){
+									if(funcao.getCodigo().contains(check)){
+										return true;
+									}	
 								}
 							}
 						}
