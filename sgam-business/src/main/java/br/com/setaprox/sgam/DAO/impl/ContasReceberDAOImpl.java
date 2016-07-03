@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.joda.time.DateTime;
@@ -13,6 +14,7 @@ import org.joda.time.DateTime;
 import br.com.setaprox.sgam.DAO.AbstractDAO;
 import br.com.setaprox.sgam.DAO.ContasReceberDAO;
 import br.com.setaprox.sgam.constante.Status;
+import br.com.setaprox.sgam.constante.UnidadeMedida;
 import br.com.setaprox.sgam.model.ContasReceber;
 
 @Stateless
@@ -84,6 +86,36 @@ public class ContasReceberDAOImpl extends AbstractDAO<ContasReceber> implements 
 		query.setParameter("categoria", categoria);
 
 		return query.getResultList(); 
+	}
+	
+	@Override
+	public List<Object> findToChart(Date dataInicio, Date dataFim, String status, String agrupamento){
+		
+		Query query = null; 
+				
+		if(agrupamento.equalsIgnoreCase(UnidadeMedida.DIA.getCodigo())){
+			query = em.createQuery("select cr.dataVencimento, SUM(cr.valor) from ContasReceber cr where (cr.dataVencimento >= :inicio and cr.dataVencimento <= :fim) and cr.status = :status group by cr.dataVencimento order by cr.dataVencimento asc");
+		}
+		else if(agrupamento.equalsIgnoreCase(UnidadeMedida.MES.getCodigo())){
+			query = em.createQuery("select MONTH(cr.dataVencimento), SUM(cr.valor) from ContasReceber cr where (cr.dataVencimento >= :inicio and cr.dataVencimento <= :fim) and cr.status = :status group by MONTH(cr.dataVencimento) ");
+		}
+		
+		if(status != null){
+			if(status.equalsIgnoreCase(Status.RECEBIDA.getCodigo())){
+				query.setParameter("status", Status.RECEBIDA.getCodigo());	
+			}
+			else if(status.equalsIgnoreCase(Status.PENDENTE.getCodigo())){
+				query.setParameter("status", Status.PENDENTE.getCodigo());
+			}
+			else if(status.equalsIgnoreCase(Status.ATRASADA.getCodigo())){
+				query.setParameter("status", Status.ATRASADA.getCodigo());
+			}	
+		}
+		
+		query.setParameter("inicio", dataInicio);     
+		query.setParameter("fim", dataFim);
+		
+		return query.getResultList();
 	}
 
 }

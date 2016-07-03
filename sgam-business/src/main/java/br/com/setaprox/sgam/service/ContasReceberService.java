@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Local;
 import javax.persistence.PersistenceException;
 
+import br.com.setaprox.sgam.dto.GraficoDTO;
 import br.com.setaprox.sgam.model.Aluguel;
 import br.com.setaprox.sgam.model.AluguelComercio;
 import br.com.setaprox.sgam.model.CategoriaContasReceber;
@@ -36,5 +37,7 @@ public interface ContasReceberService {
 	List<ContasReceber> findAllByMorador(Long idMorador);
 	
 	List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria, String status);
+	
+	GraficoDTO findToChart(Date dataInicio, Date dataFim, String status, String agrupamento);
 
 }

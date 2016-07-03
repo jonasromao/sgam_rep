@@ -5,9 +5,16 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.joda.time.DateTime;
+
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
 import br.com.setaprox.sgam.constante.Categoria;
+import br.com.setaprox.sgam.constante.Status;
+import br.com.setaprox.sgam.constante.UnidadeMedida;
+import br.com.setaprox.sgam.dto.GraficoDTO;
 import br.com.setaprox.sgam.facade.ContasPagarFacade;
 import br.com.setaprox.sgam.facade.ContasReceberFacade;
 import br.com.setaprox.sgam.model.ContasPagar;
@@ -70,5 +77,24 @@ public class MetricasController {
 		}
 		
 		result.redirectTo(this).listagemMetricas();
+	}
+	
+	@Get("metricas/motaGrafico/{agrupamento}")
+	public void montaGrafico(String agrupamento){
+		GraficoDTO dados = null;
+		DateTime dataInicio = null;
+		DateTime dataFim = null;
+		
+		if(agrupamento.equalsIgnoreCase(UnidadeMedida.DIA.getCodigo())){
+			dataInicio = new DateTime().dayOfMonth().withMinimumValue();
+			dataFim = new DateTime().dayOfMonth().withMaximumValue();
+		}
+		else if(agrupamento.equalsIgnoreCase(UnidadeMedida.MES.getCodigo())){
+			dataInicio = new DateTime().monthOfYear().withMinimumValue().dayOfMonth().withMinimumValue();
+			dataFim = new DateTime().monthOfYear().withMaximumValue().dayOfMonth().withMaximumValue();
+		}
+		
+		dados = contasReceberFacade.findToChart(dataInicio.toDate(), dataFim.toDate(), Status.RECEBIDA.getCodigo(), agrupamento);
+		result.use(Results.json()).from(dados, "dados").recursive().serialize();
 	}
 }

@@ -13,11 +13,7 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.joda.time.DateTime;
-import org.joda.time.Days;
-import org.joda.time.Hours;
 import org.joda.time.LocalDate;
-import org.joda.time.Minutes;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;

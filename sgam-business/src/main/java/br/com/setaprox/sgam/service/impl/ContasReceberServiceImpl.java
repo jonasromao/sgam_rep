@@ -2,6 +2,7 @@ package br.com.setaprox.sgam.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -18,6 +19,8 @@ import org.joda.time.Years;
 import br.com.setaprox.sgam.DAO.ContasReceberDAO;
 import br.com.setaprox.sgam.constante.Categoria;
 import br.com.setaprox.sgam.constante.Status;
+import br.com.setaprox.sgam.constante.UnidadeMedida;
+import br.com.setaprox.sgam.dto.GraficoDTO;
 import br.com.setaprox.sgam.model.Aluguel;
 import br.com.setaprox.sgam.model.AluguelComercio;
 import br.com.setaprox.sgam.model.CategoriaContasReceber;
@@ -206,6 +209,52 @@ public class ContasReceberServiceImpl implements ContasReceberService {
 	@Override
 	public List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria, String status) {
 		return contasReceberDAO.findAllByPeriodo(dataInicio, dataFim, categoria, status);
+	}
+
+	@Override
+	public GraficoDTO findToChart(Date dataInicio, Date dataFim, String status, String agrupamento) {
+		GraficoDTO dados = null;
+		double valorTotal = 0.0;
+		List<Object> objetos = contasReceberDAO.findToChart(dataInicio, dataFim, status, agrupamento);
+		
+		if(objetos != null){
+			dados = new GraficoDTO();
+			Locale locale = new Locale("pt", "BR");
+			
+			if(agrupamento.equalsIgnoreCase(UnidadeMedida.DIA.getCodigo())){
+				for(int i=0; i<objetos.size(); i++){
+					Object[] o = (Object[]) objetos.get(i);
+					
+					DateTime data = new DateTime((Date) o[0]);
+					double valor = (Double) o[1];
+					String nomeMes = data.toString("MMMM",locale);
+					
+					dados.getDatas().add(data.toDate());
+					dados.getValores().add(valor);
+					dados.getNomeMeses().add(nomeMes);
+					
+					valorTotal += valor;
+				}
+			}
+			else if(agrupamento.equalsIgnoreCase(UnidadeMedida.MES.getCodigo())){
+				for(int i=0; i<objetos.size(); i++){
+					Object[] o = (Object[]) objetos.get(i);
+					
+					int numeroMes = (Integer) o[0];
+					double valor = (Double) o[1];
+					String nomeMes = new DateTime().withMonthOfYear(numeroMes).toString("MMMM",locale);
+					
+					dados.getValores().add(valor);
+					dados.getNomeMeses().add(nomeMes);
+					
+					valorTotal += valor;
+				}
+			}
+			
+			dados.setValorTotal(valorTotal);
+		}
+		
+		return dados;
 	}
 
 	

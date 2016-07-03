@@ -29,4 +29,6 @@ public interface ContasReceberDAO {
 	
 	List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria, String status);
 	
+	List<Object> findToChart(Date dataInicio, Date dataFim, String status, String agrupamento);
+	
 }

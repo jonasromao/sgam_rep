@@ -3,6 +3,7 @@ package br.com.setaprox.sgam.facade;
 import java.util.Date;
 import java.util.List;
 
+import br.com.setaprox.sgam.dto.GraficoDTO;
 import br.com.setaprox.sgam.model.ContasReceber;
 
 public interface ContasReceberFacade {
@@ -22,5 +23,7 @@ public interface ContasReceberFacade {
 	List<ContasReceber> findAllByMorador(Long idMorador);
 	
 	List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria, String status);
+	
+	GraficoDTO findToChart(Date dataInicio, Date dataFim, String status, String agrupamento);
 	
 }

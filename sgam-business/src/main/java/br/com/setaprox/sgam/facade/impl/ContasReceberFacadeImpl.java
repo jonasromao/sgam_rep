@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
+import br.com.setaprox.sgam.dto.GraficoDTO;
 import br.com.setaprox.sgam.facade.ContasReceberFacade;
 import br.com.setaprox.sgam.model.ContasReceber;
 import br.com.setaprox.sgam.service.ContasReceberService;
@@ -56,6 +57,11 @@ public class ContasReceberFacadeImpl implements ContasReceberFacade {
 	@Override
 	public List<ContasReceber> findAllByPeriodo(Date dataInicio, Date dataFim, String categoria, String status) {
 		return contasReceberService.findAllByPeriodo(dataInicio, dataFim, categoria, status);
+	}
+
+	@Override
+	public GraficoDTO findToChart(Date dataInicio, Date dataFim, String status, String agrupamento) {
+		return contasReceberService.findToChart(dataInicio, dataFim, status, agrupamento);
 	}
 
 }
