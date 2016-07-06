@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
-<shiro:hasPermission name="sgam.financeiro.contas_pagar.incluir">
+<shiro:hasPermission name="sgam.financeiro.contas_pagar.incluir:sgam.financeiro.contas_pagar.editar">
 
 <%@ include file="/headerMenu.jsp" %> 
 <%@ include file="/fornecedorModal.jsp" %> 
@@ -227,6 +227,6 @@
 ﻿<%@ include file="/footer.jsp" %>
 </shiro:hasPermission>
 
-<shiro:lacksPermission name="sgam.financeiro.contas_pagar.incluir">
+<shiro:lacksPermission name="sgam.financeiro.contas_pagar.incluir:sgam.financeiro.contas_pagar.editar">
 	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
 </shiro:lacksPermission>

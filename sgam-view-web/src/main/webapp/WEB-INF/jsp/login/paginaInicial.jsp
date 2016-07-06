@@ -41,7 +41,7 @@
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">${totalAssociados}</h1>
-                                <div class="stat-percent font-bold text-info"><fmt:formatNumber value="${porcentSocios}" type="number" pattern="#,##0.00"/>% <i class="fa fa-group"></i></div>
+                                <div class="stat-percent font-bold text-info">${porcentSocios}% <i class="fa fa-group"></i></div>
                                 <small>Total de Associados</small>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">${totalAssociadosMes}</h1>
-                                <div class="stat-percent font-bold text-navy"><fmt:formatNumber value="${porcentSociosMes}" type="number" pattern="#,##0.00"/>% <i class="fa fa-group"></i></div>
+                                <div class="stat-percent font-bold text-navy">${porcentSociosMes}% <i class="fa fa-group"></i></div>
                                 <small>Novos Associados</small>
                             </div>
                         </div>
@@ -109,10 +109,7 @@
 
                                         <li>
                                             <h2 class="no-margins "><span id="valorTotal"></span></h2>
-                                            <small>Valor Total</small>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 100%;" class="progress-bar"></div>
-                                            </div>
+                                            <small><span class="label label-primary">Valor Total</span></small>
                                         </li>
                                         </ul>
                                     </div>

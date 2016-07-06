@@ -61,7 +61,7 @@ request.setAttribute("cargoUsuario", usuario.getCargo());
                     
                     <li class="nav-header">
                         <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="${pageContext.request.contextPath}/img/profile_small.jpg" />
+                            <img alt="image" class="img-circle" src="${pageContext.request.contextPath}/img/flags/32/Brazil.png" />
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"> ${nomeUsuario} </strong>
@@ -214,25 +214,8 @@ request.setAttribute("cargoUsuario", usuario.getCargo());
         </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <span class="m-r-sm text-muted welcome-message">Bem vindo <shiro:principal /> </span>
+                    <span class="m-r-sm text-muted welcome-message">Olá, ${nomeUsuario} </span>
                 </li>
-                
-                <li class="dropdown">
-                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell"></i>  <span class="label label-primary"></span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Nenhuma mensagem
-                                    <span class="pull-right text-muted small"></span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
 
                 <li>
                     <a href="${linkTo[LoginController].logout}">

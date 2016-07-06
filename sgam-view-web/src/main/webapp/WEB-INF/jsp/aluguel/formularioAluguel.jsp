@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
-<shiro:hasPermission name="sgam.faturamento.aluguel.incluir">
+<shiro:hasPermission name="sgam.faturamento.aluguel.incluir:sgam.faturamento.aluguel.editar">
 
 <%@ include file="/headerMenu.jsp" %> 
 <%@ include file="/moradorModal.jsp" %>
@@ -184,6 +184,6 @@
 ﻿<%@ include file="/footer.jsp" %>
 </shiro:hasPermission>
 
-<shiro:lacksPermission name="sgam.faturamento.aluguel.incluir">
+<shiro:lacksPermission name="sgam.faturamento.aluguel.incluir:sgam.faturamento.aluguel.editar">
 	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
 </shiro:lacksPermission>

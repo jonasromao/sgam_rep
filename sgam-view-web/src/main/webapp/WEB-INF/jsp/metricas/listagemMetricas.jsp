@@ -83,7 +83,7 @@
 			<div class="col-lg-12">
 	        	<div class="ibox float-e-margins">
 		        	<div class="ibox-title">
-	                    <h5><span class="label label-warning">Totais </span> <small>Visão geral do caixa no período</small></h5>
+	                    <h5><strong>Totais </strong> <small>Visão geral do caixa no período</small></h5>
 	                    <div class="ibox-tools">
 	                        <a class="collapse-link">
 	                            <i class="fa fa-chevron-up"></i>
@@ -122,7 +122,7 @@
 			<div class="col-lg-12">
 	        	<div class="ibox float-e-margins">
 		        	<div class="ibox-title">
-	                    <h5><span class="label label-primary">Associados </span> <small>Visão detalhada de valores recebidos dos associados</small></h5>
+	                    <h5>Associados<small> Visão detalhada de valores recebidos dos associados</small></h5>
 	                    <div class="ibox-tools">
 	                        <a class="collapse-link">
 	                            <i class="fa fa-chevron-up"></i>
@@ -169,7 +169,7 @@
 			<div class="col-lg-12">
 	        	<div class="ibox float-e-margins">
 		        	<div class="ibox-title">
-	                    <h5><span class="label label-primary">Recursos </span> <small>Visão detalhada de valores recebidos por recurso</small></h5>
+	                    <h5>Recursos<small> Visão detalhada de valores recebidos por recurso</small></h5>
 	                    <div class="ibox-tools">
 	                        <a class="collapse-link">
 	                            <i class="fa fa-chevron-up"></i>
@@ -220,7 +220,7 @@
 			<div class="col-lg-12">
 	        	<div class="ibox float-e-margins">
 		        	<div class="ibox-title">
-	                    <h5><span class="label label-danger">Contas a pagar </span> <small>Visão detalhada de valores das contas a pagar</small></h5>
+	                    <h5>Contas a pagar<small> Visão detalhada de valores das contas a pagar</small></h5>
 	                    <div class="ibox-tools">
 	                        <a class="collapse-link">
 	                            <i class="fa fa-chevron-up"></i>

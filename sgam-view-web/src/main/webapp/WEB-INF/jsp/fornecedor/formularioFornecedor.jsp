@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
-<shiro:hasPermission name="sgam.cadastros.fornecedor.incluir">
+<shiro:hasPermission name="sgam.cadastros.fornecedor.incluir:sgam.cadastros.fornecedor.editar">
 <%@ include file="/headerMenu.jsp" %> 
 
     <link href="${pageContext.request.contextPath}/css/plugins/iCheck/custom.css" rel="stylesheet">
@@ -192,6 +192,6 @@
 
 </shiro:hasPermission>
 
-<shiro:lacksPermission name="sgam.ocorrencia.incluir">
+<shiro:lacksPermission name="sgam.cadastros.fornecedor.incluir:sgam.cadastros.fornecedor.editar">
 	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
 </shiro:lacksPermission>

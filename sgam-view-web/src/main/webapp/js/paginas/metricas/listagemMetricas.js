@@ -136,9 +136,7 @@ $(document).ready(function(){
 			    }
 		},
 		"lengthChange": false,
-		"columnDefs": [
-		    { "visible": false, "targets": 0 }
-        ],
+		
         dom: '<"html5buttons"B>lTfgtpi',
         buttons: [
             {extend: 'excel', title: 'Contas a pagar', footer: true},

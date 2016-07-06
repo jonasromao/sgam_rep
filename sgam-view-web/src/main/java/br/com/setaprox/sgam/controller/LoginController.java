@@ -125,8 +125,8 @@ public class LoginController {
 		long totalAssociados = 0l;
 		long totalAssociadosMes = 0l;
 		
-		double porcentSocios = 0;
-		double porcentSociosMes = 0;
+		long porcentSocios = 0l;
+		long porcentSociosMes = 0l;
 		
 		
 		try{

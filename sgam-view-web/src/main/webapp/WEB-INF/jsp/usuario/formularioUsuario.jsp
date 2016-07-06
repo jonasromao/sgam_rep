@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
-<shiro:hasPermission name="sgam.configuracoes.usuario.incluir">
+<shiro:hasPermission name="sgam.configuracoes.usuario.incluir:sgam.configuracoes.usuario.editar">
 
 <%@ include file="/headerMenu.jsp" %> 
 
@@ -167,6 +167,6 @@
 
 </shiro:hasPermission>
 
-<shiro:lacksPermission name="sgam.configuracoes.usuario.incluir">
+<shiro:lacksPermission name="sgam.configuracoes.usuario.incluir:sgam.configuracoes.usuario.editar">
 	<jsp:include page="/semPermissaoAcesso.jsp" flush="true"/>
 </shiro:lacksPermission>
