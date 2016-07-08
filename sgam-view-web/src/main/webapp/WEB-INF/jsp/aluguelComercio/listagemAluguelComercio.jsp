@@ -69,6 +69,10 @@
 										</c:otherwise>
 									</c:choose>
 									<td style="text-align: center; margin: 20px 0; padding: 10px;"> 
+										<shiro:hasPermission name="sgam.financeiro.contas_receber.editar">
+											<a onclick="marcarMenuAtivo('menuFinanceiro', 'submenuContasReceber', 'collapseFinanceiro')" title="Link para acessar a respectiva conta a receber" class="editar" href="${linkTo[ContasReceberController].editarConta(aluguelComercio.aluguel.contaReceber.id)}"> <i class="fa fa-dollar"></i>  </a> &nbsp;
+										</shiro:hasPermission>
+										
 										<shiro:hasPermission name="sgam.faturamento.aluguel_comercio.editar">
 											<a title="Editar" class="editar" href="${linkTo[AluguelComercioController].editarAluguelComercio(aluguelComercio.id)}"> <i class="fa fa-edit iconeDataTable"></i> </a> &nbsp;
 										</shiro:hasPermission>

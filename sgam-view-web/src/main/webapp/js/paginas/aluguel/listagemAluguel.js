@@ -13,7 +13,7 @@ $(document).ready(function(){
 		},
 		"order": [],
 		"columnDefs": [
-		    { "orderable": false, "targets": [4,5,6]}
+		    { "orderable": false, "targets": [4,5]}
 		],
 		dom: '<"html5buttons"B>lTfgtpi',
         buttons: [

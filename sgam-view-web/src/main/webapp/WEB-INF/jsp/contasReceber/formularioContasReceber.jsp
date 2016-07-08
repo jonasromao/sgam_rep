@@ -121,7 +121,7 @@
 						<div class="ibox-content">
 							<div class="form-group">
 			                    <div class="col-sm-12">
-			                        <a onclick="marcarMenuAtivo('menuFaturamento', 'submenuReservaEspaco', 'collapseFaturamento')" class="btn btn-outline btn-default" href="${linkTo[ContasReceberController].listagemContasReceber}"> Cancelar</a>
+			                        <a onclick="marcarMenuAtivo('menuFinanceiro', 'submenuContasReceber', 'collapseFinanceiro')" class="btn btn-outline btn-default" href="${linkTo[ContasReceberController].listagemContasReceber}"> Cancelar</a>
 			                        <button class="btn btn-primary" type="submit"> <i class="fa fa-check"></i> Salvar</button>
 			                    </div>
 			                </div>			
@@ -170,7 +170,7 @@
 		           	     	</table>
 	           	     	</div>
 	           	     	
-	           	     	<strong><a title="Detalhes" onclick="marcarMenuAtivo('menuOcorrencias', '', '')" href="${linkTo[AluguelController].editarAluguel(contaReceber.aluguel.id)}"> Detalhes </a></strong>
+	           	     	<strong><a title="Detalhes" onclick="marcarMenuAtivo('menuFaturamento', 'submenuReservaEspaco', 'collapseFaturamento')" href="${linkTo[AluguelController].editarAluguel(contaReceber.aluguel.id)}"> Detalhes </a></strong>
 
 	                    <ul class="list-group clear-list">
 	                     
