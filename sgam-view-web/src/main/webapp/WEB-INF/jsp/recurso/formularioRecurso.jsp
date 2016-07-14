@@ -47,7 +47,7 @@
 	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Descrição</label>
 	                    <div class="col-sm-8">
-	                    	<textarea class="form-control" name="recurso.descricao" rows="3" cols="">${recurso.descricao}</textarea>
+	                    	<textarea class="form-control" name="recurso.descricao" rows="4" cols="">${recurso.descricao}</textarea>
 	                    </div>
 	                </div>
 	                

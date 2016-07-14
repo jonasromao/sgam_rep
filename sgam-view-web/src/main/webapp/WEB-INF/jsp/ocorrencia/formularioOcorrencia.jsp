@@ -75,14 +75,14 @@
 	               	<div class="form-group">
 	            		<label class="col-sm-2 control-label">Local</label>
 	                   	<div class="col-sm-10">
-	                   		<input id="local" type="text" class="form-control" name="ocorrencia.local" value="${ocorrencia.local}" >
+	                   		<textarea class="form-control" name="ocorrencia.local" rows="3" cols="">${ocorrencia.local}</textarea>
 	                   	</div>
 	               	</div>
 	              
 	               	<div class="form-group">
 	            		<label class="col-sm-2 control-label">Refer.</label>
 	                   	<div class="col-sm-10">
-	                   		<input id="referencia" type="text" class="form-control" name="ocorrencia.pontoReferencia" value="${ocorrencia.pontoReferencia}" >
+	                   		<textarea class="form-control" name="ocorrencia.pontoReferencia" rows="3" cols="">${ocorrencia.pontoReferencia}</textarea>
 	                   	</div>
 	               	</div>
 		               

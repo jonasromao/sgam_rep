@@ -50,7 +50,7 @@
 					<div class="form-group">
 			 			<label class="col-sm-3 control-label">Descrição</label>
 						<div class="col-sm-9">
-							<textarea class="form-control" name="perfil.descricao" rows="2" cols="">${perfil.descricao}</textarea>
+							<textarea class="form-control" name="perfil.descricao" rows="4" cols="">${perfil.descricao}</textarea>
 						</div>
 					</div>
 					

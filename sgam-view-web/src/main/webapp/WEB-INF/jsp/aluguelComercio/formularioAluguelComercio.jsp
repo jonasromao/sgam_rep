@@ -93,7 +93,7 @@
 	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Observação</label>
 	                    <div class="col-sm-8">
-	                    	<textarea name="aluguelComercio.aluguel.observacao" class="form-control" rows="" cols="">${aluguelComercio.aluguel.observacao}</textarea>
+	                    	<textarea name="aluguelComercio.aluguel.observacao" class="form-control" rows="4" cols="">${aluguelComercio.aluguel.observacao}</textarea>
 	                    </div>
 	                </div>
 	                
@@ -187,14 +187,14 @@
 		            <div class="form-group">
 		            	<label class="col-sm-4 control-label">Equipamentos</label>
 		                <div class="col-sm-8">
-		                	<input type="text" class="form-control" name="aluguelComercio.equipamentos" value="${aluguelComercio.equipamentos}">
+		                	<textarea name="aluguelComercio.equipamentos" class="form-control" rows="4" cols="">${aluguelComercio.equipamentos}</textarea>
 		                </div>
 		          	</div>
 		          	
 		          	<div class="form-group">
 		            	<label class="col-sm-4 control-label">Produtos</label>
 		                <div class="col-sm-8">
-		                	<input type="text" class="form-control" name="aluguelComercio.produtos" value="${aluguelComercio.produtos}">
+		                	<textarea name="aluguelComercio.produtos" class="form-control" rows="4" cols="">${aluguelComercio.produtos}</textarea>
 		                </div>
 		          	</div>
 		          	

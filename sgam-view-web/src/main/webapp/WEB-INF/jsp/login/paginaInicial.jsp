@@ -279,6 +279,7 @@
 	                                                <th>Morador</th>
 	                                                <th>Inicio</th>
 	                                                <th>Fim</th>
+	                                                <th>Até</th>
 	                                                <th>Validade Alvará</th>
 	                                                <th>Status Alvará</th>
 	                                            </tr>
@@ -302,6 +303,7 @@
 															
 															<td><i class="fa fa-clock-o"></i> <fmt:formatDate pattern="HH:mm" value="${comercio.aluguel.dataInicial}" /></td>
 															<td><i class="fa fa-clock-o"></i> <fmt:formatDate pattern="HH:mm" value="${comercio.aluguel.dataFinal}" /></td>
+															<td><i class="fa fa-calendar"></i> <fmt:formatDate pattern="dd/MM/yyyy" value="${comercio.aluguel.dataFinal}" /></td>
 															<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${comercio.dataVencimento}" /> </td>
 															<c:choose>
 																<c:when test="${comercio.statusAlvara eq 'Ativo'}">

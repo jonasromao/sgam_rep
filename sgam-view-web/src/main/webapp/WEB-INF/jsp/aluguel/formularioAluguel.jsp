@@ -89,7 +89,7 @@
 	                <div class="form-group">
 	             		<label class="col-sm-4 control-label">Observação</label>
 	                    <div class="col-sm-8">
-	                    	<textarea name="aluguel.observacao" class="form-control" rows="" cols="">${aluguel.observacao}</textarea>
+	                    	<textarea name="aluguel.observacao" class="form-control" rows="4" cols="">${aluguel.observacao}</textarea>
 	                    </div>
 	                </div>
 	                
